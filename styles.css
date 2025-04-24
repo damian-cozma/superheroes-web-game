@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: url("assets/background.png");
+}
+
+#canvas {
+    /*border: 5px solid black;*/
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ebf3ff;
+    max-width: 100%;
+    max-height: 100%;
+}
