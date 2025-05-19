@@ -17,19 +17,26 @@ export class Level {
     }
 
     initCollisionBlocks() {
-        for (let y = 0; y < this.collisions.length; y++) {
-            for (let x = 0; x < this.collisions[y].length; x++) {
-                if (this.collisions[y][x] === 1) {
+        this.collisionBlocks = [];
+        const size = this.blockSize;
+
+        this.collisions.forEach((row, y) => {
+            row.forEach((cell, x) => {
+                if (cell === 1) {
                     this.collisionBlocks.push({
                         position: {
-                            x: x * this.blockSize,
-                            y: y * this.blockSize
+                            x: x * size,
+                            y: y * size,       // direct, fără reverse
                         },
-                        width: this.blockSize,
-                        height: this.blockSize
+                        width:  size,
+                        height: size,
                     });
                 }
-            }
-        }
+            });
+        });
     }
+
+
+
+
 }

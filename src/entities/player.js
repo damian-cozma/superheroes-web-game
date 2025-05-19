@@ -1,9 +1,9 @@
 export class Player {
     constructor(gravity, canvasHeight, sprites) {
-        this.position = { x: 100, y: 100 };
+        this.position = { x: 100, y: 0 };
         this.velocity = { x: 0, y: 0 };
-        this.width = 64;
-        this.height = 64;
+        this.width = 160;
+        this.height = 80;
         this.isGrounded = false;
         this.gravity = gravity;
         this.canvasHeight = canvasHeight;
@@ -13,6 +13,23 @@ export class Player {
         this.animationSpeed = 100;
         this.lastUpdateTime = 0;
         this.facing = 'right';
+        this.hitbox = {
+            offsetX: (this.width  - 64) / 2,  // centrat orizontal
+            offsetY: this.height - 64,        // plasat la picioare
+            width:   64,
+            height:  64
+        };
+    }
+
+    getHitbox() {
+        return {
+            position: {
+                x: this.position.x + this.hitbox.offsetX,
+                y: this.position.y + this.hitbox.offsetY
+            },
+            width:  this.hitbox.width,
+            height: this.hitbox.height
+        };
     }
 
     setAnimation(newAnimation) {

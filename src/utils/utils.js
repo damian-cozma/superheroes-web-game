@@ -8,8 +8,10 @@ export function checkCollision(rect1, rect2) {
 }
 
 export const config = {
-    canvasWidth: 1200,
+    canvasWidth:  1200,
     canvasHeight: 640,
-    gravity: 1,
-    blockSize: 32
+    gravity:      1,
+    blockSize:    32,
+    jumpVelocity: 20,
+    playerSpeed:  4    // viteza de deplasare orizontală
 };

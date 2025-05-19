@@ -9,6 +9,9 @@
 </head>
 <body>
 <canvas id="canvas"></canvas>
-<script type="module" src="script.js"></script>
+<script type="module">
+    import { Main } from './src/systems/main.js';
+    Main.start(1); // load level #1
+</script>
 </body>
 </html>

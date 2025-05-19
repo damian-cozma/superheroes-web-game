@@ -4,114 +4,133 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7900fa85-ccbb-442e-8506-9d0d0830b4b0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Platformer_WEB.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/InputHandler.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Layer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Player.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/background.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/level_1/bg1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/level_1/bg2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/level_1/bg3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/level_1/bg4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/level_1/bg5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/level_1/ground_buildings.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/player/attack.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/player/idleLeft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/player/idleRight.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/player/jump.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/player/runLeft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/player/runRight.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/collisions/level1.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/levels/Level.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/levelsConfig.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils.js" afterDir="false" />
+    <list default="true" id="be0122f1-d34a-462e-9485-d2e31cc1ce11" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/npcs/hero1Idle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/ui/chatBubble.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/config/dialogues-config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/input-handler.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/npc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/speech-bubble.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/systems/dialogue-system.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/systems/input-system.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/systems/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/systems/physics-system.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/systems/renderer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/systems/resource-loader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InputHandler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Layer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/layer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/player.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/levels/Level.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/level.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/levelsConfig.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/levels-config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="HTML File" />
-        <option value="JavaScript File" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 6
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;david-cimpoesu&quot;
+  }
 }</component>
-  <component name="ProjectId" id="2w9MwLfKxCJFKkVq07YhYggP4Bi" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/damian-cozma/Platformer_WEB.git&quot;,
+    &quot;accountId&quot;: &quot;e9033282-cddf-4b36-9579-f233b2aa4890&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2xED3iL7uiKPjKhfQInCZKw6ze5" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/damian/Desktop/Desktop/New../Platformer_WEB&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JavaScript Debug.index.html.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Node.js.InputHandler.js.executor": "Run",
+    "Node.js.Player.js.executor": "Run",
+    "Node.js.main.js.executor": "Run",
+    "Node.js.npc.js.executor": "Run",
+    "Node.js.physics-system.js.executor": "Run",
+    "Node.js.resource-loader.js.executor": "Run",
+    "Node.js.script.js.executor": "Run",
+    "Node.js.speech-bubble.js.executor": "Run",
+    "Node.js.utils.js.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main+david1",
+    "last_opened_file_path": "C:/Users/claud/Downloads/PROIECT_WEB/assets/ui",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/assets/player" />
-      <recent name="$PROJECT_DIR$/assets/player/idle" />
-      <recent name="$PROJECT_DIR$/assets/player/run" />
-      <recent name="$PROJECT_DIR$/assets" />
-      <recent name="$PROJECT_DIR$/assets/level_1" />
+      <recent name="C:\Users\claud\Downloads\PROIECT_WEB\assets\ui" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/collisions" />
+      <recent name="C:\Users\claud\Downloads\PROIECT_WEB\assets\npcs" />
+      <recent name="C:\Users\claud\Downloads\PROIECT_WEB\assets\hero1-idle" />
+      <recent name="C:\Users\claud\Downloads\PROIECT_WEB\src\config" />
+      <recent name="C:\Users\claud\Downloads\PROIECT_WEB\src\systems" />
+      <recent name="C:\Users\claud\Downloads\PROIECT_WEB\src\utils" />
     </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-WS-243.23654.157" />
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-WS-251.23774.424" />
       </set>
     </attachedChunks>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7900fa85-ccbb-442e-8506-9d0d0830b4b0" name="Changes" comment="" />
-      <created>1745449573842</created>
+      <changelist id="be0122f1-d34a-462e-9485-d2e31cc1ce11" name="Changes" comment="" />
+      <created>1747494142689</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1745449573842</updated>
-      <workItem from="1745449574881" duration="9005000" />
-      <workItem from="1745510705257" duration="212000" />
-      <workItem from="1745510927252" duration="2927000" />
-      <workItem from="1745604924287" duration="11398000" />
-      <workItem from="1745999932836" duration="463000" />
-      <workItem from="1746007257953" duration="708000" />
+      <updated>1747494142689</updated>
+      <workItem from="1747494144445" duration="28454000" />
+      <workItem from="1747643070666" duration="24197000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
