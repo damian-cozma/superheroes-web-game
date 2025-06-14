@@ -26,7 +26,7 @@ export class Level {
                     this.collisionBlocks.push({
                         position: {
                             x: x * size,
-                            y: y * size,       // direct, fără reverse
+                            y: y * size,
                         },
                         width:  size,
                         height: size,

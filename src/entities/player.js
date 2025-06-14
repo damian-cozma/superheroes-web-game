@@ -14,8 +14,8 @@ export class Player {
         this.lastUpdateTime = 0;
         this.facing = 'right';
         this.hitbox = {
-            offsetX: (this.width  - 64) / 2,  // centrat orizontal
-            offsetY: this.height - 64,        // plasat la picioare
+            offsetX: (this.width  - 64) / 2, 
+            offsetY: this.height - 64,      
             width:   64,
             height:  64
         };
@@ -51,7 +51,10 @@ export class Player {
 
     getFrameCount(animation) {
         switch(animation) {
-            case 'jump': return 4;
+            case 'jump':
+            case 'jumpLeft':
+            case 'jumpRight':
+                return 4;
             case 'idleRight': return 4;
             case 'idleLeft': return 4;
             case 'runRight': return 7;
@@ -66,7 +69,6 @@ export class Player {
         const frameCount = this.getFrameCount(this.currentAnimation);
         const frameWidth = sprite.width / frameCount;
         const frameX = this.frameIndex * frameWidth;
-
         ctx.drawImage(
             sprite,
             frameX, 0,

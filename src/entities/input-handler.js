@@ -17,30 +17,26 @@ export class InputHandler {
         const key = event.key;
 
         switch (key) {
-            // SĂGEȚI → și D
             case 'ArrowRight':
             case 'd':
             case 'D':
                 this.keys.right.pressed = down;
                 break;
 
-            // SĂGEȚI ← și A
             case 'ArrowLeft':
             case 'a':
             case 'A':
                 this.keys.left.pressed = down;
                 break;
 
-            // SĂGEȚI SUS, W sau SPACE pentru săritură
             case 'ArrowUp':
             case 'w':
             case 'W':
             case ' ':
-            case 'Spacebar':  // pentru browsere mai vechi
+            case 'Spacebar': 
                 this.keys.jump.pressed = down;
                 break;
 
-            // Interacțiune / dialog (E sau ENTER)
             case 'e':
             case 'E':
             case 'Enter':
@@ -48,7 +44,6 @@ export class InputHandler {
                 break;
 
             default:
-                // alte taste (nu ne pasă)
                 break;
         }
     }

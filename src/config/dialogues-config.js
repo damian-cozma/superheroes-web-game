@@ -24,5 +24,5 @@ export const dialogues = {
         ]
     },
 
-    // …add more NPC ids here…
+    // …add more
 };

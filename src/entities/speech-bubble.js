@@ -18,22 +18,18 @@ export class SpeechBubble {
         ctx.font         = `${this.fontSize}px sans-serif`;
         ctx.textBaseline = 'top';
 
-        // measure text to size the bubble
         const metrics    = ctx.measureText(text);
         this.textWidth   = metrics.width;
         this.width       = this.textWidth + this.padding * 2;
-        // keep aspect ratio of the bubble image
         this.height      = bubbleImage.height * (this.width / bubbleImage.width);
     }
 
     draw(scrollOffset) {
         const { ctx, text, targetPos, bubbleImage, padding, width, height } = this;
 
-        // bubble background stays where you originally placed it
         const bx = targetPos.x - scrollOffset - width / 2;
         const by = targetPos.y - height - 20;
 
-        // draw the bubble graphic
         ctx.drawImage(
             bubbleImage,
             0, 0, bubbleImage.width, bubbleImage.height,
@@ -41,7 +37,6 @@ export class SpeechBubble {
             width, height
         );
 
-        // draw the text inside the bubble, vertically centered
         ctx.fillStyle = 'black';
         const textY = by + (height - this.fontSize) / 2;
         ctx.fillText(text, bx + padding, textY);

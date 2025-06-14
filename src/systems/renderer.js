@@ -17,10 +17,8 @@ export class Renderer {
     }
 
     drawCollisionDebug(blocks, camera) {
-        // setează o culoare semi-transparentă ca să vezi exact unde sunt coliziunile
         this.ctx.fillStyle = 'rgba(186,156,186,0)';
         blocks.forEach(b => {
-            // ține cont și de offset-ul camerei, dacă scroll-ul mută canvas-ul
             this.ctx.fillRect(
                 b.position.x - camera.x,
                 b.position.y - camera.y,
@@ -31,7 +29,6 @@ export class Renderer {
     }
 
     drawEntities(entities, time, scrollOffset) {
-        // Optionally offset entity draws by scrollOffset if your draw methods don't
         entities.forEach(ent => {
             ent.draw(this.ctx, time, scrollOffset);
         });

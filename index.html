@@ -8,10 +8,21 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<canvas id="canvas"></canvas>
+<div id="main-menu">
+    <button id="btn-story">Story Mode</button>
+    <button id="btn-endless">Endless Run</button>
+    <button id="btn-leaderboard">Leaderboard</button>
+</div>
+<canvas id="canvas" style="display:none;"></canvas>
 <script type="module">
     import { Main } from './src/systems/main.js';
-    Main.start(1); // load level #1
+    const menu = document.getElementById('main-menu');
+    const canvas = document.getElementById('canvas');
+    document.getElementById('btn-story').onclick = () => {
+        menu.style.display = 'none';
+        canvas.style.display = '';
+        Main.start(1);
+    };
 </script>
 </body>
 </html>

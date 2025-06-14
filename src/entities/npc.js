@@ -61,7 +61,6 @@ export class NPC {
      * @param {number} margin
      */
     isPlayerNear(playerHitbox, margin = 32) {
-        // Expand the player's box by `margin` on all sides
         const expanded = {
             position: {
                 x: playerHitbox.position.x - margin,
@@ -71,7 +70,6 @@ export class NPC {
             height: playerHitbox.height + margin * 2
         };
 
-        // This NPC's world-space box
         const npcBox = {
             position: { x: this.position.x, y: this.position.y },
             width:    this.frameWidth,

@@ -16,7 +16,6 @@ export class DialogueSystem {
     }
 
     update(keys, player, npcs) {
-        // 1) if not active, check F‐press near NPC
         if (!this.active && keys.interact.pressed) {
             const near = npcs.find(n => n.isPlayerNear(player.getHitbox()));
             if (near) {
@@ -25,7 +24,6 @@ export class DialogueSystem {
             keys.interact.pressed = false;
         }
 
-        // 2) if active, process next / choice
         if (this.active) {
             if (this.phase === 'questions' && keys.choice != null) {
                 this._ask(keys.choice);

@@ -19,7 +19,8 @@ export const levels = {
             idleLeft:  'assets/player/idleLeft.png',
             runRight:  'assets/player/runRight.png',
             runLeft:   'assets/player/runLeft.png',
-            jump:      'assets/player/jump.png'
+            jumpLeft:  'assets/player/jumpLeft.png',
+            jumpRight: 'assets/player/jumpRight.png'
         },
         npcs: [
             {

@@ -23,15 +23,12 @@ export class Main {
             height: config.canvasHeight
         };
 
-
-        // 1) instantiate all systems
         const input     = new InputSystem();
         const physics   = new PhysicsSystem();
         const dialogue  = new DialogueSystem(ctx);
         const renderer  = new Renderer(ctx);
         const loader    = new ResourceLoader();
 
-        // 2) load level & entities
         const {
             player,
             npcs,
@@ -43,20 +40,13 @@ export class Main {
         let scrollOffset = 0;
         let lastTime     = 0;
 
-        // 3) the main loop
         function loop(timestamp) {
             const delta = timestamp - lastTime;
             lastTime    = timestamp;
 
-            // 3a) input & dialogue
             input.update();
             dialogue.update(input.keys, player, npcs);
 
-            // ▶️ Debugează înainte de update-ul fizic
-
-
-
-            // 3b) physics & scrolling only when not in dialogue
             if (!dialogue.active) {
                 physics.update(delta, player, collisionBlocks);
                 scrollOffset = input.handleScroll(
@@ -68,49 +58,50 @@ export class Main {
                 );
             }
 
-               // 3b-plus) actualizare animație pe baza direcției și stării
                    let targetAnimation;
-               if (!player.isGrounded) {
-                       targetAnimation = 'jump';
-                   } else if (player.velocity.x > 0) {
-                       targetAnimation = 'runRight';
-                   } else if (player.velocity.x < 0) {
-                       targetAnimation = 'runLeft';
-                   } else {
-                       const cap = player.facing.charAt(0).toUpperCase()
-                                       + player.facing.slice(1);
-                       targetAnimation = `idle${cap}`;
-                   }
-               player.setAnimation(targetAnimation);
+        if (!player.isGrounded) {
+            if (player.velocity.x < 0 || player.facing === 'left') {
+                targetAnimation = 'jumpLeft';
+                player.facing = 'left';
+            } else if (player.velocity.x > 0 || player.facing === 'right') {
+                targetAnimation = 'jumpRight';
+                player.facing = 'right';
+            } else {
+                const cap = player.facing.charAt(0).toUpperCase() + player.facing.slice(1);
+                targetAnimation = `jump${cap}`;
+            }
+        } else if (player.velocity.x > 0) {
+            targetAnimation = 'runRight';
+            player.facing = 'right';
+        } else if (player.velocity.x < 0) {
+            targetAnimation = 'runLeft';
+            player.facing = 'left';
+        } else {
+            const cap = player.facing.charAt(0).toUpperCase() + player.facing.slice(1);
+            targetAnimation = `idle${cap}`;
+        }
+        player.setAnimation(targetAnimation);
 
-
-
-        // 3c) render everything
             renderer.clear();
             renderer.drawBackgrounds(layers, scrollOffset);
             renderer.drawCollisionDebug(collisionBlocks, camera);
             renderer.drawEntities([player, ...npcs], timestamp, scrollOffset);
             dialogue.draw(scrollOffset);
 
-            // 3d) clamp scroll & player inside bounds
             scrollOffset = Math.min(
                 Math.max(scrollOffset, 0),
                 groundImage.width - canvas.width
             );
 
-            // 3d) clamp scroll & player inside bounds
             scrollOffset = Math.min(
                 Math.max(scrollOffset, 0),
                 groundImage.width - canvas.width
             );
 
-            // 3e) clamp player inside canvas so she can’t run off-screen
             player.position.x = Math.min(
                 Math.max(player.position.x, 0),
                 canvas.width - player.width
             );
-
-
 
             requestAnimationFrame(loop);
         }
