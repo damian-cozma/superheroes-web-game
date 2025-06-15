@@ -6,10 +6,18 @@ import { PhysicsSystem }   from './physics-system.js';
 import { DialogueSystem }  from './dialogue-system.js';
 import { Renderer }        from './renderer.js';
 import { config } from '../utils/utils.js';
+import { Coin } from '../entities/coin.js';
 
 export class Main {
     static _runningLoop = false;
     static _rafId = null;
+    static _coins = 0;
+    static setCoins(val) {
+        Main._coins = val;
+    }
+    static addCoin() {
+        Main._coins++;
+    }
 
     static async start(levelId) {
         if (Main._rafId) {
@@ -45,8 +53,58 @@ export class Main {
             groundImage
         } = await loader.loadLevel(levelId);
 
+        // Generează coins din pozițiile din level.coinPositions (populate din matricea de coliziuni cu 2)
+        let coins = [];
+        if (typeof layers !== 'undefined' && typeof player !== 'undefined') {
+            // Obține pozițiile din Level
+            let levelObj = null;
+            if (loader && loader.loadLevel) {
+                // Caută Level-ul creat în loader.loadLevel
+                // Dar nu avem acces direct, deci refolosim collisionBlocks ca referință
+                // Dar putem accesa coinPositions din collisionBlocks[0].level dacă ar fi salvat acolo
+                // Mai simplu: reconstruim Level aici pentru coinPositions
+                const Level = (await import('../entities/level.js')).Level;
+                const cfg = (await import('../config/levels-config.js')).levels[levelId];
+                levelObj = new Level({
+                    id: levelId,
+                    bgPaths: cfg.bgImageSrc,
+                    groundImagePath: cfg.groundImageSrc,
+                    collisionsData: cfg.collisionBlocks
+                });
+                coins = levelObj.coinPositions.map(pos => new Coin(pos.x, pos.y));
+            }
+        }
+
         let scrollOffset = 0;
         let lastTime     = 0;
+
+        function drawCoinCounter(ctx, coins) {
+            // Coin circle
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(40, 44, 20, 0, 2 * Math.PI);
+            ctx.fillStyle = '#ffe066';
+            ctx.strokeStyle = '#e6b800';
+            ctx.lineWidth = 3;
+            ctx.fill();
+            ctx.stroke();
+            // Coin symbol
+            ctx.font = 'bold 20px Arial';
+            ctx.fillStyle = '#e6b800';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('¢', 40, 44);
+            // Coin count (spaced to the right of the coin, puțin mai la dreapta)
+            ctx.font = 'bold 28px Arial';
+            ctx.fillStyle = '#ffe066';
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'middle';
+            ctx.shadowColor = '#222';
+            ctx.shadowBlur = 4;
+            ctx.fillText(coins, 75, 44); // mutat de la 65 la 75
+            ctx.shadowBlur = 0;
+            ctx.restore();
+        }
 
         function loop(timestamp) {
             if (!Main._runningLoop) return;
@@ -63,7 +121,8 @@ export class Main {
                     scrollOffset,
                     groundImage.width,
                     canvas.width,
-                    collisionBlocks
+                    collisionBlocks,
+                    coins // transmit și coins pentru scroll sincronizat
                 );
             }
 
@@ -95,7 +154,18 @@ export class Main {
             renderer.drawBackgrounds(layers, scrollOffset);
             renderer.drawCollisionDebug(collisionBlocks, camera);
             renderer.drawEntities([player, ...npcs], timestamp, scrollOffset);
+            // Desenează monedele
+            for (const coin of coins) {
+                coin.draw(ctx);
+            }
             dialogue.draw(scrollOffset);
+            drawCoinCounter(ctx, Main._coins);
+            // Colectare monede
+            for (const coin of coins) {
+                if (coin.checkCollected(player)) {
+                    Main.addCoin();
+                }
+            }
 
             if (levelId === 1 && player.position.x >= canvas.width - player.width - 10) {
                 player.position.x = canvas.width - player.width - 10;

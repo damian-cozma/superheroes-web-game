@@ -20,9 +20,10 @@ export class InputSystem {
      * @param {number} groundWidth
      * @param {number} canvasWidth
      * @param {Array} collisionBlocks
+     * @param {Array} coins
      * @returns {number} scrollOffset nou
      */
-    handleScroll(player, scrollOffset, groundWidth, canvasWidth, collisionBlocks) {
+    handleScroll(player, scrollOffset, groundWidth, canvasWidth, collisionBlocks, coins) {
         const speed      = this.playerSpeed;
         const halfCanvas = canvasWidth * 0.5;
 
@@ -42,6 +43,11 @@ export class InputSystem {
                 for (let block of collisionBlocks) {
                     block.position.x -= speed;
                 }
+                if (coins) {
+                    for (let coin of coins) {
+                        coin.x -= speed;
+                    }
+                }
                 player.position.x = halfCanvas;
             }
 
@@ -54,6 +60,11 @@ export class InputSystem {
                 scrollOffset -= speed;
                 for (let block of collisionBlocks) {
                     block.position.x += speed;
+                }
+                if (coins) {
+                    for (let coin of coins) {
+                        coin.x += speed;
+                    }
                 }
                 player.position.x = halfCanvas;
             }

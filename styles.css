@@ -80,3 +80,27 @@ body {
     opacity: 1;
     pointer-events: auto;
 }
+
+#coin-counter {
+    position: absolute;
+    top: 32px;
+    right: 48px;
+    z-index: 20;
+    background: rgba(34, 40, 49, 0.85);
+    color: #ffe066;
+    font-family: 'Inter', 'Arial', sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 10px 24px 10px 16px;
+    border-radius: 32px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 8px #0004;
+    pointer-events: none;
+}
+
+#coin-counter img {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+}
