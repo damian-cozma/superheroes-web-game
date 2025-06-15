@@ -1,4 +1,5 @@
 import { collisions as level1Collisions } from '../../collisions/level1.js';
+import { collisions as level2Collisions } from '../../collisions/level2.js';
 
 export const levels = {
     1: {
@@ -32,5 +33,22 @@ export const levels = {
                 animationSpeed: 150
             }
         ]
+    },
+    2: {
+        bgImageSrc: [],
+        parallaxSpeeds: [],
+        groundImageSrc: 'assets/level_2/ground.png',
+        collisionBlocks: level2Collisions,
+        gravity: 1,
+        canvasHeight: 640,
+        playerSprites: {
+            idleRight: 'assets/player/idleRight.png',
+            idleLeft:  'assets/player/idleLeft.png',
+            runRight:  'assets/player/runRight.png',
+            runLeft:   'assets/player/runLeft.png',
+            jumpLeft:  'assets/player/jumpLeft.png',
+            jumpRight: 'assets/player/jumpRight.png'
+        },
+        npcs: []
     }
 };

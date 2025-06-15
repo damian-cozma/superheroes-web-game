@@ -13,16 +13,68 @@
     <button id="btn-endless">Endless Run</button>
     <button id="btn-leaderboard">Leaderboard</button>
 </div>
+<div id="sound-toggle" title="Sound On/Off">
+    <svg id="sound-svg" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g id="note-group">
+            <path d="M12 18H20L28 10V38L20 30H12V18Z" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path id="mute-line" d="M10 10L38 38" stroke="#ff4444" stroke-width="4" stroke-linecap="round"/>
+        </g>
+    </svg>
+</div>
+<audio id="menu-music" src="assets/music/main_theme.mp3" loop></audio>
 <canvas id="canvas" style="display:none;"></canvas>
 <script type="module">
     import { Main } from './src/systems/main.js';
     const menu = document.getElementById('main-menu');
     const canvas = document.getElementById('canvas');
+    const music = document.getElementById('menu-music');
+    const soundToggle = document.getElementById('sound-toggle');
+    const muteLine = document.getElementById('mute-line');
+    let soundOn = false;
+
+    function playMenuMusic() {
+        if (music.paused) {
+            music.volume = 0.5;
+            music.play().catch(() => {});
+        }
+    }
+
+    function updateSoundIcon() {
+        muteLine.style.display = soundOn ? 'none' : 'block';
+    }
+
+    soundToggle.onclick = () => {
+        if (!soundOn) {
+            music.volume = 0.5;
+            music.currentTime = 0;
+            music.play().catch(() => {});
+            soundOn = true;
+        } else {
+            music.pause();
+            soundOn = false;
+        }
+        updateSoundIcon();
+    };
+
+    updateSoundIcon();
+
     document.getElementById('btn-story').onclick = () => {
         menu.style.display = 'none';
         canvas.style.display = '';
+        music.pause();
+        music.currentTime = 0;
+        const ctx = canvas.getContext('2d');
+        ctx && ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const nextBtn = document.getElementById('next-level-btn');
+        if (nextBtn) nextBtn.remove();
         Main.start(1);
     };
+    document.getElementById('btn-endless').onclick = playMenuMusic;
+    document.getElementById('btn-leaderboard').onclick = playMenuMusic;
+
+    window.addEventListener('DOMContentLoaded', () => {
+        playMenuMusic();
+    });
 </script>
 </body>
 </html>

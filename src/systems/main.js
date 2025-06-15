@@ -8,8 +8,16 @@ import { Renderer }        from './renderer.js';
 import { config } from '../utils/utils.js';
 
 export class Main {
-    static async start(levelId) {
+    static _runningLoop = false;
+    static _rafId = null;
 
+    static async start(levelId) {
+        if (Main._rafId) {
+            Main._runningLoop = false;
+            cancelAnimationFrame(Main._rafId);
+            Main._rafId = null;
+        }
+        Main._runningLoop = true;
 
         const canvas = document.getElementById('canvas');
         const ctx    = canvas.getContext('2d');
@@ -41,6 +49,7 @@ export class Main {
         let lastTime     = 0;
 
         function loop(timestamp) {
+            if (!Main._runningLoop) return;
             const delta = timestamp - lastTime;
             lastTime    = timestamp;
 
@@ -58,29 +67,29 @@ export class Main {
                 );
             }
 
-                   let targetAnimation;
-        if (!player.isGrounded) {
-            if (player.velocity.x < 0 || player.facing === 'left') {
-                targetAnimation = 'jumpLeft';
-                player.facing = 'left';
-            } else if (player.velocity.x > 0 || player.facing === 'right') {
-                targetAnimation = 'jumpRight';
+            let targetAnimation;
+            if (!player.isGrounded) {
+                if (player.velocity.x < 0 || player.facing === 'left') {
+                    targetAnimation = 'jumpLeft';
+                    player.facing = 'left';
+                } else if (player.velocity.x > 0 || player.facing === 'right') {
+                    targetAnimation = 'jumpRight';
+                    player.facing = 'right';
+                } else {
+                    const cap = player.facing.charAt(0).toUpperCase() + player.facing.slice(1);
+                    targetAnimation = `jump${cap}`;
+                }
+            } else if (player.velocity.x > 0) {
+                targetAnimation = 'runRight';
                 player.facing = 'right';
+            } else if (player.velocity.x < 0) {
+                targetAnimation = 'runLeft';
+                player.facing = 'left';
             } else {
                 const cap = player.facing.charAt(0).toUpperCase() + player.facing.slice(1);
-                targetAnimation = `jump${cap}`;
+                targetAnimation = `idle${cap}`;
             }
-        } else if (player.velocity.x > 0) {
-            targetAnimation = 'runRight';
-            player.facing = 'right';
-        } else if (player.velocity.x < 0) {
-            targetAnimation = 'runLeft';
-            player.facing = 'left';
-        } else {
-            const cap = player.facing.charAt(0).toUpperCase() + player.facing.slice(1);
-            targetAnimation = `idle${cap}`;
-        }
-        player.setAnimation(targetAnimation);
+            player.setAnimation(targetAnimation);
 
             renderer.clear();
             renderer.drawBackgrounds(layers, scrollOffset);
@@ -88,10 +97,12 @@ export class Main {
             renderer.drawEntities([player, ...npcs], timestamp, scrollOffset);
             dialogue.draw(scrollOffset);
 
-            scrollOffset = Math.min(
-                Math.max(scrollOffset, 0),
-                groundImage.width - canvas.width
-            );
+            if (levelId === 1 && player.position.x >= canvas.width - player.width - 10) {
+                player.position.x = canvas.width - player.width - 10;
+                Main._runningLoop = false;
+                setTimeout(() => Main.start(2), 100);
+                return;
+            }
 
             scrollOffset = Math.min(
                 Math.max(scrollOffset, 0),
@@ -103,9 +114,9 @@ export class Main {
                 canvas.width - player.width
             );
 
-            requestAnimationFrame(loop);
+            Main._rafId = requestAnimationFrame(loop);
         }
 
-        requestAnimationFrame(loop);
+        Main._rafId = requestAnimationFrame(loop);
     }
 }
