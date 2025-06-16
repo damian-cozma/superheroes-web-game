@@ -1,17 +1,17 @@
-// src/entities/speech-bubble.js
+// src/entities/speech-dialogue.js
 
-export class SpeechBubble {
+export class SpeechDialogue {
     /**
      * @param {CanvasRenderingContext2D} ctx
      * @param {string} text
-     * @param {{x:number,y:number}} targetPos  – world-coords where the bubble should point
-     * @param {HTMLImageElement} bubbleImage   – your chat-bubble PNG
+     * @param {{x:number,y:number}} targetPos  – world-coords where the dialogue should point
+     * @param {HTMLImageElement} dialogueImage   – your chat-dialogue PNG
      */
-    constructor(ctx, text, targetPos, bubbleImage) {
+    constructor(ctx, text, targetPos, dialogueImage) {
         this.ctx         = ctx;
         this.text        = text;
         this.targetPos   = targetPos;
-        this.bubbleImage = bubbleImage;
+        this.dialogueImage = dialogueImage;
 
         this.padding     = 10;                        // px around text
         this.fontSize    = 16;                        // px
@@ -21,18 +21,18 @@ export class SpeechBubble {
         const metrics    = ctx.measureText(text);
         this.textWidth   = metrics.width;
         this.width       = this.textWidth + this.padding * 2;
-        this.height      = bubbleImage.height * (this.width / bubbleImage.width);
+        this.height      = dialogueImage.height * (this.width / dialogueImage.width);
     }
 
     draw(scrollOffset) {
-        const { ctx, text, targetPos, bubbleImage, padding, width, height } = this;
+        const { ctx, text, targetPos, dialogueImage, padding, width, height } = this;
 
         const bx = targetPos.x - scrollOffset - width / 2;
         const by = targetPos.y - height - 20;
 
         ctx.drawImage(
-            bubbleImage,
-            0, 0, bubbleImage.width, bubbleImage.height,
+            dialogueImage,
+            0, 0, dialogueImage.width, dialogueImage.height,
             bx, by,
             width, height
         );

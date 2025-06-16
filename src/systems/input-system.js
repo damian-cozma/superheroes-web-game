@@ -10,7 +10,7 @@ export class InputSystem {
     }
 
     update() {
-        this.keys.choice = null;
+
     }
 
     /**

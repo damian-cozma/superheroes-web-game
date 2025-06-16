@@ -41,7 +41,7 @@ export class Main {
 
         const input     = new InputSystem();
         const physics   = new PhysicsSystem();
-        const dialogue  = new DialogueSystem(ctx);
+        const fixedWidth = 256;  // width of the fixed (portrait+name) slice
         const renderer  = new Renderer(ctx);
         const loader    = new ResourceLoader();
 
@@ -50,25 +50,32 @@ export class Main {
             npcs,
             layers,
             collisionBlocks,
-            groundImage
+            groundImage,
+            dialogueImage
         } = await loader.loadLevel(levelId);
+
+        const dialogue = new DialogueSystem(
+            ctx,
+            dialogueImage,
+            fixedWidth,
+            canvas.width,
+            canvas.height,
+            canvas
+        );
 
         let coins = [];
         if (typeof layers !== 'undefined' && typeof player !== 'undefined') {
-
-            let levelObj = null;
-            if (loader && loader.loadLevel) {
-
-                const Level = (await import('../entities/level.js')).Level;
-                const cfg = (await import('../config/levels-config.js')).levels[levelId];
-                levelObj = new Level({
-                    id: levelId,
-                    bgPaths: cfg.bgImageSrc,
-                    groundImagePath: cfg.groundImageSrc,
-                    collisionsData: cfg.collisionBlocks
-                });
-                coins = levelObj.coinPositions.map(pos => new Coin(pos.x, pos.y));
-            }
+            const LevelModule = await import('../entities/level.js');
+            const Level = LevelModule.Level;
+            const cfgModule = await import('../config/levels-config.js');
+            const cfg = cfgModule.levels[levelId];
+            const levelObj = new Level({
+                id: levelId,
+                bgPaths: cfg.bgImageSrc,
+                groundImagePath: cfg.groundImageSrc,
+                collisionsData: cfg.collisionBlocks
+            });
+            coins = levelObj.coinPositions.map(pos => new Coin(pos.x, pos.y));
         }
 
         let scrollOffset = 0;
@@ -105,7 +112,7 @@ export class Main {
             lastTime    = timestamp;
 
             input.update();
-            dialogue.update(input.keys, player, npcs);
+            dialogue.update(input.keys, player, npcs, delta);
 
             if (!dialogue.active) {
                 physics.update(delta, player, collisionBlocks);
@@ -150,7 +157,7 @@ export class Main {
             for (const coin of coins) {
                 coin.draw(ctx);
             }
-            dialogue.draw(scrollOffset);
+            dialogue.draw();
             drawCoinCounter(ctx, Main._coins);
             for (const coin of coins) {
                 if (coin.checkCollected(player)) {
