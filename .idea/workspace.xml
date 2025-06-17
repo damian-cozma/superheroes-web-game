@@ -4,26 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be0122f1-d34a-462e-9485-d2e31cc1ce11" name="Changes" comment="small modification">
-      <change afterPath="$PROJECT_DIR$/assets/npcs/blackwidow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/npcs/captainamerica.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/npcs/hulk.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/npcs/ironman.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/npcs/thor.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/enemies/goblin/attackLeft.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/enemies/goblin/attackRight.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/enemies/goblin/idleLeft.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/enemies/goblin/idleRight.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/enemies/goblin/moveLeft.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/enemies/goblin/moveRight.png" beforeDir="false" />
+    <list default="true" id="be0122f1-d34a-462e-9485-d2e31cc1ce11" name="Changes" comment="added more NPCs and dialogue">
       <change beforePath="$PROJECT_DIR$/src/config/dialogues-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/dialogues-config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/levels-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/levels-config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/npc.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/npc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/player.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/player.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/coin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/coin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/input-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/input-handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/speech-dialogue.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/speech-dialogue.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/systems/dialogue-box.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/dialogue-box.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/systems/dialogue-system.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/dialogue-system.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/systems/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/systems/resource-loader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/resource-loader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/ui-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/ui-utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +122,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750185541949</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added more NPCs and dialogue">
+      <option name="closed" value="true" />
+      <created>1750198491210</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1750198491212</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,6 +149,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="small modification" />
-    <option name="LAST_COMMIT_MESSAGE" value="small modification" />
+    <MESSAGE value="added more NPCs and dialogue" />
+    <option name="LAST_COMMIT_MESSAGE" value="added more NPCs and dialogue" />
   </component>
 </project>

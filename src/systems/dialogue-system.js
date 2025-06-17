@@ -15,12 +15,12 @@ export class DialogueSystem {
         canvasEl.addEventListener('click',     e => this._onMouseClick(e));
     }
 
-    // Note: scrollOffset is now a parameter!
+
     update(keys, player, npcs, delta, scrollOffset = 0) {
         this.box.update(delta);
 
         if (!this.active && keys.interact.pressed) {
-            // Use absolute position for player hitbox!
+
             const near = npcs.find(n => n.isPlayerNear(player.getHitbox(scrollOffset)));
             if (near) {
                 this.active = true;

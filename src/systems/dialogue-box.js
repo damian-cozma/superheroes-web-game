@@ -43,7 +43,7 @@ export class DialogueBox {
         this.onFinish     = onFinish;
         this.isChoiceMode = false;
         this.choices      = [];
-        this.choiceRects  = []; // reset
+        this.choiceRects  = [];
         this.hoverIndex   = null;
         this.overrideName = null;
     }
@@ -53,7 +53,7 @@ export class DialogueBox {
         this.visible      = true;
         this.isChoiceMode = true;
         this.choices      = choiceLabels;
-        this.choiceRects  = []; // reset
+        this.choiceRects  = [];
         this.hoverIndex   = null;
         this.overrideName = "Player";
     }
@@ -80,11 +80,10 @@ export class DialogueBox {
 
         const { ctx, img, fixedWidth, canvasWidth, canvasHeight } = this;
 
-        // 1) Box dimensions & position
-        const boxH = 600;                                  // you can tweak this
-        const boxW = Math.min(canvasWidth - 40, 1000);     // total width
-        const x    = 20;                                   // left margin
-        const y    = canvasHeight - boxH + 150;            // lift it up as needed
+        const boxH = 600;
+        const boxW = Math.min(canvasWidth - 40, 1000);
+        const x    = 20;
+        const y    = canvasHeight - boxH + 150;
 
         drawTwoSlice(ctx, img, x, y, boxW, boxH, fixedWidth);
 
@@ -158,7 +157,7 @@ export class DialogueBox {
     update(delta) {
         if (this.isChoiceMode || !this.visible) return;
         this.charTimer += delta;
-        // how many chars we should have shown by now:
+
         const targetCount = Math.floor(this.charTimer / 1000 * this.charSpeed);
         if (targetCount > this.currentText.length) {
             this.currentText = this.fullText.slice(0, targetCount);

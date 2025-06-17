@@ -1,5 +1,3 @@
-// src/entities/npc.js
-
 import { checkCollision } from '../utils/utils.js';
 
 export class NPC {

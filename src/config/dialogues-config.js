@@ -47,7 +47,6 @@ export const dialogues = {
         ]
     },
 
-    // ────────────────────────────────
 
     blackwidow: {
         name: "Black Widow",
@@ -97,8 +96,6 @@ export const dialogues = {
         ]
     },
 
-    // ────────────────────────────────
-
     thor: {
         name: "Thor",
         lines: [
@@ -146,8 +143,6 @@ export const dialogues = {
             { text: "Protector of this world and many others." }
         ]
     },
-
-    // ────────────────────────────────
 
     captainamerica: {
         name: "Captain America",

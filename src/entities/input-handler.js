@@ -5,7 +5,7 @@ export class InputHandler {
             left:     { pressed: false },
             jump:     { pressed: false },
             interact: { pressed: false },
-            choice:   null    // will hold 0–8 when the player presses 1–9
+            choice:   null
         };
         window.addEventListener('keydown', e => this._onKey(e, true));
         window.addEventListener('keyup',   e => this._onKey(e, false));
@@ -41,12 +41,11 @@ export class InputHandler {
                 this.keys.interact.pressed = down;
                 break;
 
-            // ─── Capture numeric choices ────────────────────────────────────
-            // '1' → choice = 0, '2' → 1, … '9' → 8
+
             case '1': case '2': case '3':
             case '4': case '5': case '6':
             case '7': case '8': case '9':
-                // capture any top-row or numpad 1–9
+
                 if (down && /^[1-9]$/.test(event.key)) {
                     this.keys.choice = parseInt(event.key, 10) - 1;
                 } else if (!down && /^[1-9]$/.test(event.key)) {
@@ -54,7 +53,6 @@ export class InputHandler {
                 }
 
                 break;
-            // ───────────────────────────────────────────────────────────────
 
             default:
                 break;

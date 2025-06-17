@@ -39,7 +39,7 @@ export class Main {
 
         const input     = new InputSystem();
         const physics   = new PhysicsSystem();
-        const fixedWidth = 256;  // width of the fixed (portrait+name) slice
+        const fixedWidth = 256;
         const renderer  = new Renderer(ctx);
         const loader    = new ResourceLoader();
 

@@ -1,20 +1,13 @@
-// src/entities/speech-dialogue.js
-
 export class SpeechDialogue {
-    /**
-     * @param {CanvasRenderingContext2D} ctx
-     * @param {string} text
-     * @param {{x:number,y:number}} targetPos  – world-coords where the dialogue should point
-     * @param {HTMLImageElement} dialogueImage   – your chat-dialogue PNG
-     */
+
     constructor(ctx, text, targetPos, dialogueImage) {
         this.ctx         = ctx;
         this.text        = text;
         this.targetPos   = targetPos;
         this.dialogueImage = dialogueImage;
 
-        this.padding     = 10;                        // px around text
-        this.fontSize    = 16;                        // px
+        this.padding     = 10;
+        this.fontSize    = 16;
         ctx.font         = `${this.fontSize}px sans-serif`;
         ctx.textBaseline = 'top';
 

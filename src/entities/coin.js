@@ -1,4 +1,4 @@
-// Coin entity for collectible coins in the level
+
 export class Coin {
     constructor(x, y) {
         this.x = x;
@@ -27,9 +27,9 @@ export class Coin {
 
     checkCollected(player) {
         if (this.collected) return false;
-        // Coliziune precisă: folosește hitbox-ul playerului
+
         const hb = player.getHitbox();
-        // Verifică dacă centrul monedei este în interiorul hitbox-ului
+
         if (
             this.x >= hb.position.x &&
             this.x <= hb.position.x + hb.width &&
