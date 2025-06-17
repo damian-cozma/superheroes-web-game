@@ -1,5 +1,3 @@
-// src/systems/main.js
-
 import { ResourceLoader }  from './resource-loader.js';
 import { InputSystem }     from './input-system.js';
 import { PhysicsSystem }   from './physics-system.js';

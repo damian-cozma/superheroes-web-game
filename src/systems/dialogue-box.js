@@ -1,16 +1,8 @@
-// src/systems/dialogue-box.js
-
 import { drawTwoSlice } from '../utils/ui-utils.js';
 import { dialogues }    from '../config/dialogues-config.js';
 
 export class DialogueBox {
-    /**
-     * @param {CanvasRenderingContext2D} ctx
-     * @param {HTMLImageElement} dialogueImage
-     * @param {number} fixedWidth
-     * @param {number} canvasWidth
-     * @param {number} canvasHeight
-     */
+
     constructor(ctx, dialogueImage, fixedWidth, canvasWidth, canvasHeight) {
         this.ctx          = ctx;
         this.img          = dialogueImage;
@@ -23,24 +15,20 @@ export class DialogueBox {
         this.lineIndex    = 0;
         this.onFinish     = () => {};
 
-        // ─── Add these properties ────────────────────────────────────
-        this.isChoiceMode = false;   // whether we're showing multiple options
-        this.choices      = [];      // array of choice‐strings
-        this.choiceRects  = [];      // [{x,y,w,h,index}, …]
-        this.hoverIndex   = null;    // which choice (if any) is hovered
 
-        // after this.hoverIndex = null;
-        this.fullText    = '';   // the entire line we want to show
-        this.currentText = '';   // what’s already been revealed
-        this.charSpeed   = 30;   // chars per second
-        this.charTimer   = 0;    // ms since we started revealing
+        this.isChoiceMode = false;
+        this.choices      = [];
+        this.choiceRects  = [];
+        this.hoverIndex   = null;
+
+        this.fullText    = '';
+        this.currentText = '';
+        this.charSpeed   = 30;
+        this.charTimer   = 0;
         this.overrideName = null;
 
     }
 
-    /**
-     * Start a normal text node
-     */
     start(nodeKey, onFinish = () => {}) {
         this.nodeKey      = nodeKey;
         this.lineIndex    = 0;
@@ -60,9 +48,6 @@ export class DialogueBox {
         this.overrideName = null;
     }
 
-    /**
-     * Enter choice‐mode with an array of labels.
-     */
     showChoices(choiceLabels) {
         console.log("showChoices()", choiceLabels);
         this.visible      = true;
@@ -73,9 +58,6 @@ export class DialogueBox {
         this.overrideName = "Player";
     }
 
-    /**
-     * Advance a normal text node; does nothing in choice mode.
-     */
     advance() {
         if (this.isChoiceMode) return;
         const lines = dialogues[this.nodeKey].lines;
@@ -104,24 +86,21 @@ export class DialogueBox {
         const x    = 20;                                   // left margin
         const y    = canvasHeight - boxH + 150;            // lift it up as needed
 
-        // 2) Draw the 2-slice background
         drawTwoSlice(ctx, img, x, y, boxW, boxH, fixedWidth);
 
-        // 3) Compute vertical paddings relative to boxH
-        const PAD_TOP    = boxH * 0.50;   // 10% down from top
-        const PAD_BOTTOM = boxH * 0.10;   // 10% up from bottom
+        const PAD_TOP    = boxH * 0.50;
+        const PAD_BOTTOM = boxH * 0.10;
 
-        // draw the name above the choices:
+
         ctx.font      = 'bold 18px Consolas';
         ctx.fillStyle = '#fff';
         ctx.textBaseline = 'top';
         ctx.fillText(
             this.overrideName || dialogues[this.nodeKey].name,
             x + fixedWidth -200,
-            y + PAD_TOP - 36   // 30px above the first choice line
+            y + PAD_TOP - 36
         );
 
-        // 4) Choice mode? render choices:
         if (this.isChoiceMode) {
             ctx.font         = '18px Consolas';
             ctx.textBaseline = 'top';
@@ -147,10 +126,8 @@ export class DialogueBox {
             return;
         }
 
-        // 5) Normal text mode
         const cfg = dialogues[this.nodeKey];
 
-        // 5a) Speaker name sits PAD_TOP down
         ctx.font         = 'bold 18px Consolas';
         ctx.fillStyle    = '#fff';
         ctx.textBaseline = 'top';
@@ -160,22 +137,20 @@ export class DialogueBox {
             y + PAD_TOP - 36
         );
 
-        // 5b) Dialogue text sits just below the name
         ctx.font      = '18px Consolas';
         ctx.fillStyle = '#fff';
         this._drawWrapped(
             this.currentText,
             x + fixedWidth -200,
-            y + PAD_TOP,                     // 32px below the name
+            y + PAD_TOP,
             boxW - fixedWidth - 32
         );
 
-        // 6) Advance arrow sits PAD_BOTTOM up from bottom
         if (this.lineIndex < cfg.lines.length - 1) {
             ctx.fillText(
                 '▼',
                 x + boxW - 32,
-                y + boxH - PAD_BOTTOM - 16         // 16px above that bottom padding
+                y + boxH - PAD_BOTTOM - 16
             );
         }
     }

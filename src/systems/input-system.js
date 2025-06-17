@@ -1,4 +1,3 @@
-// src/systems/input-system.js
 import { InputHandler } from '../entities/input-handler.js';
 import { config }       from '../utils/utils.js';
 
@@ -13,16 +12,7 @@ export class InputSystem {
 
     }
 
-    /**
-     * Actualizeaza player-ul si scroll-ul pe baza tastelor apăsate.
-     * @param {Player} player
-     * @param {number} scrollOffset
-     * @param {number} groundWidth
-     * @param {number} canvasWidth
-     * @param {Array} collisionBlocks
-     * @param {Array} coins
-     * @returns {number} scrollOffset nou
-     */
+
     handleScroll(player, scrollOffset, groundWidth, canvasWidth, collisionBlocks, coins) {
         const speed      = this.playerSpeed;
         const halfCanvas = canvasWidth * 0.5;

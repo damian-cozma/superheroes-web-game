@@ -1,5 +1,3 @@
-// src/entities/input-handler.js
-
 export class InputHandler {
     constructor() {
         this.keys = {

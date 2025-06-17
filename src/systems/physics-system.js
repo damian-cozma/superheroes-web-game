@@ -1,5 +1,3 @@
-// src/systems/physics-system.js
-
 import { checkCollision, config } from '../utils/utils.js';
 
 export class PhysicsSystem {

@@ -1,5 +1,3 @@
-// src/systems/renderer.js
-
 export class Renderer {
     constructor(ctx) {
         this.ctx = ctx;

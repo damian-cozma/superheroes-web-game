@@ -1,5 +1,3 @@
-// src/systems/resource-loader.js
-
 import { levels } from '../config/levels-config.js';
 import { Level }  from '../entities/level.js';
 import { Layer }  from '../entities/layer.js';

@@ -1,17 +1,8 @@
-// src/systems/dialogue-system.js
-
 import { dialogues }   from '../config/dialogues-config.js';
 import { DialogueBox } from './dialogue-box.js';
 
 export class DialogueSystem {
-    /**
-     * @param {CanvasRenderingContext2D} ctx
-     * @param {HTMLImageElement} dialogueImage
-     * @param {number} fixedWidth
-     * @param {number} canvasWidth
-     * @param {number} canvasHeight
-     * @param {HTMLCanvasElement} canvasEl
-     */
+
     constructor(ctx, dialogueImage, fixedWidth, canvasWidth, canvasHeight, canvasEl) {
         this.ctx    = ctx;
         this.canvas = canvasEl;
@@ -20,25 +11,20 @@ export class DialogueSystem {
         );
         this.active = false;
 
-        // listen for hover & click on choices
         canvasEl.addEventListener('mousemove', e => this._onMouseMove(e));
         canvasEl.addEventListener('click',     e => this._onMouseClick(e));
     }
 
-    /**
-     * Called each frame with current input state.
-     */
     update(keys, player, npcs, delta) {
         this.box.update(delta);
-        // 1) start dialog on interact
+
         if (!this.active && keys.interact.pressed) {
             const near = npcs.find(n => n.isPlayerNear(player.getHitbox()));
             if (near) {
                 this.active = true;
-                const key = near.dialogueId;   // e.g. "hero1"
+                const key = near.dialogueId;
                 const cfg = dialogues[key];
 
-                // start the intro lines; onFinish will show the questions
                 this.box.start(key, () => {
                     if (Array.isArray(cfg.questions)) {
                         const labels = cfg.questions.map(q => q.label);
@@ -54,7 +40,6 @@ export class DialogueSystem {
 
         if (!this.active) return;
 
-        // 2) if in choice mode, branch on number key
         if (this.box.isChoiceMode && keys.choice != null) {
             const parentKey = this.box.nodeKey;
             const question  = dialogues[parentKey].questions[keys.choice];
@@ -68,16 +53,12 @@ export class DialogueSystem {
             return;
         }
 
-        // 3) otherwise, advance a normal line
         if (!this.box.isChoiceMode && keys.interact.pressed) {
             this.box.advance();
             keys.interact.pressed = false;
         }
     }
 
-    /**
-     * Draw the dialogue box on top of the game world.
-     */
     draw() {
         this.box.draw();
     }
