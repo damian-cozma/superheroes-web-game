@@ -25,12 +25,36 @@ export const levels = {
         },
         npcs: [
             {
-                id: 'hero1',
+                id: 'ironman',
                 x: 500,
-                y: 364,
-                sprite:         'assets/npcs/hero1Idle.png',
-                frameCount:     8,
+                y: 333,
+                sprite:         'assets/npcs/ironman.png',
+                frameCount:     3,
                 animationSpeed: 150
+            },
+            {
+                id: 'blackwidow',
+                x: 1200,
+                y: 10,
+                sprite:         'assets/npcs/blackwidow.png',
+                frameCount:     3,
+                animationSpeed: 150
+            },
+            {
+                id: 'thor',
+                x: 2700,
+                y: 140,
+                sprite:         'assets/npcs/thor.png',
+                frameCount:     3,
+                animationSpeed: 180
+            },
+            {
+                id: 'captainamerica',
+                x: 3800,
+                y: 360,
+                sprite:         'assets/npcs/captainamerica.png',
+                frameCount:     3,
+                animationSpeed: 140
             }
         ]
     },

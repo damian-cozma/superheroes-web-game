@@ -4,25 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be0122f1-d34a-462e-9485-d2e31cc1ce11" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/enemies/goblin/attackLeft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/enemies/goblin/attackRight.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/enemies/goblin/idleLeft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/enemies/goblin/idleRight.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/enemies/goblin/moveLeft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/enemies/goblin/moveRight.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/player/attackLeft.png" afterDir="false" />
+    <list default="true" id="be0122f1-d34a-462e-9485-d2e31cc1ce11" name="Changes" comment="small modification">
+      <change afterPath="$PROJECT_DIR$/assets/npcs/blackwidow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/npcs/captainamerica.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/npcs/hulk.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/npcs/ironman.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/npcs/thor.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/player/attack.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/player/attackRight.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/input-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/input-handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/systems/dialogue-box.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/dialogue-box.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/enemies/goblin/attackLeft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/enemies/goblin/attackRight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/enemies/goblin/idleLeft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/enemies/goblin/idleRight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/enemies/goblin/moveLeft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/enemies/goblin/moveRight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/dialogues-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/dialogues-config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/levels-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/levels-config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/npc.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/npc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/player.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/player.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/systems/dialogue-system.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/dialogue-system.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/systems/input-system.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/input-system.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/systems/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/systems/physics-system.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/physics-system.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/systems/renderer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/renderer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/systems/resource-loader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/resource-loader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/ui-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/ui-utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,35 +61,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Node.js.InputHandler.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.Player.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.dialogue-box.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.main.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.npc.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.physics-system.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.resource-loader.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.script.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.speech-bubble.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.ui-utils.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.utils.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main+david2&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/claud/Documents/WEBProject/Platformer_WEB&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JavaScript Debug.index.html.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Node.js.InputHandler.js.executor": "Run",
+    "Node.js.Player.js.executor": "Run",
+    "Node.js.dialogue-box.js.executor": "Run",
+    "Node.js.levels-config.js.executor": "Run",
+    "Node.js.main.js.executor": "Run",
+    "Node.js.npc.js.executor": "Run",
+    "Node.js.physics-system.js.executor": "Run",
+    "Node.js.resource-loader.js.executor": "Run",
+    "Node.js.script.js.executor": "Run",
+    "Node.js.speech-bubble.js.executor": "Run",
+    "Node.js.ui-utils.js.executor": "Run",
+    "Node.js.utils.js.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main+david2",
+    "last_opened_file_path": "C:/Users/claud/Documents/WEBProject/Platformer_WEB/assets/npcs",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\claud\Documents\WEBProject\Platformer_WEB\assets\npcs" />
       <recent name="C:\Users\claud\Downloads\PROIECT_WEB\assets\ui" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -122,6 +125,15 @@
       <workItem from="1750071615387" duration="109000" />
       <workItem from="1750071752638" duration="18702000" />
     </task>
+    <task id="LOCAL-00001" summary="small modification">
+      <option name="closed" value="true" />
+      <created>1750185541949</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1750185541949</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,5 +149,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="small modification" />
+    <option name="LAST_COMMIT_MESSAGE" value="small modification" />
   </component>
 </project>

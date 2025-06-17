@@ -110,7 +110,7 @@ export class Main {
             lastTime    = timestamp;
 
             input.update();
-            dialogue.update(input.keys, player, npcs, delta);
+            dialogue.update(input.keys, player, npcs, delta, scrollOffset);
 
             if (!dialogue.active) {
                 physics.update(delta, player, collisionBlocks);
