@@ -1,5 +1,6 @@
 import { drawTwoSlice } from '../utils/ui-utils.js';
 import { dialogues }    from '../config/dialogues-config.js';
+import { t } from '../i18n/i18n.js';
 
 export class DialogueBox {
 
@@ -34,7 +35,7 @@ export class DialogueBox {
         this.lineIndex    = 0;
         this.visible      = true;
 
-        const line = dialogues[this.nodeKey].lines[this.lineIndex].text;
+        const line = t(dialogues[this.nodeKey].lines[this.lineIndex].text);
         this.fullText    = line;
         this.currentText = '';
         this.charTimer   = 0;
@@ -52,7 +53,7 @@ export class DialogueBox {
         console.log("showChoices()", choiceLabels);
         this.visible      = true;
         this.isChoiceMode = true;
-        this.choices      = choiceLabels;
+        this.choices      = choiceLabels.map(label => t(label));
         this.choiceRects  = [];
         this.hoverIndex   = null;
         this.overrideName = "Player";
@@ -63,7 +64,7 @@ export class DialogueBox {
         const lines = dialogues[this.nodeKey].lines;
         if (this.lineIndex < lines.length - 1) {
             this.lineIndex++;
-            const line = dialogues[this.nodeKey].lines[this.lineIndex].text;
+            const line = t(dialogues[this.nodeKey].lines[this.lineIndex].text);
             this.fullText    = line;
             this.currentText = '';
             this.charTimer   = 0;

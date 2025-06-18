@@ -1,4 +1,5 @@
 import { quizQuestions } from '../config/quiz-questions.js';
+import { t } from '../i18n/i18n.js';
 
 export class QuizSystem {
   constructor(onSuccess, onFail) {
@@ -19,9 +20,9 @@ export class QuizSystem {
     this.container = document.createElement('div');
     this.container.className = 'quiz-popup';
     this.container.innerHTML = `
-      <div class="quiz-question">${q.question}</div>
+      <div class="quiz-question">${t(q.question)}</div>
       <div class="quiz-options">
-        ${q.options.map((opt, i) => `<button data-idx="${i}">${opt}</button>`).join('')}
+        ${q.options.map((opt, i) => `<button data-idx="${i}">${t(opt)}</button>`).join('')}
       </div>
     `;
     document.body.appendChild(this.container);

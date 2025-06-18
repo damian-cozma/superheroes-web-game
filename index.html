@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div id="lang-select">
+    <button id="lang-ro">RO</button>
+    <button id="lang-eng">ENG</button>
+</div>
 <div id="main-menu">
     <button id="btn-story">Story Mode</button>
     <button id="btn-endless">Endless Run</button>
@@ -25,11 +29,15 @@
 <canvas id="canvas" style="display:none;"></canvas>
 <script type="module">
     import { Main } from './src/systems/main.js';
+    import { loadTranslations, t } from './src/i18n/i18n.js';
     const menu = document.getElementById('main-menu');
     const canvas = document.getElementById('canvas');
     const music = document.getElementById('menu-music');
     const soundToggle = document.getElementById('sound-toggle');
     const muteLine = document.getElementById('mute-line');
+    const langSelect = document.getElementById('lang-select');
+    const btnRO = document.getElementById('lang-ro');
+    const btnENG = document.getElementById('lang-eng');
     let soundOn = false;
 
     function playMenuMusic() {
@@ -56,6 +64,17 @@
         updateSoundIcon();
     };
 
+    async function setLanguage(lang) {
+        await loadTranslations(lang);
+        document.getElementById('btn-story').textContent = t('continue');
+        document.getElementById('btn-endless').textContent = 'Endless Run'; // Add to i18n if needed
+        document.getElementById('btn-leaderboard').textContent = 'Leaderboard'; // Add to i18n if needed
+        Main.setLang(lang);
+    }
+
+    btnRO.onclick = () => setLanguage('ro');
+    btnENG.onclick = () => setLanguage('eng');
+
     updateSoundIcon();
 
     document.getElementById('btn-story').onclick = () => {
@@ -67,12 +86,13 @@
         ctx && ctx.clearRect(0, 0, canvas.width, canvas.height);
         const nextBtn = document.getElementById('next-level-btn');
         if (nextBtn) nextBtn.remove();
-        Main.start(1);
+        Main.start(1, Main._lang);
     };
     document.getElementById('btn-endless').onclick = playMenuMusic;
     document.getElementById('btn-leaderboard').onclick = playMenuMusic;
 
-    window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('DOMContentLoaded', async () => {
+        await setLanguage('ro');
         playMenuMusic();
     });
 </script>

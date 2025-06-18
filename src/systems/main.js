@@ -12,15 +12,20 @@ export class Main {
     static _runningLoop = false;
     static _rafId = null;
     static _coins = 0;
+    static _lang = 'ro';
     static setCoins(val) {
         Main._coins = val;
     }
     static addCoin() {
         Main._coins++;
     }
+    static setLang(lang) {
+        Main._lang = lang;
+    }
 
-    static async start(levelId) {
-        await loadTranslations('ro');
+    static async start(levelId, lang = 'ro') {
+        Main._lang = lang;
+        await loadTranslations(lang);
 
         if (Main._rafId) {
             Main._runningLoop = false;
@@ -245,10 +250,10 @@ export class Main {
                     }
                     edgePopupText = null;
                     const quiz = new QuizSystem(
-                        () => setTimeout(() => Main.start(2), 300),
+                        () => setTimeout(() => Main.start(2, Main._lang), 300),
                         () => {
                             edgePopupImage = dialogueImg;
-                            edgePopupText = 'Ai răspuns greșit! Încearcă din nou.';
+                            edgePopupText = lang === 'ro' ? 'Ai răspuns greșit! Încearcă din nou.' : 'Wrong answer! Try again.';
                             Main._runningLoop = true;
                             Main._rafId = requestAnimationFrame(loop);
                             setTimeout(() => {
