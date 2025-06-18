@@ -6,7 +6,8 @@
   },
   "quiz": {
     "collect_all_coins": "You must collect all 9 coins to advance!",
-    "wrong": "Wrong answer! The quiz will reset.",
+    "wrong_answer": "Wrong answer! Try again.",
+    "wrong": "Wrong answer! Try again.",
     "ok": "OK",
     "questions": [
       {

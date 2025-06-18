@@ -6,7 +6,8 @@
   },
   "quiz": {
     "collect_all_coins": "Trebuie să colectezi toate cele 9 monezi pentru a putea avansa!",
-    "wrong": "Ai greșit! Quiz-ul se va reseta.",
+    "wrong_answer": "Ai răspuns greșit! Încearcă din nou.",
+    "wrong": "Ai răspuns greșit! Încearcă din nou.",
     "ok": "OK",
     "questions": [
       {

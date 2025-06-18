@@ -269,7 +269,7 @@ export class Main {
                         () => setTimeout(() => Main.start(2, Main._lang), 300),
                         () => {
                             edgePopupImage = dialogueImg;
-                            edgePopupText = lang === 'ro' ? 'Ai răspuns greșit! Încearcă din nou.' : 'Wrong answer! Try again.';
+                            edgePopupText = t('quiz.wrong_answer');
                             Main._runningLoop = true;
                             Main._rafId = requestAnimationFrame(loop);
                             setTimeout(() => {
