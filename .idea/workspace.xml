@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be0122f1-d34a-462e-9485-d2e31cc1ce11" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/collisions/level1.js" beforeDir="false" afterPath="$PROJECT_DIR$/collisions/level1.js" afterDir="false" />
+    <list default="true" id="be0122f1-d34a-462e-9485-d2e31cc1ce11" name="Changes" comment="added more NPCs and dialogue">
+      <change beforePath="$PROJECT_DIR$/src/config/dialogues-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/dialogues-config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/coin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/coin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/input-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/input-handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/speech-dialogue.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/speech-dialogue.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/systems/dialogue-box.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/dialogue-box.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/systems/dialogue-system.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/dialogue-system.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/systems/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/systems/physics-system.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/physics-system.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/ui-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/ui-utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +35,7 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/damian-cozma/Platformer_WEB.git&quot;,
+    &quot;url&quot;: &quot;https://github.com/damian-cozma/Platformer_WEB&quot;,
     &quot;accountId&quot;: &quot;e9033282-cddf-4b36-9579-f233b2aa4890&quot;
   }
 }</component>
@@ -42,38 +46,41 @@
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2xED3iL7uiKPjKhfQInCZKw6ze5" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Node.js.InputHandler.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.Player.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.main.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.npc.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.physics-system.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.resource-loader.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.script.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.speech-bubble.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.utils.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/claud/Downloads/PROIECT_WEB/assets/ui&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JavaScript Debug.index.html.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Node.js.InputHandler.js.executor": "Run",
+    "Node.js.Player.js.executor": "Run",
+    "Node.js.dialogue-box.js.executor": "Run",
+    "Node.js.levels-config.js.executor": "Run",
+    "Node.js.main.js.executor": "Run",
+    "Node.js.npc.js.executor": "Run",
+    "Node.js.physics-system.js.executor": "Run",
+    "Node.js.resource-loader.js.executor": "Run",
+    "Node.js.script.js.executor": "Run",
+    "Node.js.speech-bubble.js.executor": "Run",
+    "Node.js.ui-utils.js.executor": "Run",
+    "Node.js.utils.js.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main+david2",
+    "last_opened_file_path": "C:/Users/claud/Documents/WEBProject/Platformer_WEB/assets/npcs",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\claud\Documents\WEBProject\Platformer_WEB\assets\npcs" />
       <recent name="C:\Users\claud\Downloads\PROIECT_WEB\assets\ui" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -87,7 +94,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-WS-243.23654.157" />
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-WS-251.23774.424" />
       </set>
     </attachedChunks>
   </component>
@@ -104,7 +111,26 @@
       <workItem from="1749966183192" duration="3217000" />
       <workItem from="1749996312177" duration="102000" />
       <workItem from="1749998463848" duration="88000" />
+      <workItem from="1750071615387" duration="109000" />
+      <workItem from="1750071752638" duration="18702000" />
     </task>
+    <task id="LOCAL-00001" summary="small modification">
+      <option name="closed" value="true" />
+      <created>1750185541949</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1750185541949</updated>
+    </task>
+    <task id="LOCAL-00002" summary="added more NPCs and dialogue">
+      <option name="closed" value="true" />
+      <created>1750198491210</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1750198491212</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,5 +146,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="small modification" />
+    <MESSAGE value="added more NPCs and dialogue" />
+    <option name="LAST_COMMIT_MESSAGE" value="added more NPCs and dialogue" />
   </component>
 </project>

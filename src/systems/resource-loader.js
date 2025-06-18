@@ -1,5 +1,3 @@
-// src/systems/resource-loader.js
-
 import { levels } from '../config/levels-config.js';
 import { Level }  from '../entities/level.js';
 import { Layer }  from '../entities/layer.js';
@@ -8,11 +6,13 @@ import { NPC }    from '../entities/npc.js';
 
 export class ResourceLoader {
     constructor() {
-        this.bubbleImage = new Image();
-        this.bubbleImage.src = 'assets/ui/chatBubble.png';
+
+        this.dialogueImage = new Image();
+        this.dialogueImage.src = 'assets/ui/dialogueImage.png';
     }
 
     async loadLevel(levelId) {
+
         const cfg = levels[levelId];
         console.log('[RL] cfg.collisionBlocks (raw):', cfg.collisionBlocks);
 
@@ -22,7 +22,6 @@ export class ResourceLoader {
             groundImagePath:  cfg.groundImageSrc,
             collisionsData:   cfg.collisionBlocks
         });
-
         console.log('[RL] level.collisionBlocks (objects):', level.collisionBlocks);
 
         await Promise.all([
@@ -62,14 +61,20 @@ export class ResourceLoader {
             return npc;
         });
 
-        console.log('[RL] returning collisionBlocks length =', level.collisionBlocks.length, 'first =', level.collisionBlocks[0]);
+        console.log(
+            '[RL] returning collisionBlocks length =',
+            level.collisionBlocks.length,
+            'first =',
+            level.collisionBlocks[0]
+        );
+
         return {
             player,
             npcs,
             layers,
-            collisionBlocks: level.collisionBlocks, 
+            collisionBlocks: level.collisionBlocks,
             groundImage:     level.groundImage,
-            bubbleImage:     this.bubbleImage  
+            dialogueImage:   this.dialogueImage
         };
     }
 }

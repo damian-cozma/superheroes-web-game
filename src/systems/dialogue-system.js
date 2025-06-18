@@ -1,100 +1,99 @@
-// src/systems/dialogue-system.js
-
-import { dialogues }      from '../config/dialogues-config.js';
-import { SpeechBubble }   from '../entities/speech-bubble.js';
+import { dialogues }   from '../config/dialogues-config.js';
+import { DialogueBox } from './dialogue-box.js';
 
 export class DialogueSystem {
-    constructor(ctx) {
-        this.ctx         = ctx;
-        this.bubbleImage = new Image();
-        this.bubbleImage.src = 'assets/ui/chatBubble.png';
-        this.active      = false;
-        this.phase       = null;   // 'intro'|'questions'|'answer'
-        this.queue       = [];
-        this.npc         = null;
-        this.bubble      = null;
+
+    constructor(ctx, dialogueImage, fixedWidth, canvasWidth, canvasHeight, canvasEl) {
+        this.ctx    = ctx;
+        this.canvas = canvasEl;
+        this.box    = new DialogueBox(
+            ctx, dialogueImage, fixedWidth, canvasWidth, canvasHeight
+        );
+        this.active = false;
+
+        canvasEl.addEventListener('mousemove', e => this._onMouseMove(e));
+        canvasEl.addEventListener('click',     e => this._onMouseClick(e));
     }
 
-    update(keys, player, npcs) {
+
+    update(keys, player, npcs, delta, scrollOffset = 0) {
+        this.box.update(delta);
+
         if (!this.active && keys.interact.pressed) {
-            const near = npcs.find(n => n.isPlayerNear(player.getHitbox()));
+
+            const near = npcs.find(n => n.isPlayerNear(player.getHitbox(scrollOffset)));
             if (near) {
-                this._start(near);
+                this.active = true;
+                const key = near.dialogueId;
+                const cfg = dialogues[key];
+
+                this.box.start(key, () => {
+                    if (Array.isArray(cfg.questions)) {
+                        const labels = cfg.questions.map(q => q.label);
+                        this.box.showChoices(labels);
+                    } else {
+                        this.active = false;
+                    }
+                });
             }
             keys.interact.pressed = false;
-        }
-
-        if (this.active) {
-            if (this.phase === 'questions' && keys.choice != null) {
-                this._ask(keys.choice);
-                keys.choice = null;
-            } else if (keys.interact.pressed) {
-                this._next();
-                keys.interact.pressed = false;
-            }
-        }
-    }
-
-    // src/systems/dialogue-system.js
-    draw(scrollOffset) {
-        if (this.bubble) this.bubble.draw(scrollOffset);
-    }
-
-
-    _start(npc) {
-        this.active = true;
-        this.npc    = npc;
-        const cfg   = dialogues[npc.dialogueId];
-        this.phase  = 'intro';
-        this.queue  = [...cfg.intro];
-        this._next();
-    }
-
-    _next() {
-        const cfg = dialogues[this.npc.dialogueId];
-
-        if (this.queue.length > 0) {
-            const line = this.queue.shift();
-            this.bubble = new SpeechBubble(
-                this.ctx, line,
-                { x: this.npc.position.x + this.npc.frameWidth/2,
-                    y: this.npc.position.y },
-                this.bubbleImage
-            );
             return;
         }
 
-        if (this.phase === 'intro') {
-            this.phase = 'questions';
-            this._showQuestions(cfg.questions);
-        } else if (this.phase === 'answer') {
-            this.phase = 'questions';
-            this._showQuestions(cfg.questions);
-        } else {
-            this._end();
+        if (!this.active) return;
+
+        if (this.box.isChoiceMode && keys.choice != null) {
+            const parentKey = this.box.nodeKey;
+            const question  = dialogues[parentKey].questions[keys.choice];
+            const branchKey = question && question.branch;
+            if (branchKey) {
+                this.box.start(branchKey, () => {
+                    this.active = false;
+                });
+            }
+            keys.choice = null;
+            return;
+        }
+
+        if (!this.box.isChoiceMode && keys.interact.pressed) {
+            this.box.advance();
+            keys.interact.pressed = false;
         }
     }
 
-    _showQuestions(questions) {
-        const labels = questions.map((q,i) => `${i+1}:${q.label}`).join('  ');
-        this.bubble = new SpeechBubble(
-            this.ctx, labels,
-            { x: this.npc.position.x + this.npc.frameWidth/2,
-                y: this.npc.position.y },
-            this.bubbleImage
-        );
+    draw() {
+        this.box.draw();
     }
 
-    _ask(i) {
-        const cfg = dialogues[this.npc.dialogueId];
-        this.phase = 'answer';
-        this.queue = [...cfg.questions[i].answer];
-        this._next();
+    _onMouseMove(e) {
+        if (!this.box.isChoiceMode) return;
+        const r  = this.canvas.getBoundingClientRect();
+        const mx = e.clientX - r.left;
+        const my = e.clientY - r.top;
+
+        let found = null;
+        for (const rect of this.box.choiceRects) {
+            if (
+                mx >= rect.x && mx <= rect.x + rect.w &&
+                my >= rect.y && my <= rect.y + rect.h
+            ) {
+                found = rect.index;
+                break;
+            }
+        }
+        this.box.hoverIndex = found;
     }
 
-    _end() {
-        this.active = false;
-        this.bubble = null;
-        this.npc    = null;
+    _onMouseClick(e) {
+        if (!this.box.isChoiceMode || this.box.hoverIndex == null) return;
+        const idx       = this.box.hoverIndex;
+        const parentKey = this.box.nodeKey;
+        const question  = dialogues[parentKey].questions[idx];
+        const branchKey = question && question.branch;
+        if (branchKey) {
+            this.box.start(branchKey, () => {
+                this.active = false;
+            });
+        }
     }
 }

@@ -1,15 +1,7 @@
-// src/entities/npc.js
-
 import { checkCollision } from '../utils/utils.js';
 
 export class NPC {
-    /**
-     * @param {number} x           – world X
-     * @param {number} y           – world Y
-     * @param {string} spriteSrc   – path to your idle sprite-sheet
-     * @param {number} frameCount  – how many frames in that sheet
-     * @param {number} speed       – ms per frame
-     */
+
     constructor(x, y, spriteSrc, frameCount, speed = 200) {
         this.position        = { x, y };
         this.image           = new Image();
@@ -26,7 +18,18 @@ export class NPC {
             this.frameWidth = this.image.width / this.frameCount;
             this.height     = this.image.height;
             this.loaded     = true;
+
+            console.log(`[NPC] Loaded ${spriteSrc}: fw=${this.frameWidth}, h=${this.height}`);
         };
+
+    }
+
+    static preload(spriteSrc) {
+        return new Promise(resolve => {
+            const img = new Image();
+            img.src = spriteSrc;
+            img.onload = () => resolve(img);
+        });
     }
 
     updateAnimation(time) {
@@ -37,30 +40,30 @@ export class NPC {
         }
     }
 
-    /**
-     * Draw the NPC, taking the world scroll into account.
-     */
     draw(ctx, time, scrollOffset) {
-        if (!this.loaded) return;
+        if (!this.loaded) {
+            return;
+        }
         this.updateAnimation(time);
 
+        const scale = 2;
         ctx.drawImage(
             this.image,
             this.frameWidth * this.frameIndex, 0,
             this.frameWidth, this.height,
             this.position.x - scrollOffset,
             this.position.y,
-            this.frameWidth, this.height
+            this.frameWidth * scale,
+            this.height * scale
         );
     }
 
-    /**
-     * Returns true if the player's hitbox (in world coords)
-     * is within `margin` px of this NPC’s bounding box.
-     * @param {{position:{x:number,y:number},width:number,height:number}} playerHitbox
-     * @param {number} margin
-     */
     isPlayerNear(playerHitbox, margin = 32) {
+
+        if (!this.loaded || this.frameWidth === 0 || this.height === 0) {
+            return false;
+        }
+
         const expanded = {
             position: {
                 x: playerHitbox.position.x - margin,

@@ -21,16 +21,17 @@ export class Player {
         };
     }
 
-    getHitbox() {
+    getHitbox(scrollOffset = 0) {
         return {
             position: {
-                x: this.position.x + this.hitbox.offsetX,
+                x: this.position.x + scrollOffset + this.hitbox.offsetX,
                 y: this.position.y + this.hitbox.offsetY
             },
             width:  this.hitbox.width,
             height: this.hitbox.height
         };
     }
+
 
     setAnimation(newAnimation) {
         if (this.currentAnimation !== newAnimation) {

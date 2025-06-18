@@ -1,5 +1,3 @@
-// src/entities/input-handler.js
-
 export class InputHandler {
     constructor() {
         this.keys = {
@@ -33,7 +31,7 @@ export class InputHandler {
             case 'w':
             case 'W':
             case ' ':
-            case 'Spacebar': 
+            case 'Spacebar':
                 this.keys.jump.pressed = down;
                 break;
 
@@ -41,6 +39,19 @@ export class InputHandler {
             case 'E':
             case 'Enter':
                 this.keys.interact.pressed = down;
+                break;
+
+
+            case '1': case '2': case '3':
+            case '4': case '5': case '6':
+            case '7': case '8': case '9':
+
+                if (down && /^[1-9]$/.test(event.key)) {
+                    this.keys.choice = parseInt(event.key, 10) - 1;
+                } else if (!down && /^[1-9]$/.test(event.key)) {
+                    this.keys.choice = null;
+                }
+
                 break;
 
             default:
