@@ -5,6 +5,8 @@ import { DialogueSystem }  from './dialogue-system.js';
 import { Renderer }        from './renderer.js';
 import { config } from '../utils/utils.js';
 import { Coin } from '../entities/coin.js';
+import { QuizSystem } from './quiz-system.js';
+import { loadTranslations, t } from '../i18n/i18n.js';
 
 export class Main {
     static _runningLoop = false;
@@ -18,6 +20,8 @@ export class Main {
     }
 
     static async start(levelId) {
+        await loadTranslations('ro');
+
         if (Main._rafId) {
             Main._runningLoop = false;
             cancelAnimationFrame(Main._rafId);
@@ -78,6 +82,7 @@ export class Main {
 
         let scrollOffset = 0;
         let lastTime     = 0;
+        let triedAdvance = false;
 
         function drawCoinCounter(ctx, coins) {
             ctx.save();
@@ -102,6 +107,28 @@ export class Main {
             ctx.fillText(coins, 75, 44);
             ctx.shadowBlur = 0;
             ctx.restore();
+        }
+
+        function showAlert(msg, btnText = t('ok'), onClose = null) {
+            let alertDiv = document.createElement('div');
+            alertDiv.className = 'quiz-popup';
+            alertDiv.style.zIndex = 1000;
+            alertDiv.style.position = 'fixed';
+            alertDiv.style.left = '50%';
+            alertDiv.style.top = '50%';
+            alertDiv.style.transform = 'translate(-50%, -50%)';
+            alertDiv.style.background = '#232e2b';
+            alertDiv.style.color = '#fff';
+            alertDiv.style.padding = '32px 48px';
+            alertDiv.style.borderRadius = '16px';
+            alertDiv.style.fontSize = '1.3rem';
+            alertDiv.style.boxShadow = '0 4px 32px #000a';
+            alertDiv.innerHTML = `<div style='margin-bottom:18px;'>${msg}</div><button id='quiz-alert-btn'>${btnText}</button>`;
+            document.body.appendChild(alertDiv);
+            document.getElementById('quiz-alert-btn').onclick = () => {
+                alertDiv.remove();
+                if (onClose) onClose();
+            };
         }
 
         function loop(timestamp) {
@@ -163,11 +190,30 @@ export class Main {
                 }
             }
 
-            if (levelId === 1 && player.position.x >= canvas.width - player.width - 10) {
-                player.position.x = canvas.width - player.width - 10;
-                Main._runningLoop = false;
-                setTimeout(() => Main.start(2), 100);
-                return;
+            if (levelId === 1) {
+                const atEdge = player.position.x >= canvas.width - player.width - 10;
+                if (atEdge && !triedAdvance) {
+                    player.position.x = canvas.width - player.width - 10;
+                    Main._runningLoop = false;
+                    triedAdvance = true;
+                    if (Main._coins !== 9) {
+                        showAlert(t('collect_all_coins'), t('continue'));
+                        Main._runningLoop = true;
+                        Main._rafId = requestAnimationFrame(loop);
+                        return;
+                    }
+                    const quiz = new QuizSystem(
+                        () => setTimeout(() => Main.start(2), 300),
+                        () => {
+                            showAlert(t('quiz_wrong'));
+                            setTimeout(() => quiz.start(), 800);
+                        }
+                    );
+                    quiz.start();
+                    return;
+                } else if (!atEdge) {
+                    triedAdvance = false;
+                }
             }
 
             scrollOffset = Math.min(
