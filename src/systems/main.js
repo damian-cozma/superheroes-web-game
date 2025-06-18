@@ -86,10 +86,15 @@ export class Main {
         let edgeAlertDiv = null;
         let edgePopupText = null;
         let edgePopupImage = null;
+        let quizFailImage = null;
 
         const dialogueImg = new window.Image();
         dialogueImg.src = 'assets/ui/dialogueImage.png';
         dialogueImg.onload = () => { edgePopupImage = dialogueImg; };
+
+        const quizFailImg = new window.Image();
+        quizFailImg.src = 'assets/ui/quizFailImage.png';
+        quizFailImg.onload = () => { quizFailImage = quizFailImg; };
 
         function drawImagePopup(ctx, image, text, canvas) {
             if (!image) return;
@@ -242,8 +247,14 @@ export class Main {
                     const quiz = new QuizSystem(
                         () => setTimeout(() => Main.start(2), 300),
                         () => {
-                            showAlert(t('quiz_wrong'));
-                            setTimeout(() => quiz.start(), 800);
+                            edgePopupImage = dialogueImg;
+                            edgePopupText = 'Ai răspuns greșit! Încearcă din nou.';
+                            Main._runningLoop = true;
+                            Main._rafId = requestAnimationFrame(loop);
+                            setTimeout(() => {
+                                edgePopupText = null;
+                                edgePopupImage = null;
+                            }, 1800);
                         }
                     );
                     quiz.start();
