@@ -237,7 +237,7 @@ export class Main {
                 if (coin.checkCollected(player)) {
                     Main.addCoin();
                     const collectAudio = new window.Audio('assets/music/collect.mp3');
-                    collectAudio.volume = 0.7;
+                    collectAudio.volume = 0.35;
                     collectAudio.play();
                 }
             }

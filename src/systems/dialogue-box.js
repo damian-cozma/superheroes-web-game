@@ -60,6 +60,11 @@ export class DialogueBox {
 
     advance() {
         if (this.isChoiceMode) return;
+        if (this._dialogueAudio) {
+            this._dialogueAudio.pause();
+            this._dialogueAudio.currentTime = 0;
+            this._dialogueAudio = null;
+        }
         const lines = dialogues[this.nodeKey].lines;
         if (this.lineIndex < lines.length - 1) {
             this.lineIndex++;
@@ -156,11 +161,21 @@ export class DialogueBox {
 
     update(delta) {
         if (this.isChoiceMode || !this.visible) return;
+        if (this.charTimer === 0) {
+            this._dialogueAudio = new window.Audio('assets/music/dialogue.mp3');
+            this._dialogueAudio.volume = 0.5;
+            this._dialogueAudio.loop = true;
+            this._dialogueAudio.play();
+        }
         this.charTimer += delta;
-
         const targetCount = Math.floor(this.charTimer / 1000 * this.charSpeed);
         if (targetCount > this.currentText.length) {
             this.currentText = this.fullText.slice(0, targetCount);
+        }
+        if (this.currentText === this.fullText && this._dialogueAudio) {
+            this._dialogueAudio.pause();
+            this._dialogueAudio.currentTime = 0;
+            this._dialogueAudio = null;
         }
     }
 

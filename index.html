@@ -44,7 +44,7 @@
 
     function playMenuMusic() {
         if (music.paused) {
-            music.volume = 0.5;
+            music.volume = 0.18;
             music.play().catch(() => {});
         }
     }
@@ -55,7 +55,7 @@
 
     soundToggle.onclick = () => {
         if (!soundOn) {
-            music.volume = 0.5;
+            music.volume = 0.25;
             music.currentTime = 0;
             music.play().catch(() => {});
             soundOn = true;
@@ -82,8 +82,6 @@
     document.getElementById('btn-story').onclick = () => {
         menu.style.display = 'none';
         canvas.style.display = '';
-        music.pause();
-        music.currentTime = 0;
         const ctx = canvas.getContext('2d');
         ctx && ctx.clearRect(0, 0, canvas.width, canvas.height);
         const nextBtn = document.getElementById('next-level-btn');
