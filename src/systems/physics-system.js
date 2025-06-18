@@ -9,6 +9,56 @@ export class PhysicsSystem {
         player.position.y += player.velocity.y;
         player.isGrounded = false;
         this._resolveVertical(player, collisionBlocks);
+
+        if (Array.isArray(player.levelCollisions)) {
+            const size = 32;
+            const hitbox = player.getHitbox();
+            const points = [
+                { x: hitbox.position.x, y: hitbox.position.y },
+                { x: hitbox.position.x + hitbox.width, y: hitbox.position.y },
+                { x: hitbox.position.x, y: hitbox.position.y + hitbox.height },
+                { x: hitbox.position.x + hitbox.width, y: hitbox.position.y + hitbox.height }
+            ];
+
+            let onFour = false;
+            for (const pt of points) {
+                const px = Math.floor(pt.x / size);
+                const py = Math.floor(pt.y / size);
+                const val = player.levelCollisions[py]?.[px];
+
+                if (
+                    val === 4 ||
+                    py >= player.levelCollisions.length
+                ) {
+                    onFour = true;
+                    break;
+                }
+            }
+            if (onFour && player.levelId === 3) {
+                player.position.x = 0;
+                player.position.y = 0;
+                player.velocity.x = 0;
+                player.velocity.y = 0;
+                if (typeof window !== 'undefined') {
+                    window.scrollOffset = 0;
+                }
+                if (typeof window.Main !== 'undefined') {
+                    window.Main._scrollOffset = 0;
+                }
+                if (typeof window.Main !== 'undefined' && typeof window.Main.setScrollOffset === 'function') {
+                    window.Main.setScrollOffset(0);
+                }
+                if (typeof scrollOffset !== 'undefined') {
+                    scrollOffset = 0;
+                }
+                if (typeof player.scrollOffset !== 'undefined') {
+                    player.scrollOffset = 0;
+                }
+                if (typeof player.resetCamera === 'function') {
+                    player.resetCamera();
+                }
+            }
+        }
     }
 
     _resolveHorizontal(player, blocks) {

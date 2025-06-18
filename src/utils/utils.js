@@ -13,5 +13,5 @@ export const config = {
     gravity:      1,
     blockSize:    32,
     jumpVelocity: 20,
-    playerSpeed:  20
+    playerSpeed:  8
 };

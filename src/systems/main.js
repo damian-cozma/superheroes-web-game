@@ -61,6 +61,12 @@ export class Main {
             dialogueImage
         } = await loader.loadLevel(levelId);
 
+        const cfgModule = await import('../config/levels-config.js');
+        const cfg = cfgModule.levels[levelId];
+        player.levelId = levelId;
+
+        player.levelCollisions = cfg.levelCollisions || cfg.collisionBlocks;
+
         const dialogue = new DialogueSystem(
             ctx,
             dialogueImage,
@@ -71,19 +77,23 @@ export class Main {
         );
 
         let coins = [];
+        let levelObj;
         if (typeof layers !== 'undefined' && typeof player !== 'undefined') {
             const LevelModule = await import('../entities/level.js');
             const Level = LevelModule.Level;
             const cfgModule = await import('../config/levels-config.js');
             const cfg = cfgModule.levels[levelId];
-            const levelObj = new Level({
+            levelObj = new Level({
                 id: levelId,
                 bgPaths: cfg.bgImageSrc,
                 groundImagePath: cfg.groundImageSrc,
-                collisionsData: cfg.collisionBlocks
+                collisionsData: cfg.levelCollisions || cfg.collisionBlocks
             });
             coins = levelObj.coinPositions.map(pos => new Coin(pos.x, pos.y));
         }
+
+        const collisionBlocksForPhysics = levelObj ? levelObj.collisionBlocks : collisionBlocks;
+        player.levelCollisions = cfg.levelCollisions || [];
 
         let scrollOffset = 0;
         let lastTime     = 0;
@@ -186,13 +196,13 @@ export class Main {
             dialogue.update(input.keys, player, npcs, delta, scrollOffset);
 
             if (!dialogue.active) {
-                physics.update(delta, player, collisionBlocks);
+                physics.update(delta, player, collisionBlocksForPhysics);
                 scrollOffset = input.handleScroll(
                     player,
                     scrollOffset,
                     groundImage.width,
                     canvas.width,
-                    collisionBlocks,
+                    collisionBlocksForPhysics,
                     coins
                 );
             }
@@ -273,6 +283,17 @@ export class Main {
                 } else if (!atEdge) {
                     triedAdvance = false;
                     edgePopupText = null;
+                }
+            } else if (levelId === 2) {
+                const atEdge = player.position.x >= canvas.width - player.width - 10;
+                if (atEdge && !triedAdvance) {
+                    player.position.x = canvas.width - player.width - 10;
+                    Main._runningLoop = false;
+                    triedAdvance = true;
+                    setTimeout(() => Main.start(3, Main._lang), 300);
+                    return;
+                } else if (!atEdge) {
+                    triedAdvance = false;
                 }
             }
 
