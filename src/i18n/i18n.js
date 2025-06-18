@@ -8,6 +8,11 @@ export async function loadTranslations(lang = 'ro') {
     translations = await resp.json();
 }
 
+function getNested(obj, path) {
+  return path.split('.').reduce((o, k) => (o && o[k] !== undefined) ? o[k] : undefined, obj);
+}
+
 export function t(key) {
-    return translations[key] || key;
+    const value = getNested(translations, key);
+    return value !== undefined ? value : key;
 }

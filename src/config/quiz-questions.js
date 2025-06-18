@@ -1,17 +1,17 @@
 export const quizQuestions = [
   {
-    question: 'quiz_q1',
-    options: ['quiz_q1_opt1', 'quiz_q1_opt2', 'quiz_q1_opt3'],
+    question: 'quiz.questions.0.question',
+    options: ['quiz.questions.0.options.0', 'quiz.questions.0.options.1', 'quiz.questions.0.options.2'],
     answer: 1
   },
   {
-    question: 'quiz_q2',
-    options: ['quiz_q2_opt1', 'quiz_q2_opt2', 'quiz_q2_opt3'],
+    question: 'quiz.questions.1.question',
+    options: ['quiz.questions.1.options.0', 'quiz.questions.1.options.1', 'quiz.questions.1.options.2'],
     answer: 0
   },
   {
-    question: 'quiz_q3',
-    options: ['quiz_q3_opt1', 'quiz_q3_opt2', 'quiz_q3_opt3'],
+    question: 'quiz.questions.2.question',
+    options: ['quiz.questions.2.options.0', 'quiz.questions.2.options.1', 'quiz.questions.2.options.2'],
     answer: 1
   }
 ];

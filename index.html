@@ -8,21 +8,23 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div id="lang-select">
-    <button id="lang-ro">RO</button>
-    <button id="lang-eng">ENG</button>
+<div id="lang-select" style="position: absolute; top: 8px; right: 32px; z-index: 100; display: flex; gap: 8px;">
+    <button id="lang-ro" title="Română" style="background: none; border: none; cursor: pointer; padding: 0;">
+        <img src="assets/menu/romania-flag-icon.svg" alt="Română" style="width: 2.5rem; height: 2.5rem; display: block;">
+    </button>
+    <button id="lang-eng" title="English" style="background: none; border: none; cursor: pointer; padding: 0;">
+        <img src="assets/menu/united-kingdom-flag-icon.svg" alt="English" style="width: 2.5rem; height: 2.5rem; display: block;">
+    </button>
 </div>
 <div id="main-menu">
     <button id="btn-story">Story Mode</button>
     <button id="btn-endless">Endless Run</button>
     <button id="btn-leaderboard">Leaderboard</button>
 </div>
-<div id="sound-toggle" title="Sound On/Off">
-    <svg id="sound-svg" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g id="note-group">
-            <path d="M12 18H20L28 10V38L20 30H12V18Z" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-            <path id="mute-line" d="M10 10L38 38" stroke="#ff4444" stroke-width="4" stroke-linecap="round"/>
-        </g>
+<div id="sound-toggle" title="Sound On/Off" style="position: absolute; top: 8px; left: 20px; z-index: 100; background: none; border: none; cursor: pointer; padding: 0;">
+    <img id="sound-img" src="assets/menu/speaker_456130.png" alt="Sound" style="width: 2.5rem; height: 2.5rem; display: block; position: relative;">
+    <svg id="mute-svg" width="40" height="40" style="position: absolute; left: 0; top: 0; pointer-events: none; display: none;">
+        <line x1="6" y1="34" x2="34" y2="6" stroke="#1a2a44" stroke-width="5" stroke-linecap="round" />
     </svg>
 </div>
 <audio id="menu-music" src="assets/music/main_theme.mp3" loop></audio>
@@ -34,7 +36,7 @@
     const canvas = document.getElementById('canvas');
     const music = document.getElementById('menu-music');
     const soundToggle = document.getElementById('sound-toggle');
-    const muteLine = document.getElementById('mute-line');
+    const muteSvg = document.getElementById('mute-svg');
     const langSelect = document.getElementById('lang-select');
     const btnRO = document.getElementById('lang-ro');
     const btnENG = document.getElementById('lang-eng');
@@ -48,7 +50,7 @@
     }
 
     function updateSoundIcon() {
-        muteLine.style.display = soundOn ? 'none' : 'block';
+        muteSvg.style.display = soundOn ? 'none' : 'block';
     }
 
     soundToggle.onclick = () => {
@@ -66,9 +68,9 @@
 
     async function setLanguage(lang) {
         await loadTranslations(lang);
-        document.getElementById('btn-story').textContent = t('continue');
-        document.getElementById('btn-endless').textContent = 'Endless Run'; // Add to i18n if needed
-        document.getElementById('btn-leaderboard').textContent = 'Leaderboard'; // Add to i18n if needed
+        document.getElementById('btn-story').textContent = t('menu.continue');
+        document.getElementById('btn-endless').textContent = t('menu.endless');
+        document.getElementById('btn-leaderboard').textContent = t('menu.leaderboard');
         Main.setLang(lang);
     }
 

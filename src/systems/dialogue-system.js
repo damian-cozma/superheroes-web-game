@@ -29,7 +29,7 @@ export class DialogueSystem {
 
                 this.box.start(key, () => {
                     if (Array.isArray(cfg.questions)) {
-                        const labels = cfg.questions.map(q => q.label);
+                        const labels = cfg.questions.map(q => `npc.${key}.${q.label.replace(/^.*?_/, '')}`);
                         this.box.showChoices(labels);
                     } else {
                         this.active = false;

@@ -145,7 +145,7 @@ export class Main {
             ctx.restore();
         }
 
-        function showAlert(msg, showButton = true, btnText = t('ok'), onClose = null) {
+        function showAlert(msg, showButton = true, btnText = t('quiz.ok'), onClose = null) {
             let alertDiv = document.createElement('div');
             alertDiv.className = 'quiz-popup';
             alertDiv.style.zIndex = 1000;
@@ -173,6 +173,9 @@ export class Main {
             }
             return alertDiv;
         }
+
+        let collectAudio = new window.Audio('assets/music/collect.mp3');
+        collectAudio.volume = 0.7;
 
         function loop(timestamp) {
             if (!Main._runningLoop) return;
@@ -233,6 +236,9 @@ export class Main {
             for (const coin of coins) {
                 if (coin.checkCollected(player)) {
                     Main.addCoin();
+                    const collectAudio = new window.Audio('assets/music/collect.mp3');
+                    collectAudio.volume = 0.7;
+                    collectAudio.play();
                 }
             }
 
@@ -243,7 +249,7 @@ export class Main {
                     Main._runningLoop = false;
                     triedAdvance = true;
                     if (Main._coins !== 9) {
-                        edgePopupText = t('collect_all_coins');
+                        edgePopupText = t('quiz.collect_all_coins');
                         Main._runningLoop = true;
                         Main._rafId = requestAnimationFrame(loop);
                         return;
