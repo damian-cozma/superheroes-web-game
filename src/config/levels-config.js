@@ -59,8 +59,12 @@ export const levels = {
         ]
     },
     2: {
-        bgImageSrc: [],
-        parallaxSpeeds: [],
+        bgImageSrc: ['assets/level_2/bg1.png',
+                     'assets/level_2/bg2.png',
+                     'assets/level_2/bg3.png',
+                     'assets/level_2/bg4.png',
+                     'assets/level_2/bg5.png'],
+        parallaxSpeeds: [0.1, 0.2, 0.3, 0.4, 0.6],
         groundImageSrc: 'assets/level_2/ground.png',
         collisionBlocks: level2Collisions,
         gravity: 1,

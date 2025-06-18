@@ -5,14 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be0122f1-d34a-462e-9485-d2e31cc1ce11" name="Changes" comment="added more NPCs and dialogue">
-      <change beforePath="$PROJECT_DIR$/src/config/dialogues-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/dialogues-config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/coin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/coin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/input-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/input-handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/speech-dialogue.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/speech-dialogue.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/systems/dialogue-box.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/dialogue-box.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/systems/dialogue-system.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/dialogue-system.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/systems/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/ui-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/ui-utils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/level_2/bg1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/level_2/bg2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/level_2/bg3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/level_2/bg4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/level_2/bg5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/level_2/ground.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/level_2/ground.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collisions/level2.js" beforeDir="false" afterPath="$PROJECT_DIR$/collisions/level2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/levels-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/levels-config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +47,7 @@
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2xED3iL7uiKPjKhfQInCZKw6ze5" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -68,8 +70,8 @@
     "Node.js.utils.js.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main+david2",
-    "last_opened_file_path": "C:/Users/claud/Documents/WEBProject/Platformer_WEB/assets/npcs",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/damian/Desktop/Desktop/New../Platformer_WEB/collisions",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -80,6 +82,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/collisions" />
+      <recent name="$PROJECT_DIR$/assets/level_2" />
       <recent name="C:\Users\claud\Documents\WEBProject\Platformer_WEB\assets\npcs" />
       <recent name="C:\Users\claud\Downloads\PROIECT_WEB\assets\ui" />
     </key>
