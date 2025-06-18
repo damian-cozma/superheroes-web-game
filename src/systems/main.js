@@ -83,6 +83,32 @@ export class Main {
         let scrollOffset = 0;
         let lastTime     = 0;
         let triedAdvance = false;
+        let edgeAlertDiv = null;
+        let edgePopupText = null;
+        let edgePopupImage = null;
+
+        const dialogueImg = new window.Image();
+        dialogueImg.src = 'assets/ui/dialogueImage.png';
+        dialogueImg.onload = () => { edgePopupImage = dialogueImg; };
+
+        function drawImagePopup(ctx, image, text, canvas) {
+            if (!image) return;
+            const boxWidth = 800;
+            const boxHeight = 260;
+            const x = (canvas.width - boxWidth) / 2;
+            const y = (canvas.height - boxHeight) / 2 - 30;
+            ctx.save();
+            ctx.drawImage(image, x, y, boxWidth, boxHeight);
+            ctx.font = '20px Consolas';
+            ctx.fillStyle = '#fff';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.shadowColor = '#222';
+            ctx.shadowBlur = 4;
+            ctx.fillText(text, canvas.width / 2, y + boxHeight / 2 + 20);
+            ctx.shadowBlur = 0;
+            ctx.restore();
+        }
 
         function drawCoinCounter(ctx, coins) {
             ctx.save();
@@ -109,7 +135,7 @@ export class Main {
             ctx.restore();
         }
 
-        function showAlert(msg, btnText = t('ok'), onClose = null) {
+        function showAlert(msg, showButton = true, btnText = t('ok'), onClose = null) {
             let alertDiv = document.createElement('div');
             alertDiv.className = 'quiz-popup';
             alertDiv.style.zIndex = 1000;
@@ -123,12 +149,19 @@ export class Main {
             alertDiv.style.borderRadius = '16px';
             alertDiv.style.fontSize = '1.3rem';
             alertDiv.style.boxShadow = '0 4px 32px #000a';
-            alertDiv.innerHTML = `<div style='margin-bottom:18px;'>${msg}</div><button id='quiz-alert-btn'>${btnText}</button>`;
+            if (showButton) {
+                alertDiv.innerHTML = `<div style='margin-bottom:18px;'>${msg}</div><button id='quiz-alert-btn'>${btnText}</button>`;
+            } else {
+                alertDiv.innerHTML = `<div style='margin-bottom:0;'>${msg}</div>`;
+            }
             document.body.appendChild(alertDiv);
-            document.getElementById('quiz-alert-btn').onclick = () => {
-                alertDiv.remove();
-                if (onClose) onClose();
-            };
+            if (showButton) {
+                document.getElementById('quiz-alert-btn').onclick = () => {
+                    alertDiv.remove();
+                    if (onClose) onClose();
+                };
+            }
+            return alertDiv;
         }
 
         function loop(timestamp) {
@@ -184,6 +217,9 @@ export class Main {
             }
             dialogue.draw();
             drawCoinCounter(ctx, Main._coins);
+            if (edgePopupText && edgePopupImage) {
+                drawImagePopup(ctx, edgePopupImage, edgePopupText, canvas);
+            }
             for (const coin of coins) {
                 if (coin.checkCollected(player)) {
                     Main.addCoin();
@@ -197,11 +233,12 @@ export class Main {
                     Main._runningLoop = false;
                     triedAdvance = true;
                     if (Main._coins !== 9) {
-                        showAlert(t('collect_all_coins'), t('continue'));
+                        edgePopupText = t('collect_all_coins');
                         Main._runningLoop = true;
                         Main._rafId = requestAnimationFrame(loop);
                         return;
                     }
+                    edgePopupText = null;
                     const quiz = new QuizSystem(
                         () => setTimeout(() => Main.start(2), 300),
                         () => {
@@ -213,6 +250,7 @@ export class Main {
                     return;
                 } else if (!atEdge) {
                     triedAdvance = false;
+                    edgePopupText = null;
                 }
             }
 
