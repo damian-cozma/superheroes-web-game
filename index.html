@@ -1,100 +1,177 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Web</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
 </head>
 <body>
-<div id="lang-select" style="position: absolute; top: 8px; right: 32px; z-index: 100; display: flex; gap: 8px;">
-    <button id="lang-ro" title="Română" style="background: none; border: none; cursor: pointer; padding: 0;">
-        <img src="assets/menu/romania-flag-icon.svg" alt="Română" style="width: 2.5rem; height: 2.5rem; display: block;">
+
+<div id="lang-select"
+     style="position:absolute; top:8px; right:32px; z-index:100;
+              display:flex; gap:8px; align-items:center;">
+    <button id="lang-ro" title="Română"
+            style="background:none; border:none; cursor:pointer; padding:0;">
+        <img src="assets/menu/romania-flag-icon.svg"
+             alt="Română" style="width:2.5rem; height:2.5rem;" />
     </button>
-    <button id="lang-eng" title="English" style="background: none; border: none; cursor: pointer; padding: 0;">
-        <img src="assets/menu/united-kingdom-flag-icon.svg" alt="English" style="width: 2.5rem; height: 2.5rem; display: block;">
+    <button id="lang-eng" title="English"
+            style="background:none; border:none; cursor:pointer; padding:0;">
+        <img src="assets/menu/united-kingdom-flag-icon.svg"
+             alt="English" style="width:2.5rem; height:2.5rem;" />
     </button>
+
+    <div id="user-menu" class="user-menu">
+        <button id="user-btn" class="user-btn">
+            <img src="assets/menu/user.svg" alt="User" class="user-icon" />
+            <span id="user-name">User</span>
+        </button>
+        <div id="user-dropdown" class="user-dropdown">
+            <button id="user-action-btn">Log In</button>
+        </div>
+    </div>
 </div>
+
 <div id="main-menu">
     <button id="btn-story">Story Mode</button>
     <button id="btn-endless">Endless Run</button>
     <button id="btn-leaderboard">Leaderboard</button>
 </div>
-<div id="sound-toggle" title="Sound On/Off" style="position: absolute; top: 8px; left: 20px; z-index: 100; background: none; border: none; cursor: pointer; padding: 0;">
-    <img id="sound-img" src="assets/menu/speaker_456130.png" alt="Sound" style="width: 2.5rem; height: 2.5rem; display: block; position: relative;">
-    <svg id="mute-svg" width="40" height="40" style="position: absolute; left: 0; top: 0; pointer-events: none; display: none;">
-        <line x1="6" y1="34" x2="34" y2="6" stroke="#1a2a44" stroke-width="5" stroke-linecap="round" />
+
+<div id="sound-toggle" title="Sound On/Off"
+     style="position:absolute; top:8px; left:20px; z-index:100;
+              background:none; border:none; cursor:pointer;">
+    <img id="sound-img" src="assets/menu/speaker_456130.png"
+         alt="Sound" style="width:2.5rem; height:2.5rem; position:relative;" />
+    <svg id="mute-svg" width="40" height="40"
+         style="position:absolute; top:0; left:0; pointer-events:none; display:none;">
+        <line x1="6" y1="34" x2="34" y2="6"
+              stroke="#1a2a44" stroke-width="5" stroke-linecap="round" />
     </svg>
 </div>
+
 <audio id="menu-music" src="assets/music/main_theme.mp3" loop></audio>
 <canvas id="canvas" style="display:none;"></canvas>
-<script type="module">
-    import { Main } from './src/systems/main.js';
-    import { loadTranslations, t } from './src/i18n/i18n.js';
-    const menu = document.getElementById('main-menu');
-    const canvas = document.getElementById('canvas');
-    const music = document.getElementById('menu-music');
-    const soundToggle = document.getElementById('sound-toggle');
-    const muteSvg = document.getElementById('mute-svg');
-    const langSelect = document.getElementById('lang-select');
-    const btnRO = document.getElementById('lang-ro');
-    const btnENG = document.getElementById('lang-eng');
-    let soundOn = false;
 
+<div id="auth-modal" class="modal">
+    <div class="modal-content">
+        <span id="auth-close" class="close">×</span>
+        <form id="auth-form"><!-- injected by JS --></form>
+    </div>
+</div>
+
+<script type="module">
+    import { Main }               from './src/systems/main.js';
+    import { loadTranslations, t }from './src/i18n/i18n.js';
+    import { initAuthUI, renderLoginForm } from './src/utils/auth-ui.js';
+    import { apiFetch }           from './src/utils/api.js';
+
+    const menu        = document.getElementById('main-menu');
+    const canvas      = document.getElementById('canvas');
+    const music       = document.getElementById('menu-music');
+    const soundToggle = document.getElementById('sound-toggle');
+    const muteSvg     = document.getElementById('mute-svg');
+    const btnRO       = document.getElementById('lang-ro');
+    const btnENG      = document.getElementById('lang-eng');
+
+    let soundOn = false;
     function playMenuMusic() {
         if (music.paused) {
             music.volume = 0.18;
             music.play().catch(() => {});
         }
     }
-
     function updateSoundIcon() {
         muteSvg.style.display = soundOn ? 'none' : 'block';
     }
-
     soundToggle.onclick = () => {
-        if (!soundOn) {
-            music.volume = 0.25;
-            music.currentTime = 0;
-            music.play().catch(() => {});
-            soundOn = true;
-        } else {
-            music.pause();
-            soundOn = false;
-        }
+        soundOn = !soundOn;
+        soundOn ? music.play().catch(() => {}) : music.pause();
         updateSoundIcon();
     };
 
     async function setLanguage(lang) {
         await loadTranslations(lang);
-        document.getElementById('btn-story').textContent = t('menu.continue');
-        document.getElementById('btn-endless').textContent = t('menu.endless');
+        document.getElementById('btn-story').textContent       = t('menu.continue');
+        document.getElementById('btn-endless').textContent     = t('menu.endless');
         document.getElementById('btn-leaderboard').textContent = t('menu.leaderboard');
         Main.setLang(lang);
     }
-
-    btnRO.onclick = () => setLanguage('ro');
+    btnRO.onclick  = () => setLanguage('ro');
     btnENG.onclick = () => setLanguage('eng');
 
-    updateSoundIcon();
-
     document.getElementById('btn-story').onclick = () => {
-        menu.style.display = 'none';
+        menu.style.display   = 'none';
         canvas.style.display = '';
         const ctx = canvas.getContext('2d');
-        ctx && ctx.clearRect(0, 0, canvas.width, canvas.height);
-        const nextBtn = document.getElementById('next-level-btn');
-        if (nextBtn) nextBtn.remove();
+        ctx && ctx.clearRect(0,0,canvas.width,canvas.height);
         Main.start(1, Main._lang);
     };
-    document.getElementById('btn-endless').onclick = playMenuMusic;
+    document.getElementById('btn-endless').onclick     = playMenuMusic;
     document.getElementById('btn-leaderboard').onclick = playMenuMusic;
 
     window.addEventListener('DOMContentLoaded', async () => {
         await setLanguage('ro');
         playMenuMusic();
+        initAuthUI();
     });
+
+    const userMenu     = document.getElementById('user-menu');
+    const userBtn      = document.getElementById('user-btn');
+    const userNameSpan = document.getElementById('user-name');
+    const userDropdown = document.getElementById('user-dropdown');
+    const userAction   = document.getElementById('user-action-btn');
+
+    userBtn.onclick = (e) => {
+        e.stopPropagation();
+        userMenu.classList.toggle('open');
+    };
+    document.addEventListener('click', (e) => {
+        if (!userMenu.contains(e.target)) userMenu.classList.remove('open');
+    });
+
+    function updateUserUI(profile) {
+        if (profile && profile.username) {
+            userNameSpan.textContent = profile.username;
+            userAction.textContent   = 'Log Out';
+            userAction.onclick = () => {
+                localStorage.removeItem('jwt');
+                window.dispatchEvent(new Event('auth-changed'));
+                userMenu.classList.remove('open');
+            };
+        } else {
+            userNameSpan.textContent = 'User';
+            userAction.textContent   = 'Log In';
+            userAction.onclick = () => {
+                const authForm = document.getElementById('auth-form');
+                if (authForm) authForm.innerHTML = '';
+                renderLoginForm();
+                document.getElementById('auth-modal').classList.add('visible');
+                userMenu.classList.remove('open');
+            };
+        }
+    }
+
+    async function refreshProfile() {
+        const token = localStorage.getItem('jwt');
+        if (!token) {
+            updateUserUI(null);
+            return;
+        }
+        try {
+            const res = await apiFetch('/api/user/profile');
+            updateUserUI(res.ok ? res.data : null);
+        } catch {
+            updateUserUI(null);
+        }
+    }
+
+    window.addEventListener('auth-changed', refreshProfile);
+    refreshProfile();
 </script>
+
 </body>
 </html>

@@ -75,7 +75,7 @@ export class DialogueBox {
 
         } else {
             this.visible = false;
-            console.log("🛎️ DialogueBox.advance(): invoking onFinish()");
+            console.log("DialogueBox.advance(): invoking onFinish()");
             this.onFinish();
         }
     }
