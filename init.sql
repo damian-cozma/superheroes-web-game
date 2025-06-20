@@ -1,0 +1,9 @@
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(50) UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  email VARCHAR(100) UNIQUE NOT NULL,
+  levels_finished INTEGER DEFAULT 0,
+  best_score INTEGER DEFAULT 0,
+  is_admin BOOLEAN NOT NULL DEFAULT FALSE
+);

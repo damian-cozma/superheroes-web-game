@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: platformer_web
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      PG_HOST: db
+      PG_PORT: 5432
+      PG_USER: postgres
+      PG_PASSWORD: admin
+      PG_DATABASE: platformer_web
+      PORT: 3000
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+volumes:
+  pgdata:
