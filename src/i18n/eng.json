@@ -91,6 +91,7 @@
     }
   },
   "story": {
-    "completed": "You've completed all levels!"
+    "completed": "You've completed all levels!",
+    "back_to_menu": "Back to Menu"
   }
 }

@@ -26,6 +26,7 @@ endBtn.onclick = () => {
 
 window.addEventListener('story-complete', () => {
     document.getElementById('end-title').textContent = t('story.completed');
+    document.getElementById('btn-end-to-menu').textContent = t('story.back_to_menu');
     endScreen.classList.add('visible');
 });
 
@@ -50,9 +51,10 @@ async function setLanguage(lang) {
     document.getElementById('btn-story').textContent       = t('menu.continue');
     document.getElementById('btn-endless').textContent     = t('menu.endless');
     document.getElementById('btn-leaderboard').textContent = t('menu.leaderboard');
-    // Actualizează titlul de final dacă ecranul este vizibil
+    // Actualizează titlul de final și butonul dacă ecranul este vizibil
     if (endScreen.classList.contains('visible')) {
         document.getElementById('end-title').textContent = t('story.completed');
+        document.getElementById('btn-end-to-menu').textContent = t('story.back_to_menu');
     }
     Main.setLang(lang);
 }
@@ -60,19 +62,22 @@ btnRO.onclick  = () => setLanguage('ro');
 btnENG.onclick = () => setLanguage('eng');
 
 document.getElementById('btn-story').onclick = () => {
+    // nextLevel = ultimul nivel terminat + 1, dar nu mai mare decât MAX_LEVEL
     const nextLevel = Math.min(lastFinishedLevel + 1, MAX_LEVEL);
 
+    // Dacă toate nivelele sunt terminate, afișează ecranul de final
     if (lastFinishedLevel >= MAX_LEVEL) {
         document.getElementById('end-title').textContent = t('story.completed');
+        document.getElementById('btn-end-to-menu').textContent = t('story.back_to_menu');
         endScreen.classList.add('visible');
         return;
     }
 
-    menu.style.display   = '';
+    // Pornește jocul la nivelul următor
+    menu.style.display   = 'none';
     canvas.style.display = '';
     const ctx = canvas.getContext('2d');
     ctx && ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     Main.start(nextLevel, Main._lang);
 };
 document.getElementById('btn-endless').onclick     = playMenuMusic;

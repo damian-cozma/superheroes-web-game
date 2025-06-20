@@ -91,6 +91,7 @@
     }
   },
   "story": {
-    "completed": "Ai terminat toate nivelele!"
+    "completed": "Ai terminat toate nivelele!",
+    "back_to_menu": "Înapoi la meniu"
   }
 }
