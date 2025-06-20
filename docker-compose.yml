@@ -26,6 +26,6 @@ services:
     depends_on:
       - db
     ports:
-      - "3000:3000"
+      - "3001:3000"
 volumes:
   pgdata:
