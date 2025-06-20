@@ -89,5 +89,8 @@
       "q2_l1": "I’m Steve Rogers, but most know me as Captain America.",
       "q2_l2": "Super soldier, shield-bearer, and a believer in justice."
     }
+  },
+  "story": {
+    "completed": "You've completed all levels!"
   }
 }

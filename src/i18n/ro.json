@@ -89,5 +89,8 @@
       "q2_l1": "Sunt Steve Rogers, dar majoritatea mă știu ca Captain America.",
       "q2_l2": "Super soldat, purtător de scut și cred în dreptate."
     }
+  },
+  "story": {
+    "completed": "Ai terminat toate nivelele!"
   }
 }

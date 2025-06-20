@@ -25,6 +25,7 @@ endBtn.onclick = () => {
 };
 
 window.addEventListener('story-complete', () => {
+    document.getElementById('end-title').textContent = t('story.completed');
     endScreen.classList.add('visible');
 });
 
@@ -49,6 +50,10 @@ async function setLanguage(lang) {
     document.getElementById('btn-story').textContent       = t('menu.continue');
     document.getElementById('btn-endless').textContent     = t('menu.endless');
     document.getElementById('btn-leaderboard').textContent = t('menu.leaderboard');
+    // Actualizează titlul de final dacă ecranul este vizibil
+    if (endScreen.classList.contains('visible')) {
+        document.getElementById('end-title').textContent = t('story.completed');
+    }
     Main.setLang(lang);
 }
 btnRO.onclick  = () => setLanguage('ro');
@@ -58,11 +63,12 @@ document.getElementById('btn-story').onclick = () => {
     const nextLevel = Math.min(lastFinishedLevel + 1, MAX_LEVEL);
 
     if (lastFinishedLevel >= MAX_LEVEL) {
+        document.getElementById('end-title').textContent = t('story.completed');
         endScreen.classList.add('visible');
         return;
     }
 
-    menu.style.display   = 'none';
+    menu.style.display   = '';
     canvas.style.display = '';
     const ctx = canvas.getContext('2d');
     ctx && ctx.clearRect(0, 0, canvas.width, canvas.height);

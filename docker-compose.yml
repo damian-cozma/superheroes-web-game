@@ -27,5 +27,10 @@ services:
       - db
     ports:
       - "3001:3000"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+      - /usr/src/app/server/node_modules
+    command: nodemon server/index.js
 volumes:
   pgdata:

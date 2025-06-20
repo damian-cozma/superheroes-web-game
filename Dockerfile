@@ -12,5 +12,6 @@ WORKDIR /usr/src/app
 COPY . .
 
 WORKDIR /usr/src/app/server
+RUN npm install -g nodemon
 EXPOSE 3000
-CMD ["npm", "start"]
+CMD ["nodemon", "index.js"]
