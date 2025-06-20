@@ -1,3 +1,4 @@
+/* Reset & Global */
 * {
     margin: 0;
     padding: 0;
@@ -8,8 +9,8 @@ body {
     background: url("assets/background.png");
 }
 
+/* Canvas */
 #canvas {
-    /*border: 5px solid black;*/
     position: absolute;
     top: 50%;
     left: 50%;
@@ -23,6 +24,7 @@ body {
     box-shadow: 0 8px 32px rgba(0,0,0,0.4);
 }
 
+/* Main Menu */
 #main-menu {
     position: absolute;
     left: 50%;
@@ -73,7 +75,9 @@ body {
     transform: scale(0.98);
 }
 
-#btn-story, #btn-endless, #btn-leaderboard {
+#btn-story,
+#btn-endless,
+#btn-leaderboard {
     position: static;
     width: 320px;
     height: auto;
@@ -81,6 +85,7 @@ body {
     pointer-events: auto;
 }
 
+/* Coin Counter */
 #coin-counter {
     position: absolute;
     top: 32px;
@@ -105,6 +110,7 @@ body {
     margin-right: 10px;
 }
 
+/* Quiz Popup */
 .quiz-popup {
     position: fixed;
     left: 50%;
@@ -114,7 +120,7 @@ body {
     background-size: cover;
     color: #fff;
     padding: 0;
-    border-radius: 16px;
+    border-radius: 0 0 16px 16px;
     font-size: 1.3rem;
     box-shadow: none;
     z-index: 1000;
@@ -126,7 +132,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 0 0 16px 16px;
 }
 
 @keyframes quizPopIn {
@@ -137,8 +142,7 @@ body {
 .quiz-popup .quiz-question {
     font-size: 1.25rem;
     font-weight: bold;
-    margin-bottom: 14px;
-    margin-top: 18px;
+    margin: 18px 0 14px;
 }
 
 .quiz-popup .quiz-options {
@@ -146,8 +150,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 14px;
-    margin-bottom: 10px;
-    margin-top: 20px;
+    margin: 20px 0 10px;
     align-items: stretch;
 }
 
@@ -161,10 +164,6 @@ body {
     border-radius: 8px;
     padding: 6px 0;
     width: 82%;
-    position: relative;
-    left: 0;
-    min-width: 0;
-    max-width: 100%;
     margin: 0 auto;
     box-shadow: 0 2px 0 #1a2320;
     letter-spacing: 1px;
@@ -186,4 +185,216 @@ body {
     color: #b6faff;
     border-color: #7be382;
     transform: scale(0.98);
+}
+
+/* Modal (Auth) */
+.modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+.modal.visible {
+    display: flex;
+}
+
+.modal-content {
+    background: #1a1a1a;
+    color: #f0f0f0;
+    padding: 1.5rem;
+    border-radius: 8px;
+    min-width: 320px;
+    max-width: 90%;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0,0,0,0.7);
+}
+
+.close {
+    position: absolute;
+    top: 0.5rem; right: 0.5rem;
+    cursor: pointer;
+    font-size: 1.4rem;
+    line-height: 1;
+    color: #aaa;
+}
+.close:hover {
+    color: #fff;
+}
+
+/* Auth Form */
+#auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 340px;
+}
+#auth-form h2 {
+    text-align: center;
+    margin-bottom: 12px;
+    font-size: 2rem;
+    color: #b6faff;
+    letter-spacing: 1px;
+}
+#auth-form label {
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #c9e9ff;
+}
+#auth-form label > span,
+#auth-form input {
+    display: block;
+}
+#auth-form input[type="text"],
+#auth-form input[type="password"],
+#auth-form input[type="email"] {
+    font-family: 'Inter', 'Arial', sans-serif;
+    font-size: 1.13rem;
+    margin-top: 4px;
+    padding: 10px 12px;
+    border: 2px solid #4b6a5a;
+    border-radius: 7px;
+    background: #21262e;
+    color: #d4eaff;
+    outline: none;
+    transition: border 0.14s, background 0.14s;
+}
+#auth-form input:focus {
+    border-color: #7be382;
+    background: #25333a;
+}
+#auth-form button[type="submit"] {
+    margin-top: 10px;
+    padding: 12px 0;
+    border-radius: 7px;
+    border: 2px solid #7be382;
+    background: #232e2b;
+    color: #b6faff;
+    font-weight: 600;
+    font-size: 1.12rem;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: background 0.18s, border 0.18s, color 0.18s;
+}
+#auth-form button[type="submit"]:hover {
+    background: #31443d;
+    color: #fff;
+    border-color: #b6faff;
+}
+#auth-form p {
+    font-size: 1rem;
+    text-align: center;
+    margin: 8px 0 0 0;
+}
+#auth-form a {
+    color: #7be382;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.17s;
+}
+#auth-form a:hover {
+    color: #b6faff;
+}
+
+/* User Menu */
+.user-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+}
+.user-btn {
+    display: flex;
+    align-items: center;
+    background: #232e2b;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1.1rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    gap: 0.7em;
+    transition: background 0.2s;
+}
+.user-btn:hover {
+    background: #32414d;
+}
+.user-btn .user-icon {
+    width: 1.6em;
+    height: 1.6em;
+    border-radius: 50%;
+    background: #2e3d4e;
+}
+.user-dropdown {
+    display: none;
+    position: absolute;
+    top: 115%;
+    right: 0;
+    background: #232e2b;
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 24px #000a;
+    z-index: 1001;
+    min-width: 120px;
+    padding: 0.6em 1.2em;
+}
+.user-menu.open .user-dropdown {
+    display: block;
+}
+.user-dropdown button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    padding: 0.3em 0;
+    text-align: left;
+    transition: color 0.2s;
+}
+.user-dropdown button:hover {
+    color: #ffe066;
+}
+/* End-of-Story Overlay */
+#end-screen {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+#end-screen.visible {
+    display: flex;
+}
+.end-screen__content {
+    background: #232e2b;
+    color: #fff;
+    padding: 2rem 3rem;
+    border-radius: 12px;
+    text-align: center;
+}
+.end-screen__content h2 {
+    margin-bottom: 1.5rem;
+}
+.end-screen__content button {
+    font-size: 1.1rem;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    background: #4b6a5a;
+    color: #b6faff;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.end-screen__content button:hover {
+    background: #7be382;
+    color: #000;
 }

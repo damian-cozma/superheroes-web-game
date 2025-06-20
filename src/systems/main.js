@@ -1,32 +1,29 @@
-import { ResourceLoader }  from './resource-loader.js';
-import { InputSystem }     from './input-system.js';
-import { PhysicsSystem }   from './physics-system.js';
-import { DialogueSystem }  from './dialogue-system.js';
-import { Renderer }        from './renderer.js';
+import { ResourceLoader } from './resource-loader.js';
+import { InputSystem } from './input-system.js';
+import { PhysicsSystem } from './physics-system.js';
+import { DialogueSystem } from './dialogue-system.js';
+import { Renderer } from './renderer.js';
 import { config } from '../utils/utils.js';
 import { Coin } from '../entities/coin.js';
 import { QuizSystem } from './quiz-system.js';
 import { loadTranslations, t } from '../i18n/i18n.js';
+import { apiFetch } from '../utils/api.js';
+import { levels } from '../config/levels-config.js';
+
+const MAX_LEVEL = Object.keys(levels).length;
 
 export class Main {
     static _runningLoop = false;
     static _rafId = null;
     static _coins = 0;
     static _lang = 'ro';
-    static setCoins(val) {
-        Main._coins = val;
-    }
-    static addCoin() {
-        Main._coins++;
-    }
-    static setLang(lang) {
-        Main._lang = lang;
-    }
+    static setCoins(val) { Main._coins = val; }
+    static addCoin() { Main._coins++; }
+    static setLang(lang) { Main._lang = lang; }
 
     static async start(levelId, lang = 'ro') {
         Main._lang = lang;
         await loadTranslations(lang);
-
         if (Main._rafId) {
             Main._runningLoop = false;
             cancelAnimationFrame(Main._rafId);
@@ -35,81 +32,53 @@ export class Main {
         Main._runningLoop = true;
 
         const canvas = document.getElementById('canvas');
-        const ctx    = canvas.getContext('2d');
-        canvas.width  = config.canvasWidth;
+        const ctx = canvas.getContext('2d');
+        canvas.width = config.canvasWidth;
         canvas.height = config.canvasHeight;
 
-        const camera = {
-            x: 0,
-            y: 0,
-            width: config.canvasWidth,
-            height: config.canvasHeight
-        };
+        const camera = { x: 0, y: 0, width: canvas.width, height: canvas.height };
 
-        const input     = new InputSystem();
-        const physics   = new PhysicsSystem();
-        const fixedWidth = 256;
-        const renderer  = new Renderer(ctx);
-        const loader    = new ResourceLoader();
+        const input = new InputSystem();
+        const physics = new PhysicsSystem();
+        const renderer = new Renderer(ctx);
+        const loader = new ResourceLoader();
 
-        const {
-            player,
-            npcs,
-            layers,
-            collisionBlocks,
-            groundImage,
-            dialogueImage
-        } = await loader.loadLevel(levelId);
+        const { player, npcs, layers, collisionBlocks, groundImage, dialogueImage } =
+            await loader.loadLevel(levelId);
 
         const cfgModule = await import('../config/levels-config.js');
         const cfg = cfgModule.levels[levelId];
         player.levelId = levelId;
-
         player.levelCollisions = cfg.levelCollisions || cfg.collisionBlocks;
 
-        const dialogue = new DialogueSystem(
-            ctx,
-            dialogueImage,
-            fixedWidth,
-            canvas.width,
-            canvas.height,
-            canvas
-        );
+        const dialogue = new DialogueSystem(ctx, dialogueImage, 256, canvas.width, canvas.height, canvas);
 
         let coins = [];
         let levelObj;
         if (typeof layers !== 'undefined' && typeof player !== 'undefined') {
             const LevelModule = await import('../entities/level.js');
             const Level = LevelModule.Level;
-            const cfgModule = await import('../config/levels-config.js');
-            const cfg = cfgModule.levels[levelId];
+            const cfg2 = cfgModule.levels[levelId];
             levelObj = new Level({
                 id: levelId,
-                bgPaths: cfg.bgImageSrc,
-                groundImagePath: cfg.groundImageSrc,
-                collisionsData: cfg.levelCollisions || cfg.collisionBlocks
+                bgPaths: cfg2.bgImageSrc,
+                groundImagePath: cfg2.groundImageSrc,
+                collisionsData: cfg2.levelCollisions || cfg2.collisionBlocks
             });
             coins = levelObj.coinPositions.map(pos => new Coin(pos.x, pos.y));
         }
 
         const collisionBlocksForPhysics = levelObj ? levelObj.collisionBlocks : collisionBlocks;
-        player.levelCollisions = cfg.levelCollisions || [];
 
         let scrollOffset = 0;
-        let lastTime     = 0;
+        let lastTime = 0;
         let triedAdvance = false;
-        let edgeAlertDiv = null;
         let edgePopupText = null;
         let edgePopupImage = null;
-        let quizFailImage = null;
 
-        const dialogueImg = new window.Image();
+        const dialogueImg = new Image();
         dialogueImg.src = 'assets/ui/dialogueImage.png';
         dialogueImg.onload = () => { edgePopupImage = dialogueImg; };
-
-        const quizFailImg = new window.Image();
-        quizFailImg.src = 'assets/ui/quizFailImage.png';
-        quizFailImg.onload = () => { quizFailImage = quizFailImg; };
 
         function drawImagePopup(ctx, image, text, canvas) {
             if (!image) return;
@@ -155,42 +124,13 @@ export class Main {
             ctx.restore();
         }
 
-        function showAlert(msg, showButton = true, btnText = t('quiz.ok'), onClose = null) {
-            let alertDiv = document.createElement('div');
-            alertDiv.className = 'quiz-popup';
-            alertDiv.style.zIndex = 1000;
-            alertDiv.style.position = 'fixed';
-            alertDiv.style.left = '50%';
-            alertDiv.style.top = '50%';
-            alertDiv.style.transform = 'translate(-50%, -50%)';
-            alertDiv.style.background = '#232e2b';
-            alertDiv.style.color = '#fff';
-            alertDiv.style.padding = '32px 48px';
-            alertDiv.style.borderRadius = '16px';
-            alertDiv.style.fontSize = '1.3rem';
-            alertDiv.style.boxShadow = '0 4px 32px #000a';
-            if (showButton) {
-                alertDiv.innerHTML = `<div style='margin-bottom:18px;'>${msg}</div><button id='quiz-alert-btn'>${btnText}</button>`;
-            } else {
-                alertDiv.innerHTML = `<div style='margin-bottom:0;'>${msg}</div>`;
-            }
-            document.body.appendChild(alertDiv);
-            if (showButton) {
-                document.getElementById('quiz-alert-btn').onclick = () => {
-                    alertDiv.remove();
-                    if (onClose) onClose();
-                };
-            }
-            return alertDiv;
-        }
-
-        let collectAudio = new window.Audio('assets/music/collect.mp3');
+        let collectAudio = new Audio('assets/music/collect.mp3');
         collectAudio.volume = 0.7;
 
         function loop(timestamp) {
             if (!Main._runningLoop) return;
             const delta = timestamp - lastTime;
-            lastTime    = timestamp;
+            lastTime = timestamp;
 
             input.update();
             dialogue.update(input.keys, player, npcs, delta, scrollOffset);
@@ -233,79 +173,80 @@ export class Main {
 
             renderer.clear();
             renderer.drawBackgrounds(layers, scrollOffset);
-            renderer.drawCollisionDebug(collisionBlocks, camera);
+            renderer.drawCollisionDebug(collisionBlocksForPhysics, camera);
             renderer.drawEntities([player, ...npcs], timestamp, scrollOffset);
-            for (const coin of coins) {
-                coin.draw(ctx);
-            }
+            coins.forEach(c => c.draw(ctx));
             dialogue.draw();
             drawCoinCounter(ctx, Main._coins);
             if (edgePopupText && edgePopupImage) {
                 drawImagePopup(ctx, edgePopupImage, edgePopupText, canvas);
             }
-            for (const coin of coins) {
-                if (coin.checkCollected(player)) {
+            coins.forEach(c => {
+                if (c.checkCollected(player)) {
                     Main.addCoin();
-                    const collectAudio = new window.Audio('assets/music/collect.mp3');
-                    collectAudio.volume = 0.35;
-                    collectAudio.play();
+                    const sfx = new Audio('assets/music/collect.mp3');
+                    sfx.volume = 0.35;
+                    sfx.play();
                 }
-            }
+            });
 
-            if (levelId === 1) {
-                const atEdge = player.position.x >= canvas.width - player.width - 10;
-                if (atEdge && !triedAdvance) {
-                    player.position.x = canvas.width - player.width - 10;
-                    Main._runningLoop = false;
-                    triedAdvance = true;
-                    if (Main._coins !== 9) {
-                        edgePopupText = t('quiz.collect_all_coins');
-                        Main._runningLoop = true;
-                        Main._rafId = requestAnimationFrame(loop);
-                        return;
-                    }
-                    edgePopupText = null;
+            const atEdge = player.position.x >= canvas.width - player.width - 10;
+
+            if (atEdge && !triedAdvance) {
+                triedAdvance = true;
+                Main._runningLoop = false;
+
+                const token = localStorage.getItem('jwt');
+                if (token) {
+                    (async () => {
+                        try {
+                            const res = await apiFetch('/api/user/profile', {
+                                method: 'PUT',
+                                body: JSON.stringify({ levels_finished: levelId })
+                            });
+                            if (!res.ok && res.status !== 401) {
+
+                                console.warn('Could not save progress:', await res.json());
+                            }
+                        } catch (err) {
+
+                            console.error('Save error:', err);
+                        }
+                    })();
+                }
+
+
+                const nextLevel = levelId + 1;
+                const hasQuiz = !!levels[levelId].hasQuiz;
+
+                if (hasQuiz) {
                     const quiz = new QuizSystem(
-                        () => setTimeout(() => Main.start(2, Main._lang), 300),
+                        () => setTimeout(() => Main.start(nextLevel, Main._lang), 300),
                         () => {
                             edgePopupImage = dialogueImg;
                             edgePopupText = t('quiz.wrong_answer');
                             Main._runningLoop = true;
                             Main._rafId = requestAnimationFrame(loop);
-                            setTimeout(() => {
-                                edgePopupText = null;
-                                edgePopupImage = null;
-                            }, 1800);
+                            setTimeout(() => { edgePopupText = null; }, 1800);
                         }
                     );
                     quiz.start();
-                    return;
-                } else if (!atEdge) {
-                    triedAdvance = false;
-                    edgePopupText = null;
+                } else {
+                    if (nextLevel <= MAX_LEVEL) {
+                        setTimeout(() => Main.start(nextLevel, Main._lang), 300);
+                    } else {
+                        window.dispatchEvent(new Event('story-complete'));
+                    }
+
                 }
-            } else if (levelId === 2) {
-                const atEdge = player.position.x >= canvas.width - player.width - 10;
-                if (atEdge && !triedAdvance) {
-                    player.position.x = canvas.width - player.width - 10;
-                    Main._runningLoop = false;
-                    triedAdvance = true;
-                    setTimeout(() => Main.start(3, Main._lang), 300);
-                    return;
-                } else if (!atEdge) {
-                    triedAdvance = false;
-                }
+                return;
+            } else if (!atEdge) {
+                triedAdvance = false;
+                edgePopupText = null;
             }
 
-            scrollOffset = Math.min(
-                Math.max(scrollOffset, 0),
-                groundImage.width - canvas.width
-            );
-
-            player.position.x = Math.min(
-                Math.max(player.position.x, 0),
-                canvas.width - player.width
-            );
+            scrollOffset = Math.min(Math.max(scrollOffset, 0), groundImage.width - canvas.width);
+            player.position.x = Math.min(Math.max(player.position.x, 0), canvas.width - player.width);
 
             Main._rafId = requestAnimationFrame(loop);
         }

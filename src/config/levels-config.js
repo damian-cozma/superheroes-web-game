@@ -15,6 +15,7 @@ export const levels = {
         groundImageSrc: 'assets/level_1/ground_buildings.png',
         collisionBlocks: level1Collisions,
         gravity: 1,
+        hasQuiz: true,
         canvasHeight: 640,
         playerSprites: {
             idleRight: 'assets/player/idleRight.png',
