@@ -1,16 +1,26 @@
-const url            = require('url');
-const usersCtrl      = require('../controllers/user-controller');
-const { check }      = require('../utils/auth');
+const url       = require('url');
+const usersCtrl = require('../controllers/user-controller');
+const { check } = require('../utils/auth');
 
 async function handleApi(req, res) {
     const { pathname } = url.parse(req.url);
-
 
     if (req.method === 'POST' && pathname === '/api/user/register') {
         return usersCtrl.register(req, res);
     }
     if (req.method === 'POST' && pathname === '/api/user/login') {
         return usersCtrl.login(req, res);
+    }
+    if (req.method === 'PUT' && pathname === '/api/user/best_score') {
+        return check(req, res, () => usersCtrl.updateBestScore(req, res));
+    }
+
+    if (req.method === 'GET' && pathname === '/api/leaderboard') {
+        return usersCtrl.getLeaderboardJson(req, res);
+    }
+
+    if (req.method === 'GET' && pathname === '/api/leaderboard/rss') {
+        return usersCtrl.getLeaderboardRss(req, res);
     }
 
     if (pathname.startsWith('/api/user')) {

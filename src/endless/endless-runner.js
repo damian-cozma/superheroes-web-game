@@ -5,10 +5,12 @@ import { PhysicsSystem } from '../systems/physics-system.js';
 import { Renderer } from '../systems/renderer.js';
 import { config } from '../utils/utils.js';
 
+let bestScoreSent = false;
 export const EndlessRunner = {
     _running: false,
     _rafId: null,
     start() {
+        bestScoreSent = false;
         this._running = true;
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
@@ -221,6 +223,29 @@ export const EndlessRunner = {
 
                 config.gravity = originalGravity;
                 config.jumpVelocity = originalJumpVelocity;
+
+                 if (!bestScoreSent) {
+                    bestScoreSent = true;
+                    const token = localStorage.getItem('jwt');
+                  fetch('/api/user/best_score', {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + token
+                        },
+                        body: JSON.stringify({ score: Math.floor(distance) })
+                    })
+                    .then(res => {
+                        if (!res.ok) return res.text().then(text => { throw new Error(text || res.status); });
+                        return res.json();
+                    })
+                    .then(data => {
+                        console.log('Best score update response:', data);
+                    })
+                    .catch(err => {
+                        console.error('Failed to update best score:', err);
+                    });
+                }
             }
             window.addEventListener('keydown', function escHandler(e) {
                 if (isGameOver && e.key === 'Escape') {

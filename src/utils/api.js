@@ -1,3 +1,5 @@
+const API_BASE = 'http://localhost:3001';
+
 export async function apiFetch(path, opts = {}) {
     const token = localStorage.getItem('jwt');
     const headers = {
@@ -5,7 +7,11 @@ export async function apiFetch(path, opts = {}) {
         ...opts.headers,
         ...(token ? { 'Authorization': 'Bearer ' + token } : {})
     };
-    const res = await fetch(path, { ...opts, headers });
+
+    const res = await fetch(`${API_BASE}${path}`, {
+        ...opts,
+        headers
+    });
 
     if (res.status === 401) {
         if (token) {
@@ -19,5 +25,6 @@ export async function apiFetch(path, opts = {}) {
     if (ct.includes('application/json')) {
         res.data = await res.json();
     }
+
     return res;
 }

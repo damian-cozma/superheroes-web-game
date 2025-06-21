@@ -36,9 +36,24 @@ async function updateProgress(userId, progress) {
     return updated;
 }
 
+async function updateBestScore(userId, score) {
+    const user = await userRepo.findById(userId);
+    if (score > user.best_score) {
+        await userRepo.updateBestScore(userId, score);
+        return true;
+    }
+    return false;
+};
+
+async function getLeaderboard(limit = 10) {
+    return await userRepo.findTopBestScores(limit);
+}
+
 module.exports = {
     register,
     login,
     getProfile,
-    updateProgress
+    updateProgress,
+    updateBestScore,
+    getLeaderboard
 };

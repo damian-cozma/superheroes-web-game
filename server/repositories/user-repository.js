@@ -47,9 +47,27 @@ async function updateProgress(id, progress) {
     return rows[0];
 }
 
+async function updateBestScore(userId, score) {
+    await pool.query('UPDATE users SET best_score = $1 WHERE id = $2', [score, userId]);
+};
+
+async function findTopBestScores(limit = 10) {
+    const sql = `
+    SELECT id, username, best_score
+      FROM users
+     ORDER BY best_score DESC
+     LIMIT $1;
+  `;
+    const { rows } = await pool.query(sql, [limit]);
+    return rows;
+}
+
+
 module.exports = {
     createUser,
     findByUsername,
     findById,
-    updateProgress
+    updateProgress,
+    updateBestScore,
+    findTopBestScores
 };
