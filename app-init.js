@@ -2,6 +2,7 @@ import { levels }              from './src/config/levels-config.js';
 import { Main }                from './src/systems/main.js';
 import { loadTranslations, t } from './src/i18n/i18n.js';
 import { initAuthUI, renderLoginForm } from './src/utils/auth-ui.js';
+import { EndlessRunner }       from './src/endless/endless-runner.js';
 import { apiFetch }            from './src/utils/api.js';
 
 let lastFinishedLevel = 0;
@@ -77,7 +78,11 @@ document.getElementById('btn-story').onclick = () => {
     ctx && ctx.clearRect(0, 0, canvas.width, canvas.height);
     Main.start(nextLevel, Main._lang);
 };
-document.getElementById('btn-endless').onclick     = playMenuMusic;
+document.getElementById('btn-endless').onclick = () => {
+    menu.style.display   = 'none';
+    canvas.style.display = 'block';
+    EndlessRunner.start();
+};
 document.getElementById('btn-leaderboard').onclick = playMenuMusic;
 
 const userMenu     = document.getElementById('user-menu');
