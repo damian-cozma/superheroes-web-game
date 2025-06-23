@@ -62,6 +62,18 @@ async function findTopBestScores(limit = 10) {
     return rows;
 }
 
+async function promoteByUsername(username) {
+    const sql = `UPDATE users SET is_admin = TRUE WHERE username = $1 RETURNING *;`;
+    const { rows } = await pool.query(sql, [username]);
+    return rows[0];
+}
+
+async function deleteByUsername(username) {
+    const sql = `DELETE FROM users WHERE username = $1 RETURNING *;`;
+    const { rows } = await pool.query(sql, [username]);
+    return rows[0];
+}
+
 
 module.exports = {
     createUser,
@@ -69,5 +81,7 @@ module.exports = {
     findById,
     updateProgress,
     updateBestScore,
-    findTopBestScores
+    findTopBestScores,
+    promoteByUsername,
+    deleteByUsername
 };

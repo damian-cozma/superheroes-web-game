@@ -112,6 +112,11 @@ backBtn.onclick = () => {
     menu.style.display = '';
 };
 
+document.getElementById('btn-admin-back').onclick = () => {
+    hideAllScreens();
+    document.getElementById('main-menu').style.display = '';
+};
+
 userBtn.onclick = e => {
     e.stopPropagation();
     userMenu.classList.toggle('open');
@@ -142,6 +147,18 @@ function updateUserUI(profile) {
     }
 }
 
+function hideAllScreens() {
+    document.getElementById('main-menu').style.display          = 'none';
+    document.getElementById('canvas').style.display             = 'none';
+    document.getElementById('leaderboard-screen').style.display = 'none';
+    document.getElementById('admin-screen').style.display       = 'none';
+}
+
+function showAdminScreen() {
+    hideAllScreens();
+    document.getElementById('admin-screen').style.display = '';
+}
+
 async function refreshProfile() {
     const token = localStorage.getItem('jwt');
     if (!token) {
@@ -157,6 +174,21 @@ async function refreshProfile() {
             lastFinishedLevel = 0;
         }
         updateUserUI(res.ok ? res.data : null);
+
+        if (res.ok && res.data.is_admin) {
+
+            const adminBtn = document.createElement('button');
+            adminBtn.id = 'btn-admin';
+            adminBtn.textContent = 'Admin';
+
+            document.getElementById('main-menu').append(adminBtn);
+
+               adminBtn.onclick = () => {
+                     window.location.href = '/admin.html';
+                   };
+
+        }
+
     } catch {
         lastFinishedLevel = 0;
         updateUserUI(null);

@@ -49,11 +49,25 @@ async function getLeaderboard(limit = 10) {
     return await userRepo.findTopBestScores(limit);
 }
 
+async function promoteToAdmin(username) {
+    const user = await userRepo.promoteByUsername(username);
+    if (!user) throw new Error('User not found');
+    return user;
+}
+
+async function deleteUser(username) {
+    const user = await userRepo.deleteByUsername(username);
+    if (!user) throw new Error('User not found');
+    return user;
+}
+
 module.exports = {
     register,
     login,
     getProfile,
     updateProgress,
     updateBestScore,
-    getLeaderboard
+    getLeaderboard,
+    promoteToAdmin,
+    deleteUser
 };

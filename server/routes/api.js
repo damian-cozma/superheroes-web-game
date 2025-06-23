@@ -1,6 +1,6 @@
 const url       = require('url');
 const usersCtrl = require('../controllers/user-controller');
-const { check } = require('../utils/auth');
+const { check, requireAdmin } = require('../utils/auth');
 
 async function handleApi(req, res) {
     const { pathname } = url.parse(req.url);
@@ -21,6 +21,18 @@ async function handleApi(req, res) {
 
     if (req.method === 'GET' && pathname === '/api/leaderboard/rss') {
         return usersCtrl.getLeaderboardRss(req, res);
+    }
+
+    if (req.method === 'POST' && pathname === '/api/admin/promote') {
+        return requireAdmin(req, res, () =>
+            usersCtrl.promoteUser(req, res)
+        );
+    }
+
+    if (req.method === 'DELETE' && pathname === '/api/admin/user') {
+        return requireAdmin(req, res, () =>
+            usersCtrl.deleteUser(req, res)
+        );
     }
 
     if (pathname.startsWith('/api/user')) {

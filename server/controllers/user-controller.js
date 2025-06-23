@@ -100,11 +100,37 @@ async function getLeaderboardRss(req, res) {
         }
 
         xml += `</channel>\n</rss>`;
-        res.writeHead(200, { 'Content-Type': 'application/rss+xml' });
+        res.writeHead(200, { 'Content-Type': 'application/rss+xml; charset=UTF-8' });
         res.end(xml);
     } catch (err) {
         res.writeHead(500, { 'Content-Type': 'text/plain' });
         res.end('Error generating RSS feed');
+    }
+}
+
+async function promoteUser(req, res) {
+    try {
+        const data = await parseJSON(req);
+        const { username } = data;
+        await userService.promoteToAdmin(username);
+        res.writeHead(200, {'Content-Type':'application/json'});
+        res.end(JSON.stringify({ success: true }));
+    } catch (err) {
+        res.writeHead(404, {'Content-Type':'application/json'});
+        res.end(JSON.stringify({ error: err.message }));
+    }
+}
+
+async function deleteUser(req, res) {
+    try {
+        const data = await parseJSON(req);
+        const { username } = data;
+        await userService.deleteUser(username);
+        res.writeHead(200, {'Content-Type':'application/json'});
+        res.end(JSON.stringify({ success: true }));
+    } catch (err) {
+        res.writeHead(404, {'Content-Type':'application/json'});
+        res.end(JSON.stringify({ error: err.message }));
     }
 }
 
@@ -115,5 +141,7 @@ module.exports = {
     updateBestScore,
     getLeaderboardJson,
     getLeaderboardRss,
-    formatRssDate
+    formatRssDate,
+    promoteUser,
+    deleteUser
 };

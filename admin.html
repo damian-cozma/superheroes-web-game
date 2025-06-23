@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="panel" style="max-width:400px; margin:3rem auto;">
+    <h2>Admin Panel</h2>
+
+    <div id="notification" class="notification"></div>
+
+    <form id="form-promote">
+        <label>
+            Username to promote:<br />
+            <input name="username" required />
+        </label>
+        <button type="submit">Promote to Admin</button>
+    </form>
+
+    <form id="form-delete">
+        <label>
+            Username to delete:<br />
+            <input name="username" required />
+        </label>
+        <button type="submit">Delete User</button>
+    </form>
+
+    <button id="btn-back">‹ Înapoi</button>
+</div>
+
+<script type="module" src="admin-init.js"></script>
+</body>
+</html>

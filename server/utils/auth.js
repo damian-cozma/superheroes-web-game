@@ -16,4 +16,15 @@ function check(req, res, next) {
         return res.end(JSON.stringify({ error: 'Invalid token' }));
     }
 }
-module.exports = { check };
+
+function requireAdmin(req, res, next) {
+    check(req, res, () => {
+        if (!req.isAdmin) {
+            res.writeHead(403, { 'Content-Type':'application/json' });
+            return res.end(JSON.stringify({ error: 'Forbidden' }));
+        }
+        next();
+    });
+}
+
+module.exports = { check, requireAdmin };
