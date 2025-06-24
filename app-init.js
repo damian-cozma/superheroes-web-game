@@ -253,10 +253,11 @@ const fullscreenBtn = document.getElementById('fullscreen-btn');
 if (fullscreenBtn && isMobile()) {
     fullscreenBtn.style.display = 'block';
     fullscreenBtn.onclick = () => {
-        const el = document.documentElement; // sau document.getElementById('canvas')
+        const el = document.getElementById('canvas');
         if (el.requestFullscreen) el.requestFullscreen();
         else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
         else if (el.msRequestFullscreen) el.msRequestFullscreen();
+        else alert('Fullscreen nu este suportat pe acest browser.');
     };
     document.addEventListener('fullscreenchange', () => {
         fullscreenBtn.style.display = document.fullscreenElement ? 'none' : 'block';
