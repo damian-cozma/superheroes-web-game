@@ -14,14 +14,14 @@
 <div id="ui-dropdown">
     <div id="lang-select" style="display:flex; gap:8px; align-items:center;">
         <button id="lang-ro" title="Română" style="background:none; border:none; cursor:pointer; padding:0;">
-            <img src="https://d1wlpmgdj7hm5h.cloudfront.net/menu/romania-flag-icon.svg" alt="Română" style="width:2.5rem; height:2.5rem;" />
+            <img src="assets/menu/romania-flag-icon.svg" alt="Română" style="width:2.5rem; height:2.5rem;" />
         </button>
         <button id="lang-eng" title="English" style="background:none; border:none; cursor:pointer; padding:0;">
-            <img src="https://d1wlpmgdj7hm5h.cloudfront.net/menu/united-kingdom-flag-icon.svg" alt="English" style="width:2.5rem; height:2.5rem;" />
+            <img src="assets/menu/united-kingdom-flag-icon.svg" alt="English" style="width:2.5rem; height:2.5rem;" />
         </button>
     </div>
     <div id="sound-toggle" title="Sound On/Off">
-        <img id="sound-img" src="https://d1wlpmgdj7hm5h.cloudfront.net/menu/speaker_456130.png"
+        <img id="sound-img" src="assets/menu/speaker_456130.png"
              alt="Sound" style="width:2.5rem; height:2.5rem; position:relative;" />
         <svg id="mute-svg" width="40" height="40"
              style="position:absolute; top:0; left:0; pointer-events:none; display:none;">
@@ -31,7 +31,7 @@
     </div>
     <div id="user-menu" class="user-menu">
         <button id="user-btn" class="user-btn">
-            <img src="https://d1wlpmgdj7hm5h.cloudfront.net/menu/user.svg" alt="User" class="user-icon" />
+            <img src="assets/menu/user.svg" alt="User" class="user-icon" />
             <span id="user-name">User</span>
         </button>
         <div id="user-dropdown" class="user-dropdown">
@@ -41,13 +41,13 @@
 </div>
 
 <div id="coin-counter" style="display:flex; align-items:center;">
-    <img src="https://d1wlpmgdj7hm5h.cloudfront.net/menu/coin.svg" alt="Coin" />
+    <img src="assets/menu/coin.svg" alt="Coin" />
     <span id="coin-count">0</span>
 </div>
 
 <div id="rotate-overlay">
     <div>
-        <img src="https://d1wlpmgdj7hm5h.cloudfront.net/ui/rotate-phone.svg" alt="Rotate" style="width:5rem; margin-bottom:1.5rem; opacity:0.85;" />
+        <img src="assets/ui/rotate-phone.svg" alt="Rotate" style="width:5rem; margin-bottom:1.5rem; opacity:0.85;" />
         <div>Întoarce telefonul<br>pentru a juca</div>
     </div>
 </div>
@@ -95,7 +95,7 @@
 </div>
 
 
-<audio id="menu-music" src="https://d1wlpmgdj7hm5h.cloudfront.net/music/main_theme.mp3" loop></audio>
+<audio id="menu-music" src="assets/music/main_theme.mp3" loop></audio>
 <canvas id="canvas" style="display:none;"></canvas>
 
 <div id="end-screen" class="end-screen">
@@ -111,6 +111,8 @@
         <form id="auth-form"></form>
     </div>
 </div>
+
+<button id="fullscreen-btn" style="position:fixed;bottom:20px;right:20px;z-index:9999;display:none; padding:16px 22px; font-size:1.5rem; border-radius:12px; background:#232e2b; color:#b6faff; border:2px solid #4b6a5a; box-shadow:0 2px 8px #0006; cursor:pointer;">⛶ Fullscreen</button>
 
 <script type="module" src="./app-init.js"></script>
 </body>

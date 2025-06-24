@@ -244,3 +244,21 @@ document.addEventListener('click', e => {
         uiDropdown.classList.remove('open');
     }
 });
+
+// === FULLSCREEN BUTTON LOGIC ===
+function isMobile() {
+    return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+}
+const fullscreenBtn = document.getElementById('fullscreen-btn');
+if (fullscreenBtn && isMobile()) {
+    fullscreenBtn.style.display = 'block';
+    fullscreenBtn.onclick = () => {
+        const el = document.documentElement; // sau document.getElementById('canvas')
+        if (el.requestFullscreen) el.requestFullscreen();
+        else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+        else if (el.msRequestFullscreen) el.msRequestFullscreen();
+    };
+    document.addEventListener('fullscreenchange', () => {
+        fullscreenBtn.style.display = document.fullscreenElement ? 'none' : 'block';
+    });
+}
