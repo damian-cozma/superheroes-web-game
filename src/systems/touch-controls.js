@@ -18,48 +18,66 @@ function bindTouchControlsEvents() {
     const touchChoice2 = document.getElementById('touch-choice-2');
 
     if (touchJump && !touchJump._touchBound) {
-        const press = e => { e.preventDefault(); simulateKey(e.currentTarget.dataset.key, true); };
-        const release = e => { e.preventDefault(); simulateKey(e.currentTarget.dataset.key, false); };
-
-        touchJump.dataset.key = ' ';
-        touchInteract.dataset.key = 'e';
-        touchChoice1.dataset.key = '1';
-        touchChoice2.dataset.key = '2';
-
-        [touchJump, touchInteract, touchChoice1, touchChoice2].forEach(btn => {
-            if (btn) {
-                ['pointerdown', 'touchstart'].forEach(evt => btn.addEventListener(evt, press));
-                ['pointerup', 'pointerleave', 'touchend', 'touchcancel'].forEach(evt => btn.addEventListener(evt, release));
-                btn._touchBound = true;
+        let jumpPointerId = null;
+        const press = e => {
+            if (jumpPointerId === null) {
+                jumpPointerId = e.pointerId || (e.changedTouches && e.changedTouches[0] && e.changedTouches[0].identifier) || 'touch';
+                e.preventDefault();
+                simulateKey(e.currentTarget.dataset.key, true);
             }
-        });
+        };
+        const release = e => {
+            const pid = e.pointerId || (e.changedTouches && e.changedTouches[0] && e.changedTouches[0].identifier) || 'touch';
+            if (jumpPointerId === pid) {
+                e.preventDefault();
+                simulateKey(e.currentTarget.dataset.key, false);
+                jumpPointerId = null;
+            }
+        };
+        touchJump.dataset.key = ' ';
+        ['pointerdown', 'touchstart'].forEach(evt => touchJump.addEventListener(evt, press));
+        ['pointerup', 'pointerleave', 'touchend', 'touchcancel'].forEach(evt => touchJump.addEventListener(evt, release));
+        touchJump._touchBound = true;
     }
+
+    [touchInteract, touchChoice1, touchChoice2].forEach(btn => {
+        if (btn && !btn._touchBound) {
+            btn.dataset.key = btn === touchInteract ? 'e' : (btn === touchChoice1 ? '1' : '2');
+            const press = e => { e.preventDefault(); simulateKey(e.currentTarget.dataset.key, true); };
+            const release = e => { e.preventDefault(); simulateKey(e.currentTarget.dataset.key, false); };
+            ['pointerdown', 'touchstart'].forEach(evt => btn.addEventListener(evt, press));
+            ['pointerup', 'pointerleave', 'touchend', 'touchcancel'].forEach(evt => btn.addEventListener(evt, release));
+            btn._touchBound = true;
+        }
+    });
 
     const container = document.getElementById('joystick-container');
     const knob = document.getElementById('joystick-knob');
     if (!container || container._joystickBound) return;
 
+    let joystickPointerId = null;
     let isActive = false;
     let originX;
     const maxRadius = container.clientWidth / 4;
     const deadzone = 5;
 
     const startJoystick = (e) => {
-        isActive = true;
-        knob.style.transition = 'transform 0s';
-        const touch = e.changedTouches ? e.changedTouches[0] : e;
-        originX = touch.clientX;
-        e.preventDefault();
+        if (joystickPointerId === null) {
+            joystickPointerId = e.pointerId || (e.changedTouches && e.changedTouches[0] && e.changedTouches[0].identifier) || 'touch';
+            isActive = true;
+            knob.style.transition = 'transform 0s';
+            const touch = e.changedTouches ? e.changedTouches[0] : e;
+            originX = touch.clientX;
+            e.preventDefault();
+        }
     };
-
     const moveJoystick = (e) => {
-        if (!isActive) return;
+        const pid = e.pointerId || (e.changedTouches && e.changedTouches[0] && e.changedTouches[0].identifier) || 'touch';
+        if (!isActive || pid !== joystickPointerId) return;
         const touch = e.changedTouches ? e.changedTouches[0] : e;
         let deltaX = touch.clientX - originX;
         let moveX = Math.max(-maxRadius, Math.min(maxRadius, deltaX));
-        
         knob.style.transform = `translateX(${moveX}px)`;
-
         if (moveX < -deadzone) {
             simulateKey('ArrowRight', false);
             simulateKey('ArrowLeft', true);
@@ -72,16 +90,16 @@ function bindTouchControlsEvents() {
         }
         e.preventDefault();
     };
-
-    const stopJoystick = () => {
-        if (!isActive) return;
+    const stopJoystick = (e) => {
+        const pid = e && (e.pointerId || (e.changedTouches && e.changedTouches[0] && e.changedTouches[0].identifier) || 'touch');
+        if (!isActive || pid !== joystickPointerId) return;
         isActive = false;
+        joystickPointerId = null;
         knob.style.transition = 'transform 0.1s';
         knob.style.transform = 'translate(0, 0)';
         simulateKey('ArrowLeft', false);
         simulateKey('ArrowRight', false);
     };
-
     container.addEventListener('pointerdown', startJoystick);
     window.addEventListener('pointermove', moveJoystick);
     window.addEventListener('pointerup', stopJoystick);
