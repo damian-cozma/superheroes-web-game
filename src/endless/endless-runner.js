@@ -31,12 +31,12 @@ export const EndlessRunner = {
         const parallaxSpeeds = [0.1, 0.2, 0.3, 0.4, 0.6];
 
         const playerSprites = {
-            idleRight: 'assets/player/idleRight.png',
-            idleLeft:  'assets/player/idleLeft.png',
-            runRight:  'assets/player/runRight.png',
-            runLeft:   'assets/player/runLeft.png',
-            jumpLeft:  'assets/player/jumpLeft.png',
-            jumpRight: 'assets/player/jumpRight.png'
+            idleRight: 'https://d1wlpmgdj7hm5h.cloudfront.net/player/idleRight.png',
+            idleLeft:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/idleLeft.png',
+            runRight:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/runRight.png',
+            runLeft:   'https://d1wlpmgdj7hm5h.cloudfront.net/player/runLeft.png',
+            jumpLeft:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/jumpLeft.png',
+            jumpRight: 'https://d1wlpmgdj7hm5h.cloudfront.net/player/jumpRight.png'
         };
         const loadedSprites = {};
         let loadedCount = 0;
