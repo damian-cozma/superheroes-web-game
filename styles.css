@@ -584,7 +584,7 @@ body {
 }
 html {
     overflow: hidden !important;
-    background: url("assets/background.png");
+    background: url("https://d1wlpmgdj7hm5h.cloudfront.net/background.png");
     height: 100%;
     width: 100%;
 }
