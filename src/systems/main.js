@@ -82,7 +82,7 @@ export class Main {
         let edgePopupImage = null;
 
         const dialogueImg = new Image();
-        dialogueImg.src = 'assets/ui/dialogueImage.png';
+        dialogueImg.src = 'https://d1wlpmgdj7hm5h.cloudfront.net/ui/dialogueImage.png';
         dialogueImg.onload = () => { edgePopupImage = dialogueImg; };
 
         function drawImagePopup(ctx, image, text, canvas) {
@@ -129,7 +129,7 @@ export class Main {
             ctx.restore();
         }
 
-        let collectAudio = new Audio('assets/music/collect.mp3');
+        let collectAudio = new Audio('https://d1wlpmgdj7hm5h.cloudfront.net/music/collect.mp3');
         collectAudio.volume = 0.7;
 
         function loop(timestamp) {
@@ -189,7 +189,7 @@ export class Main {
             coins.forEach(c => {
                 if (c.checkCollected(player)) {
                     Main.addCoin();
-                    const sfx = new Audio('assets/music/collect.mp3');
+                    const sfx = new Audio('https://d1wlpmgdj7hm5h.cloudfront.net/music/collect.mp3');
                     sfx.volume = 0.35;
                     sfx.play();
                 }

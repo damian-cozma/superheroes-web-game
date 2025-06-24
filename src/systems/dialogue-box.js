@@ -162,7 +162,7 @@ export class DialogueBox {
     update(delta) {
         if (this.isChoiceMode || !this.visible) return;
         if (this.charTimer === 0) {
-            this._dialogueAudio = new window.Audio('assets/music/dialogue.mp3');
+            this._dialogueAudio = new window.Audio('https://d1wlpmgdj7hm5h.cloudfront.net/music/dialogue.mp3');
             this._dialogueAudio.volume = 0.5;
             this._dialogueAudio.loop = true;
             this._dialogueAudio.play();
