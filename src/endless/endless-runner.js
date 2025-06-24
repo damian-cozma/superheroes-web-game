@@ -18,10 +18,11 @@ export const EndlessRunner = {
         canvas.height = config.canvasHeight;
 
         const groundImg = new Image();
-        groundImg.src = 'assets/endless_run/ground.png';
+        groundImg.src = 'https://d1wlpmgdj7hm5h.cloudfront.net/endless_run/ground.png';
         groundImg.onload = () => runAfterGroundLoaded();
 
-        const bgPaths = [1,2,3,4,5].map(i => `assets/endless_run/bg${i}.png`);
+        const cdnBaseUrl = 'https://d1wlpmgdj7hm5h.cloudfront.net';
+        const bgPaths = [1,2,3,4,5].map(i => `${cdnBaseUrl}/endless_run/bg${i}.png`);
         const bgImages = bgPaths.map(path => {
             const img = new Image();
             img.src = path;
