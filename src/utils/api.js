@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:3001';
+const API_BASE = window.location.origin;
 
 export async function apiFetch(path, opts = {}) {
     const token = localStorage.getItem('jwt');

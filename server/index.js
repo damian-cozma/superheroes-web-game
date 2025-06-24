@@ -15,8 +15,10 @@ const path = require('path');
 
 const handleApi = require('./routes/api');
 
-const PORT       = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
+
 const PUBLIC_DIR = path.join(__dirname, '..');
+
 
 const MIME_TYPES = {
     '.html': 'text/html',
@@ -30,8 +32,7 @@ const MIME_TYPES = {
     '.ico':  'image/x-icon',
 };
 
-http.createServer((req, res) => {
-
+const server = http.createServer((req, res) => {
     if (req.url.startsWith('/api/')) {
         return handleApi(req, res);
     }
@@ -49,8 +50,8 @@ http.createServer((req, res) => {
         res.writeHead(200, { 'Content-Type': contentType });
         res.end(content);
     });
-})
-    .listen(PORT, () => {
-        console.log(`Server is running at http://localhost:3001`);
-    });
+});
 
+server.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server is running on all interfaces, port ${PORT}`);
+});
