@@ -218,16 +218,34 @@ export const EndlessRunner = {
                 ctx.font = 'bold 32px Arial';
                 ctx.fillText('Distance: ' + Math.floor(distance) + ' m', canvas.width/2, canvas.height/2 + 10);
                 ctx.font = '20px Arial';
-                ctx.fillText('Press ESC to return to menu', canvas.width/2, canvas.height/2 + 60);
+
+                const btnWidth = 260, btnHeight = 56;
+                const btnX = canvas.width/2 - btnWidth/2, btnY = canvas.height/2 + 50;
+                ctx.save();
+                ctx.beginPath();
+                ctx.roundRect
+                    ? ctx.roundRect(btnX, btnY, btnWidth, btnHeight, 16)
+                    : ctx.rect(btnX, btnY, btnWidth, btnHeight);
+                ctx.fillStyle = '#ffe066';
+                ctx.fill();
+                ctx.lineWidth = 3;
+                ctx.strokeStyle = '#fff';
+                ctx.stroke();
+                ctx.font = 'bold 26px Arial';
+                ctx.fillStyle = '#222';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('Back to Menu', canvas.width/2, btnY + btnHeight/2);
+                ctx.restore();
                 ctx.restore();
 
                 config.gravity = originalGravity;
                 config.jumpVelocity = originalJumpVelocity;
 
-                 if (!bestScoreSent) {
+                if (!bestScoreSent) {
                     bestScoreSent = true;
                     const token = localStorage.getItem('jwt');
-                  fetch('/api/user/best_score', {
+                    fetch('/api/user/best_score', {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',
@@ -247,17 +265,55 @@ export const EndlessRunner = {
                     });
                 }
             }
-            window.addEventListener('keydown', function escHandler(e) {
+
+            function handleEndlessReturn(e) {
+                if (!isGameOver) return;
+                let x, y;
+                if (e.type.startsWith('touch')) {
+                    const touch = e.changedTouches[0];
+                    const rect = canvas.getBoundingClientRect();
+                    x = (touch.clientX - rect.left) * (canvas.width / rect.width);
+                    y = (touch.clientY - rect.top) * (canvas.height / rect.height);
+                } else {
+                    const rect = canvas.getBoundingClientRect();
+                    x = (e.clientX - rect.left) * (canvas.width / rect.width);
+                    y = (e.clientY - rect.top) * (canvas.height / rect.height);
+                }
+
+                const btnWidth = 260, btnHeight = 56;
+                const btnX = canvas.width/2 - btnWidth/2, btnY = canvas.height/2 + 50;
+                if (
+                    x >= btnX && x <= btnX + btnWidth &&
+                    y >= btnY && y <= btnY + btnHeight
+                ) {
+                    EndlessRunner._running = false;
+                    cancelAnimationFrame(EndlessRunner._rafId);
+                    document.getElementById('main-menu').style.display = '';
+                    canvas.style.display = 'none';
+                    window.removeEventListener('keydown', escHandler);
+                    window.removeEventListener('mousedown', handleEndlessReturn);
+                    window.removeEventListener('touchstart', handleEndlessReturn);
+                    config.gravity = originalGravity;
+                    config.jumpVelocity = originalJumpVelocity;
+                }
+            }
+            function escHandler(e) {
+
                 if (isGameOver && e.key === 'Escape') {
                     EndlessRunner._running = false;
                     cancelAnimationFrame(EndlessRunner._rafId);
                     document.getElementById('main-menu').style.display = '';
                     canvas.style.display = 'none';
                     window.removeEventListener('keydown', escHandler);
+                    window.removeEventListener('mousedown', handleEndlessReturn);
+                    window.removeEventListener('touchstart', handleEndlessReturn);
                     config.gravity = originalGravity;
                     config.jumpVelocity = originalJumpVelocity;
                 }
-            });
+            }
+            window.addEventListener('keydown', escHandler);
+            window.addEventListener('mousedown', handleEndlessReturn);
+            window.addEventListener('touchstart', handleEndlessReturn);
 
             EndlessRunner._rafId = requestAnimationFrame(loop);
         };

@@ -20,19 +20,22 @@ export class DialogueSystem {
         this.box.update(delta);
 
         if (!this.active && keys.interact.pressed) {
-
             const near = npcs.find(n => n.isPlayerNear(player.getHitbox(scrollOffset)));
             if (near) {
                 this.active = true;
                 const key = near.dialogueId;
                 const cfg = dialogues[key];
 
+                window.dispatchEvent(new Event('dialogue-active'));
+
                 this.box.start(key, () => {
                     if (Array.isArray(cfg.questions)) {
+                        window.dispatchEvent(new Event('dialogue-choices-show'));
                         const labels = cfg.questions.map(q => `npc.${key}.${q.label.replace(/^.*?_/, '')}`);
                         this.box.showChoices(labels);
                     } else {
                         this.active = false;
+                        window.dispatchEvent(new Event('dialogue-inactive'));
                     }
                 });
             }
@@ -43,12 +46,14 @@ export class DialogueSystem {
         if (!this.active) return;
 
         if (this.box.isChoiceMode && keys.choice != null) {
+            window.dispatchEvent(new Event('dialogue-choices-hide'));
             const parentKey = this.box.nodeKey;
             const question  = dialogues[parentKey].questions[keys.choice];
             const branchKey = question && question.branch;
             if (branchKey) {
                 this.box.start(branchKey, () => {
                     this.active = false;
+                    window.dispatchEvent(new Event('dialogue-inactive'));
                 });
             }
             keys.choice = null;

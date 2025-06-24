@@ -1,3 +1,5 @@
+// src/systems/main.js
+
 import { ResourceLoader } from './resource-loader.js';
 import { InputSystem } from './input-system.js';
 import { PhysicsSystem } from './physics-system.js';
@@ -22,6 +24,7 @@ export class Main {
     static setLang(lang) { Main._lang = lang; }
 
     static async start(levelId, lang = 'ro') {
+        window.dispatchEvent(new CustomEvent('level-start'));
         Main._lang = lang;
         await loadTranslations(lang);
         if (Main._rafId) {
@@ -39,6 +42,8 @@ export class Main {
         const camera = { x: 0, y: 0, width: canvas.width, height: canvas.height };
 
         const input = new InputSystem();
+        window.inputSystem = input;
+
         const physics = new PhysicsSystem();
         const renderer = new Renderer(ctx);
         const loader = new ResourceLoader();
@@ -230,7 +235,10 @@ export class Main {
                             setTimeout(() => { edgePopupText = null; }, 1800);
                         }
                     );
-                    quiz.start();
+
+                    window.dispatchEvent(new CustomEvent('quiz-start'));
+                    
+                    quiz.start(); 
                 } else {
                     if (nextLevel <= MAX_LEVEL) {
                         setTimeout(() => Main.start(nextLevel, Main._lang), 300);

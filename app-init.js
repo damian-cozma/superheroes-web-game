@@ -1,9 +1,17 @@
+// app-init.js
+
 import { levels } from './src/config/levels-config.js';
 import { Main } from './src/systems/main.js';
 import { loadTranslations, t } from './src/i18n/i18n.js';
 import { initAuthUI, renderLoginForm } from './src/utils/auth-ui.js';
 import { EndlessRunner } from './src/endless/endless-runner.js';
 import { apiFetch } from './src/utils/api.js';
+import {
+    initTouchControls,
+    showTouchControlsBar,
+    setTouchControlsVisibility,
+    isTouchDevice
+} from './src/systems/touch-controls.js';
 
 let lastFinishedLevel = 0;
 const MAX_LEVEL = Object.keys(levels).length;
@@ -11,6 +19,7 @@ const MAX_LEVEL = Object.keys(levels).length;
 const menu = document.getElementById('main-menu');
 const canvas = document.getElementById('canvas');
 const music = document.getElementById('menu-music');
+
 const soundToggle = document.getElementById('sound-toggle');
 const muteSvg = document.getElementById('mute-svg');
 const btnRO = document.getElementById('lang-ro');
@@ -29,11 +38,14 @@ const userNameSpan = document.getElementById('user-name');
 const userAction = document.getElementById('user-action-btn');
 const authModal = document.getElementById('auth-modal');
 const authClose = document.getElementById('auth-close');
+const uiDropdownTrigger = document.getElementById('ui-dropdown-trigger');
+const uiDropdown = document.getElementById('ui-dropdown');
 
 endBtn.onclick = () => {
     endScreen.classList.remove('visible');
     menu.style.display = '';
     canvas.style.display = 'none';
+    showTouchControlsBar(false);
 };
 
 window.addEventListener('story-complete', () => {
@@ -72,6 +84,7 @@ async function setLanguage(lang) {
 btnRO.onclick = () => setLanguage('ro');
 btnENG.onclick = () => setLanguage('eng');
 
+
 btnStory.onclick = () => {
     const nextLevel = Math.min(lastFinishedLevel + 1, MAX_LEVEL);
     if (lastFinishedLevel >= MAX_LEVEL) {
@@ -82,6 +95,7 @@ btnStory.onclick = () => {
     }
     menu.style.display = 'none';
     canvas.style.display = '';
+    showTouchControlsBar(isTouchDevice());
     const ctx = canvas.getContext('2d');
     ctx && ctx.clearRect(0, 0, canvas.width, canvas.height);
     Main.start(nextLevel, Main._lang);
@@ -89,6 +103,15 @@ btnStory.onclick = () => {
 btnEndless.onclick = () => {
     menu.style.display = 'none';
     canvas.style.display = 'block';
+    showTouchControlsBar(isTouchDevice());
+    setTimeout(() => {
+        setTouchControlsVisibility({ joystick: false, jump: true, interact: false, choices: false });
+        const actionButtons = document.getElementById('action-buttons');
+        if (actionButtons) {
+            actionButtons.style.marginLeft = 'auto';
+            actionButtons.style.marginRight = '0';
+        }
+    }, 0);
     EndlessRunner.start();
 };
 
@@ -110,11 +133,13 @@ btnLeaderboard.onclick = async () => {
 backBtn.onclick = () => {
     lbScreen.style.display = 'none';
     menu.style.display = '';
+    showTouchControlsBar(false);
 };
 
 document.getElementById('btn-admin-back').onclick = () => {
     hideAllScreens();
     document.getElementById('main-menu').style.display = '';
+    showTouchControlsBar(false);
 };
 
 userBtn.onclick = e => {
@@ -152,11 +177,7 @@ function hideAllScreens() {
     document.getElementById('canvas').style.display             = 'none';
     document.getElementById('leaderboard-screen').style.display = 'none';
     document.getElementById('admin-screen').style.display       = 'none';
-}
-
-function showAdminScreen() {
-    hideAllScreens();
-    document.getElementById('admin-screen').style.display = '';
+    showTouchControlsBar(false);
 }
 
 async function refreshProfile() {
@@ -176,19 +197,14 @@ async function refreshProfile() {
         updateUserUI(res.ok ? res.data : null);
 
         if (res.ok && res.data.is_admin) {
-
             const adminBtn = document.createElement('button');
             adminBtn.id = 'btn-admin';
             adminBtn.textContent = 'Admin';
-
             document.getElementById('main-menu').append(adminBtn);
-
-               adminBtn.onclick = () => {
-                     window.location.href = '/admin.html';
-                   };
-
+            adminBtn.onclick = () => {
+                 window.location.href = '/admin.html';
+            };
         }
-
     } catch {
         lastFinishedLevel = 0;
         updateUserUI(null);
@@ -201,5 +217,30 @@ window.addEventListener('DOMContentLoaded', async () => {
     await setLanguage('ro');
     playMenuMusic();
     initAuthUI();
+    initTouchControls();
     refreshProfile();
+
+    function checkOrientation() {
+        const isMobile = window.matchMedia("(max-width: 900px)").matches;
+        const isPortrait = window.matchMedia("(orientation: portrait)").matches;
+        showTouchControlsBar(false);
+        if (isMobile && isPortrait) {
+            document.body.classList.add('rotate-active');
+        } else {
+            document.body.classList.remove('rotate-active');
+        }
+    }
+    window.addEventListener('orientationchange', checkOrientation);
+    window.addEventListener('resize', checkOrientation);
+    checkOrientation();
+});
+
+uiDropdownTrigger.onclick = e => {
+    uiDropdown.classList.toggle('open');
+    e.stopPropagation();
+};
+document.addEventListener('click', e => {
+    if (!uiDropdown.contains(e.target) && e.target !== uiDropdownTrigger) {
+        uiDropdown.classList.remove('open');
+    }
 });
