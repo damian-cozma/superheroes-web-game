@@ -81,7 +81,32 @@ export const levels = {
             jumpLeft:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/jumpLeft.png',
             jumpRight: 'https://d1wlpmgdj7hm5h.cloudfront.net/player/jumpRight.png'
         },
-        npcs: []
+        npcs: [
+            {
+                id: 'nickfury',
+                x: 800,
+                y: 170,
+                sprite:         'assets/npcs/nickfury.png',
+                frameCount:     3,
+                animationSpeed: 150
+            },
+            {
+                id: 'hulk',
+                x: 2150,
+                y: 235,
+                sprite:          'assets/npcs/hulk.png',
+                frameCount:     3,
+                animationSpeed: 150
+            },
+            {
+                id: 'mariahill',
+                x: 4000,
+                y: 430,
+                sprite:          'assets/npcs/mariahill.png',
+                frameCount:     3,
+                animationSpeed: 180
+            }
+        ]
     },
     3: {
         bgImageSrc: [
@@ -106,6 +131,23 @@ export const levels = {
             jumpLeft:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/jumpLeft.png',
             jumpRight: 'https://d1wlpmgdj7hm5h.cloudfront.net/player/jumpRight.png'
         },
-        npcs: []
+        npcs: [
+            {
+                id: 'loki',
+                x: 650,
+                y: 400,
+                sprite:         'assets/npcs/loki.png',
+                frameCount:     3,
+                animationSpeed: 150
+            },
+            {
+                id: 'hawkeye',
+                x: 4300,
+                y: 330,
+                sprite:          'assets/npcs/hawkeye.png',
+                frameCount:     3,
+                animationSpeed: 150
+            }
+        ]
     }
 };

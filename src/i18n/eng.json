@@ -88,6 +88,90 @@
       "q1b_l2": "And remember: I can do this all day.",
       "q2_l1": "I’m Steve Rogers, but most know me as Captain America.",
       "q2_l2": "Super soldier, shield-bearer, and a believer in justice."
+    },
+    "nickfury": {
+      "l1": "Good to see you. Welcome to S.H.I.E.L.D. headquarters.",
+      "l2": "We’ve gathered intel on the threats ahead.",
+      "q1_label": "What's our mission?",
+      "q2_label": "Who are you?",
+      "q1_l1": "You need to recover the stolen super‐soldier serum.",
+      "q1_l2": "Agents report strange activity in the city.",
+      "q1a_label": "What is the serum?",
+      "q1b_label": "What's causing the chaos?",
+      "q1a_l1": "The serum enhances human abilities beyond normal limits.",
+      "q1a_l2": "It's classified, but extremely volatile.",
+      "q1b_l1": "Signs point to an unknown metahuman attacker.",
+      "q1b_l2": "Stay alert and watch for gamma energy signatures.",
+      "q2_l1": "I’m Nick Fury, director of S.H.I.E.L.D.",
+      "q2_l2": "And yes, this isn’t the ’90s—fashion has changed."
+    },
+
+    "hulk": {
+      "l1": "Ever seen green rage in action?",
+      "l2": "You won’t like me when I’m angry.",
+      "q1_label": "Why are you angry?",
+      "q2_label": "How can I help?",
+      "q1_l1": "A gamma experiment went wrong again.",
+      "q1_l2": "Now I'm stuck in this huge green form.",
+      "q1a_label": "What happened to the experiment?",
+      "q1b_label": "Can you control it?",
+      "q1a_l1": "A reactor glitch caused a massive gamma overload.",
+      "q1a_l2": "It could happen again if I’m not careful.",
+      "q1b_l1": "Control is a work in progress.",
+      "q1b_l2": "Meditation helps, but it’s tough.",
+      "q2_l1": "Calm me down with a joke.",
+      "q2_l2": "Or maybe offer some shade."
+    },
+
+    "mariahill": {
+      "l1": "Agent Hill here.",
+      "l2": "Intel speaks of hidden threats.",
+      "q1_label": "What threats?",
+      "q2_label": "Who’s briefing me?",
+      "q1_l1": "Unstable tech is being smuggled in.",
+      "q1_l2": "It could be weaponized.",
+      "q1a_label": "What is this tech?",
+      "q1b_label": "Where are they hiding?",
+      "q1a_l1": "Tech of unknown origin—highly unstable.",
+      "q1a_l2": "Could warp reality if mishandled.",
+      "q1b_l1": "Suspects spotted at the docks.",
+      "q1b_l2": "Proceed with caution.",
+      "q2_l1": "I’m Maria Hill, deputy director.",
+      "q2_l2": "I report directly to Fury."
+    },
+
+    "loki": {
+      "l1": "Did you miss me?",
+      "l2": "Chaos is my favorite pastime.",
+      "q1_label": "What’s your goal?",
+      "q2_label": "Why help me?",
+      "q1_l1": "To sow discord among heroes.",
+      "q1_l2": "Watching them falter is entertaining.",
+      "q1a_label": "How will you do it?",
+      "q1b_label": "Can I join you?",
+      "q1a_l1": "With illusions and shifting alliances.",
+      "q1a_l2": "Trust is a luxury I don’t afford.",
+      "q1b_l1": "Only if you embrace mischief.",
+      "q1b_l2": "But tricks always come at a price.",
+      "q2_l1": "I help because it’s amusing.",
+      "q2_l2": "And sometimes I serve my own ends."
+    },
+
+    "hawkeye": {
+      "l1": "Aim true, arrow swift.",
+      "l2": "Name’s Hawkeye. Ready when you are.",
+      "q1_label": "What’s your specialty?",
+      "q2_label": "Why join the fight?",
+      "q1_l1": "Precision archery—nothing escapes my aim.",
+      "q1_l2": "Decades of training prove it.",
+      "q1a_label": "What’s your gear?",
+      "q1b_label": "Any tips for archery?",
+      "q1a_l1": "High-tech arrows and a reinforced bow.",
+      "q1a_l2": "Some arrows even track targets.",
+      "q1b_l1": "Focus on breathing and posture.",
+      "q1b_l2": "Steady hands win battles.",
+      "q2_l1": "Heroes need every advantage.",
+      "q2_l2": "And I never miss a shot."
     }
   },
   "story": {

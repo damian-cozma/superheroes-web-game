@@ -88,6 +88,90 @@
       "q1b_l2": "Și nu uita: pot face asta toată ziua.",
       "q2_l1": "Sunt Steve Rogers, dar majoritatea mă știu ca Captain America.",
       "q2_l2": "Super soldat, purtător de scut și cred în dreptate."
+    },
+    "nickfury": {
+      "l1": "Mă bucur să te văd. Bine ai venit la sediul S.H.I.E.L.D.",
+      "l2": "Avem informații despre amenințările de aici.",
+      "q1_label": "Care e misiunea noastră?",
+      "q2_label": "Cine ești tu?",
+      "q1_l1": "Trebuie să recuperezi serul super-soldat furat.",
+      "q1_l2": "Agenții raportează activități ciudate în oraș.",
+      "q1a_label": "Ce este serul?",
+      "q1b_label": "Ce cauzează haosul?",
+      "q1a_l1": "Serul amplifică abilitățile umane dincolo de limitele normale.",
+      "q1a_l2": "Este clasificat, dar extrem de instabil.",
+      "q1b_l1": "Există indicii despre un atacator metahuman necunoscut.",
+      "q1b_l2": "Stai pe fază și urmărește semnăturile de energie gamma.",
+      "q2_l1": "Sunt Nick Fury, directorul S.H.I.E.L.D.",
+      "q2_l2": "Și da, nu e ani ’90—moda s-a schimbat."
+    },
+
+    "hulk": {
+      "l1": "Ai văzut vreodată furia verde în acțiune?",
+      "l2": "Nu-ți va plăcea când sunt supărat.",
+      "q1_label": "De ce ești furios?",
+      "q2_label": "Cum pot ajuta?",
+      "q1_l1": "Un experiment gamma a mers prost din nou.",
+      "q1_l2": "Acum sunt blocat în această formă verde uriașă.",
+      "q1a_label": "Ce s-a întâmplat cu experimentul?",
+      "q1b_label": "Îl poți controla?",
+      "q1a_l1": "O avarie la reactor a cauzat suprasarcină gamma.",
+      "q1a_l2": "Se poate repeta dacă nu sunt atent.",
+      "q1b_l1": "Controlul e încă în lucru.",
+      "q1b_l2": "Meditația ajută, dar e greu.",
+      "q2_l1": "Ajută-mă să mă calmezi cu o glumă.",
+      "q2_l2": "Sau oferă-mi un strop de liniște."
+    },
+
+    "mariahill": {
+      "l1": "Agentul Hill aici.",
+      "l2": "Informațiile vorbesc despre amenințări ascunse.",
+      "q1_label": "Ce amenințări?",
+      "q2_label": "Cine mă informează?",
+      "q1_l1": "Tehnologie instabilă e introdusă pe furiș.",
+      "q1_l2": "Ar putea fi transformată în armă.",
+      "q1a_label": "Ce e această tehnologie?",
+      "q1b_label": "Unde se ascund?",
+      "q1a_l1": "Tehnologie instabilă de origine necunoscută.",
+      "q1a_l2": "Ar putea perturba realitatea dacă e abuzată.",
+      "q1b_l1": "Suspecți văzuți la docuri.",
+      "q1b_l2": "Abordează cu prudență.",
+      "q2_l1": "Sunt Maria Hill, director adjunct.",
+      "q2_l2": "Raportez direct lui Fury."
+    },
+
+    "loki": {
+      "l1": "Mi-ai simțit lipsa?",
+      "l2": "Haosul e hobby-ul meu preferat.",
+      "q1_label": "Care e scopul tău?",
+      "q2_label": "De ce mă ajuți?",
+      "q1_l1": "Să semăn discordie printre eroi.",
+      "q1_l2": "Îmi place să îi văd cum dau greș.",
+      "q1a_label": "Cum vei face asta?",
+      "q1b_label": "Pot să mă alătur?",
+      "q1a_l1": "Cu iluzii și alianțe schimbătoare.",
+      "q1a_l2": "Încrederea e un lux pe care nu mi-l permit.",
+      "q1b_l1": "Doar dacă îmbrățișezi poznele.",
+      "q1b_l2": "Dar ține minte: farsele au preț.",
+      "q2_l1": "Te ajut pentru că e amuzant.",
+      "q2_l2": "Și uneori urmăresc propriile mele scopuri."
+    },
+
+    "hawkeye": {
+      "l1": "Țintește precis, săgeata să zboare vârtos.",
+      "l2": "Sunt Hawkeye. Oricând ești gata.",
+      "q1_label": "Care e specialitatea ta?",
+      "q2_label": "De ce te alături luptei?",
+      "q1_l1": "Artilerie cu arc de precizie—nimic nu-mi scapă.",
+      "q1_l2": "Decenii de antrenament o demonstrează.",
+      "q1a_label": "Ce echipament folosești?",
+      "q1b_label": "Ai sfaturi pentru tir?",
+      "q1a_l1": "Săgeți high-tech și un arc consolidat.",
+      "q1a_l2": "Unele săgeți urmăresc ținta.",
+      "q1b_l1": "Concentrează-te pe respirație și poziție.",
+      "q1b_l2": "Mâinile stabile câștigă bătălii.",
+      "q2_l1": "Eroii au nevoie de orice avantaj.",
+      "q2_l2": "Și eu nu ratez niciodată o țintă."
     }
   },
   "story": {
