@@ -72,6 +72,7 @@ export const levels = {
         groundImageSrc: 'https://d1wlpmgdj7hm5h.cloudfront.net/level_2/ground.png',
         collisionBlocks: level2Collisions,
         gravity: 1,
+        hasQuiz: true,
         canvasHeight: 640,
         playerSprites: {
             idleRight: 'https://d1wlpmgdj7hm5h.cloudfront.net/player/idleRight.png',
@@ -86,7 +87,7 @@ export const levels = {
                 id: 'nickfury',
                 x: 800,
                 y: 170,
-                sprite:         'assets/npcs/nickfury.png',
+                sprite:         'https://d1wlpmgdj7hm5h.cloudfront.net/npcs/nickfury.png',
                 frameCount:     3,
                 animationSpeed: 150
             },
@@ -94,7 +95,7 @@ export const levels = {
                 id: 'hulk',
                 x: 2150,
                 y: 235,
-                sprite:          'assets/npcs/hulk.png',
+                sprite:          'https://d1wlpmgdj7hm5h.cloudfront.net/npcs/hulk.png',
                 frameCount:     3,
                 animationSpeed: 150
             },
@@ -102,7 +103,7 @@ export const levels = {
                 id: 'mariahill',
                 x: 4000,
                 y: 430,
-                sprite:          'assets/npcs/mariahill.png',
+                sprite:          'https://d1wlpmgdj7hm5h.cloudfront.net/npcs/mariahill.png',
                 frameCount:     3,
                 animationSpeed: 180
             }
@@ -122,6 +123,7 @@ export const levels = {
         collisionBlocks: [],
         levelCollisions: level3Collisions,
         gravity: 1,
+        hasQuiz: true,
         canvasHeight: 640,
         playerSprites: {
             idleRight: 'https://d1wlpmgdj7hm5h.cloudfront.net/player/idleRight.png',
@@ -136,7 +138,7 @@ export const levels = {
                 id: 'loki',
                 x: 650,
                 y: 400,
-                sprite:         'assets/npcs/loki.png',
+                sprite:         'https://d1wlpmgdj7hm5h.cloudfront.net/npcs/loki.png',
                 frameCount:     3,
                 animationSpeed: 150
             },
@@ -144,7 +146,7 @@ export const levels = {
                 id: 'hawkeye',
                 x: 4300,
                 y: 330,
-                sprite:          'assets/npcs/hawkeye.png',
+                sprite:          'https://d1wlpmgdj7hm5h.cloudfront.net/npcs/hawkeye.png',
                 frameCount:     3,
                 animationSpeed: 150
             }

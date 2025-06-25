@@ -5,7 +5,7 @@
     "leaderboard": "Leaderboard"
   },
   "quiz": {
-    "collect_all_coins": "You must collect all 9 coins to advance!",
+    "collect_all_coins": "You must collect all 5 coins to advance!",
     "wrong_answer": "Wrong answer! Try again.",
     "wrong": "Wrong answer! Try again.",
     "ok": "OK",
@@ -21,6 +21,58 @@
       {
         "question": "What is the main color of Captain America's suit?",
         "options": ["Red", "Blue", "Green"]
+      }
+    ],
+    "questions2": [
+      {
+        "question": "Who is the director of S.H.I.E.L.D.?",
+        "options": [
+          "Tony Stark",
+          "Nick Fury",
+          "Bruce Banner"
+        ]
+      },
+      {
+        "question": "How do you calm Hulk?",
+        "options": [
+          "Tell him a joke or give him peace",
+          "Challenge him to a fight",
+          "Give him the super-soldier serum"
+        ]
+      },
+      {
+        "question": "Who does Maria Hill report to?",
+        "options": [
+          "Thor",
+          "Nick Fury",
+          "Captain America"
+        ]
+      }
+    ],
+    "questions3": [
+      {
+        "question": "Why does Loki help you?",
+        "options": [
+          "Because he likes chaos.",
+          "Because he is your friend.",
+          "Because he wants to become an Avenger."
+        ]
+      },
+      {
+        "question": "What is Hawkeye's specialty?",
+        "options": [
+          "Precision archer.",
+          "Super strength.",
+          "Flight."
+        ]
+      },
+      {
+        "question": "What did you learn from this adventure?",
+        "options": [
+          "Heroes succeed only together.",
+          "Only the strong win.",
+          "Your choices don't matter."
+        ]
       }
     ]
   },

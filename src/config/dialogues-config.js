@@ -323,8 +323,6 @@ export const dialogues = {
             { text: "mariahill_q2_l2" }
         ]
     },
-
-    // Nivel 3
     loki: {
         name: "Loki",
         lines: [

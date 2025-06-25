@@ -244,3 +244,15 @@ document.addEventListener('click', e => {
         uiDropdown.classList.remove('open');
     }
 });
+
+window.addEventListener('back-to-menu', () => {
+    endScreen.classList.remove('visible');
+    menu.style.display = '';
+    canvas.style.display = 'none';
+    showTouchControlsBar(false);
+    Main._runningLoop = false;
+    if (Main._rafId) {
+        cancelAnimationFrame(Main._rafId);
+        Main._rafId = null;
+    }
+});

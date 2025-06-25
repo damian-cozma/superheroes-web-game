@@ -1,10 +1,10 @@
-import { quizQuestions } from '../config/quiz-questions.js';
 import { t } from '../i18n/i18n.js';
 
 export class QuizSystem {
-  constructor(onSuccess, onFail) {
+  constructor(onSuccess, onFail, questions) {
     this.onSuccess = onSuccess;
     this.onFail = onFail;
+    this.questions = questions;
     this.current = 0;
     this.container = null;
   }
@@ -16,7 +16,7 @@ export class QuizSystem {
 
   _showQuestion() {
     if (this.container) this.container.remove();
-    const q = quizQuestions[this.current];
+    const q = this.questions[this.current];
     this.container = document.createElement('div');
     this.container.className = 'quiz-popup';
     this.container.innerHTML = `
@@ -32,10 +32,10 @@ export class QuizSystem {
   }
 
   _checkAnswer(idx) {
-    const q = quizQuestions[this.current];
+    const q = this.questions[this.current];
     if (idx === q.answer) {
       this.current++;
-      if (this.current >= quizQuestions.length) {
+      if (this.current >= this.questions.length) {
         this._finish(true);
       } else {
         this._showQuestion();

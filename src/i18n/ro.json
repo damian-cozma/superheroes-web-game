@@ -5,7 +5,7 @@
     "leaderboard": "Clasament"
   },
   "quiz": {
-    "collect_all_coins": "Trebuie să colectezi toate cele 9 monezi pentru a putea avansa!",
+    "collect_all_coins": "Trebuie să colectezi toate cele 5 monede ca să avansezi!",
     "wrong_answer": "Ai răspuns greșit! Încearcă din nou.",
     "wrong": "Ai răspuns greșit! Încearcă din nou.",
     "ok": "OK",
@@ -21,6 +21,58 @@
       {
         "question": "Care este culoarea principală a costumului lui Captain America?",
         "options": ["Roșu", "Albastru", "Verde"]
+      }
+    ],
+    "questions2": [
+      {
+        "question": "Cine e directorul S.H.I.E.L.D.?",
+        "options": [
+          "Tony Stark",
+          "Nick Fury",
+          "Bruce Banner"
+        ]
+      },
+      {
+        "question": "Cum îl calmezi pe Hulk?",
+        "options": [
+          "Îi spui o glumă sau îi oferi liniște",
+          "Îl provoci la luptă",
+          "Îi dai serul super-soldat"
+        ]
+      },
+      {
+        "question": "Cui raportează Maria Hill?",
+        "options": [
+          "Thor",
+          "Nick Fury",
+          "Captain America"
+        ]
+      }
+    ],
+    "questions3": [
+      {
+        "question": "De ce te ajută Loki?",
+        "options": [
+          "Pentru că îi place haosul.",
+          "Pentru că este prietenul tău.",
+          "Pentru că vrea să devină Avenger."
+        ]
+      },
+      {
+        "question": "Care e specializarea lui Hawkeye?",
+        "options": [
+          "Arcaș de precizie.",
+          "Super putere.",
+          "Zbor."
+        ]
+      },
+      {
+        "question": "Ce ai învățat din această aventură?",
+        "options": [
+          "Eroii reușesc doar împreună.",
+          "Doar cei puternici câștigă.",
+          "Nu contează ce alegi."
+        ]
       }
     ]
   },

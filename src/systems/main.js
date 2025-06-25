@@ -11,6 +11,7 @@ import { QuizSystem } from './quiz-system.js';
 import { loadTranslations, t } from '../i18n/i18n.js';
 import { apiFetch } from '../utils/api.js';
 import { levels } from '../config/levels-config.js';
+import { quizQuestionsLevel1, quizQuestionsLevel2, quizQuestionsLevel3 } from '../config/quiz-questions.js';
 
 const MAX_LEVEL = Object.keys(levels).length;
 
@@ -33,6 +34,9 @@ export class Main {
             Main._rafId = null;
         }
         Main._runningLoop = true;
+
+        Main._coins = 0;
+        document.getElementById('coin-count').textContent = '0';
 
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
@@ -199,55 +203,68 @@ export class Main {
 
             if (atEdge && !triedAdvance) {
                 triedAdvance = true;
-                Main._runningLoop = false;
-
-                const token = localStorage.getItem('jwt');
-                if (token) {
-                    (async () => {
-                        try {
-                            const res = await apiFetch('/api/user/profile', {
-                                method: 'PUT',
-                                body: JSON.stringify({ levels_finished: levelId })
-                            });
-                            if (!res.ok && res.status !== 401) {
-
-                                console.warn('Could not save progress:', await res.json());
-                            }
-                        } catch (err) {
-
-                            console.error('Save error:', err);
-                        }
-                    })();
-                }
-
-
-                const nextLevel = levelId + 1;
-                const hasQuiz = !!levels[levelId].hasQuiz;
-
-                if (hasQuiz) {
-                    const quiz = new QuizSystem(
-                        () => setTimeout(() => Main.start(nextLevel, Main._lang), 300),
-                        () => {
-                            edgePopupImage = dialogueImg;
-                            edgePopupText = t('quiz.wrong_answer');
-                            Main._runningLoop = true;
-                            Main._rafId = requestAnimationFrame(loop);
-                            setTimeout(() => { edgePopupText = null; }, 1800);
-                        }
-                    );
-
-                    window.dispatchEvent(new CustomEvent('quiz-start'));
-                    
-                    quiz.start(); 
+                if (Main._coins < 5) {
+                    edgePopupText = t('quiz.collect_all_coins');
+                    Main._runningLoop = true;
+                    Main._rafId = requestAnimationFrame(loop);
+                    return;
                 } else {
-                    if (nextLevel <= MAX_LEVEL) {
-                        setTimeout(() => Main.start(nextLevel, Main._lang), 300);
-                    } else {
-                        window.dispatchEvent(new Event('story-complete'));
+                    edgePopupText = null;
+                    Main._runningLoop = false;
+                    const token = localStorage.getItem('jwt');
+                    if (token) {
+                        (async () => {
+                            try {
+                                const res = await apiFetch('/api/user/profile', {
+                                    method: 'PUT',
+                                    body: JSON.stringify({ levels_finished: levelId })
+                                });
+                                if (!res.ok && res.status !== 401) {
+                                    console.warn('Could not save progress:', await res.json());
+                                }
+                            } catch (err) {
+                                console.error('Save error:', err);
+                            }
+                        })();
                     }
 
+                    const nextLevel = levelId + 1;
+                    const hasQuiz = !!levels[levelId].hasQuiz;
+
+                    if (hasQuiz) {
+                        let questions = quizQuestionsLevel1;
+                        if (levelId === 2) questions = quizQuestionsLevel2;
+                        if (levelId === 3) questions = quizQuestionsLevel3;
+                        const quiz = new QuizSystem(
+                            () => {
+                                if (levelId === 3) {
+                                    // Show end screen only after quiz is passed at level 3
+                                    const endScreen = document.getElementById('end-screen');
+                                    const endTitle = document.getElementById('end-title');
+                                    endTitle.textContent = t('story.completed') || 'Ai terminat toate nivelele!';
+                                    endScreen.classList.add('visible');
+                                    const btnEndToMenu = document.getElementById('btn-end-to-menu');
+                                    btnEndToMenu.onclick = () => {
+                                        window.dispatchEvent(new CustomEvent('back-to-menu'));
+                                    };
+                                } else {
+                                    setTimeout(() => Main.start(nextLevel, Main._lang), 300);
+                                }
+                            },
+                            () => {
+                                edgePopupImage = dialogueImg;
+                                edgePopupText = t('quiz.wrong_answer');
+                                Main._runningLoop = true;
+                                Main._rafId = requestAnimationFrame(loop);
+                                setTimeout(() => { edgePopupText = null; }, 1800);
+                            },
+                            questions
+                        );
+                        window.dispatchEvent(new CustomEvent('quiz-start'));
+                        quiz.start(); 
+                    }
+                    return;
                 }
-                return;
             } else if (!atEdge) {
                 triedAdvance = false;
                 edgePopupText = null;
