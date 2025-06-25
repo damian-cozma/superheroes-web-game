@@ -29,7 +29,7 @@ body {
     transform: translate(-50%, -50%);
     width: 1200px;
     height: 640px;
-    background: url('https://d1wlpmgdj7hm5h.cloudfront.net/menu/menu.png') center center/cover no-repeat;
+    background: url('https://d1wlpmgdj7hm5h.cloudfront.net/menu/menu.webp') center center/cover no-repeat;
     display: flex;
     flex-direction: column;
     align-items: center;
