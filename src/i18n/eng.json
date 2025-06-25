@@ -5,7 +5,7 @@
     "leaderboard": "Leaderboard"
   },
   "quiz": {
-    "collect_all_coins": "You must collect all 5 coins to advance!",
+    "collect_all_coins": "You must collect at least 5 coins to advance!",
     "wrong_answer": "Wrong answer! Try again.",
     "wrong": "Wrong answer! Try again.",
     "ok": "OK",
