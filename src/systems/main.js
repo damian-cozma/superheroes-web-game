@@ -238,12 +238,12 @@ export class Main {
                         const quiz = new QuizSystem(
                             () => {
                                 if (levelId === 3) {
-                                    // Show end screen only after quiz is passed at level 3
                                     const endScreen = document.getElementById('end-screen');
                                     const endTitle = document.getElementById('end-title');
                                     endTitle.textContent = t('story.completed') || 'Ai terminat toate nivelele!';
-                                    endScreen.classList.add('visible');
                                     const btnEndToMenu = document.getElementById('btn-end-to-menu');
+                                    btnEndToMenu.textContent = t('story.back_to_menu') || 'Back to Menu';
+                                    endScreen.classList.add('visible');
                                     btnEndToMenu.onclick = () => {
                                         window.dispatchEvent(new CustomEvent('back-to-menu'));
                                     };

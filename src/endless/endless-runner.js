@@ -4,6 +4,7 @@ import { InputSystem } from '../systems/input-system.js';
 import { PhysicsSystem } from '../systems/physics-system.js';
 import { Renderer } from '../systems/renderer.js';
 import { config } from '../utils/utils.js';
+import { t } from '../i18n/i18n.js';
 
 let bestScoreSent = false;
 export const EndlessRunner = {
@@ -16,6 +17,53 @@ export const EndlessRunner = {
         const ctx = canvas.getContext('2d');
         canvas.width = config.canvasWidth;
         canvas.height = config.canvasHeight;
+
+        let overlay = document.getElementById('endless-gameover-overlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'endless-gameover-overlay';
+            overlay.style.position = 'fixed';
+            overlay.style.left = '0';
+            overlay.style.top = '0';
+            overlay.style.width = '100vw';
+            overlay.style.height = '100vh';
+            overlay.style.display = 'none';
+            overlay.style.justifyContent = 'center';
+            overlay.style.alignItems = 'center';
+            overlay.style.background = 'rgba(0,0,0,0.7)';
+            overlay.style.zIndex = '1000';
+            overlay.innerHTML = `
+                <div style="display:flex;flex-direction:column;align-items:center;gap:24px;">
+                    <div id="endless-gameover-title" style="font:bold 48px Arial;color:#fff;"></div>
+                    <div id="endless-gameover-distance" style="font:bold 32px Arial;color:#fff;"></div>
+                    <button id="endless-back-to-menu" style="font:bold 26px Arial;padding:16px 48px;border-radius:16px;background:#ffe066;color:#222;border:3px solid #fff;cursor:pointer;"></button>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+        }
+        const overlayTitle = overlay.querySelector('#endless-gameover-title');
+        const overlayDistance = overlay.querySelector('#endless-gameover-distance');
+        const overlayBtn = overlay.querySelector('#endless-back-to-menu');
+        let lastDistance = 0;
+        function updateOverlayLang() {
+            overlayTitle.textContent = t('game_over') || 'Game Over';
+            overlayBtn.textContent = t('story.back_to_menu') || 'Back to Menu';
+            overlayDistance.textContent = `${t('distance') || 'Distance'}: ` + Math.floor(lastDistance) + ' m';
+        }
+        updateOverlayLang();
+        window.addEventListener('lang-changed', updateOverlayLang);
+        overlayBtn.onclick = () => {
+            overlay.style.display = 'none';
+            EndlessRunner._running = false;
+            cancelAnimationFrame(EndlessRunner._rafId);
+            document.getElementById('main-menu').style.display = '';
+            canvas.style.display = 'none';
+            window.removeEventListener('keydown', escHandler);
+            window.removeEventListener('mousedown', handleEndlessReturn);
+            window.removeEventListener('touchstart', handleEndlessReturn);
+            config.gravity = originalGravity;
+            config.jumpVelocity = originalJumpVelocity;
+        };
 
         const groundImg = new Image();
         groundImg.src = 'https://d1wlpmgdj7hm5h.cloudfront.net/endless_run/ground.png';
@@ -144,7 +192,7 @@ export const EndlessRunner = {
                 ctx.font = 'bold 28px Arial';
                 ctx.fillStyle = '#ffe066';
                 ctx.textAlign = 'left';
-                ctx.fillText('Distance: ' + Math.floor(dist) + ' m', 30, 40);
+                ctx.fillText(Math.floor(dist) + ' m', 30, 40);
                 ctx.restore();
             }
 
@@ -209,37 +257,9 @@ export const EndlessRunner = {
             config.jumpVelocity = -25;
 
             function drawGameOver() {
-                ctx.save();
-                ctx.fillStyle = 'rgba(0,0,0,0.7)';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.font = 'bold 48px Arial';
-                ctx.fillStyle = '#fff';
-                ctx.textAlign = 'center';
-                ctx.fillText('Game Over', canvas.width/2, canvas.height/2 - 40);
-                ctx.font = 'bold 32px Arial';
-                ctx.fillText('Distance: ' + Math.floor(distance) + ' m', canvas.width/2, canvas.height/2 + 10);
-                ctx.font = '20px Arial';
-
-                const btnWidth = 260, btnHeight = 56;
-                const btnX = canvas.width/2 - btnWidth/2, btnY = canvas.height/2 + 50;
-                ctx.save();
-                ctx.beginPath();
-                ctx.roundRect
-                    ? ctx.roundRect(btnX, btnY, btnWidth, btnHeight, 16)
-                    : ctx.rect(btnX, btnY, btnWidth, btnHeight);
-                ctx.fillStyle = '#ffe066';
-                ctx.fill();
-                ctx.lineWidth = 3;
-                ctx.strokeStyle = '#fff';
-                ctx.stroke();
-                ctx.font = 'bold 26px Arial';
-                ctx.fillStyle = '#222';
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.fillText('Back to Menu', canvas.width/2, btnY + btnHeight/2);
-                ctx.restore();
-                ctx.restore();
-
+                lastDistance = distance;
+                overlayDistance.textContent = `${t('distance') || 'Distance'}: ` + Math.floor(distance) + ' m';
+                overlay.style.display = 'flex';
                 config.gravity = originalGravity;
                 config.jumpVelocity = originalJumpVelocity;
 

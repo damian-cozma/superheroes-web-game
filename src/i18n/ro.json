@@ -2,7 +2,8 @@
   "menu": {
     "continue": "Poveste",
     "endless": "Mod infinit",
-    "leaderboard": "Clasament"
+    "leaderboard": "Clasament",
+    "leaderboard_title": "Top 10 Jucători"
   },
   "quiz": {
     "collect_all_coins": "Trebuie să colectezi măcar 5 monede ca să avansezi!",
@@ -229,5 +230,7 @@
   "story": {
     "completed": "Ai terminat toate nivelele!",
     "back_to_menu": "Înapoi la meniu"
-  }
+  },
+  "game_over": "Joc terminat",
+  "distance": "Distanță"
 }

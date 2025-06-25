@@ -2,7 +2,8 @@
   "menu": {
     "continue": "Story Mode",
     "endless": "Endless Run",
-    "leaderboard": "Leaderboard"
+    "leaderboard": "Leaderboard",
+    "leaderboard_title": "Top 10 Players"
   },
   "quiz": {
     "collect_all_coins": "You must collect at least 5 coins to advance!",
@@ -227,7 +228,9 @@
     }
   },
   "story": {
-    "completed": "You've completed all levels!",
+    "completed": "You completed all levels!",
     "back_to_menu": "Back to Menu"
-  }
+  },
+  "game_over": "Game Over",
+  "distance": "Distance"
 }

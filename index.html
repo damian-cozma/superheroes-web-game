@@ -48,23 +48,23 @@
 <div id="rotate-overlay">
     <div>
         <img src="https://d1wlpmgdj7hm5h.cloudfront.net/ui/rotate-phone.svg" alt="Rotate" style="width:5rem; margin-bottom:1.5rem; opacity:0.85;" />
-        <div>Întoarce telefonul<br>pentru a juca</div>
+        <div>Rotate the phone / Întoarce telefonul</div>
     </div>
 </div>
 
 
 <div id="main-menu">
-    <button id="btn-story">Story Mode</button>
-    <button id="btn-endless">Endless Run</button>
-    <button id="btn-leaderboard">Leaderboard</button>
+    <button id="btn-story"></button>
+    <button id="btn-endless"></button>
+    <button id="btn-leaderboard"></button>
 </div>
 
 <div id="leaderboard-screen" style="display:none;">
     <div class="panel">
-        <h2>Top 10 Jucători</h2>
+        <h2 id="leaderboard-title"></h2>
         <ul id="leaderboard-list"></ul>
         <div class="panel-actions">
-            <button id="btn-back-to-menu">‹ Înapoi</button>
+            <button id="btn-back-to-menu"></button>
             <a id="btn-rss" href="/api/leaderboard/rss" target="_blank" class="btn">RSS</a>
         </div>
     </div>

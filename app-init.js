@@ -72,14 +72,17 @@ soundToggle.onclick = () => {
 
 async function setLanguage(lang) {
     await loadTranslations(lang);
+    await Main.setLang(lang);
     btnStory.textContent = t('menu.continue');
     btnEndless.textContent = t('menu.endless');
     btnLeaderboard.textContent = t('menu.leaderboard');
+    backBtn.textContent = t('story.back_to_menu');
+    document.getElementById('leaderboard-title').textContent = t('menu.leaderboard_title');
     if (endScreen.classList.contains('visible')) {
         document.getElementById('end-title').textContent = t('story.completed');
         document.getElementById('btn-end-to-menu').textContent = t('story.back_to_menu');
     }
-    Main.setLang(lang);
+    window.dispatchEvent(new Event('lang-changed'));
 }
 btnRO.onclick = () => setLanguage('ro');
 btnENG.onclick = () => setLanguage('eng');
@@ -120,6 +123,7 @@ btnLeaderboard.onclick = async () => {
     canvas.style.display = 'none';
     lbScreen.style.display = '';
     lbList.innerHTML = '<li>Loading…</li>';
+    document.getElementById('leaderboard-title').textContent = t('menu.leaderboard_title');
     try {
         const res = await apiFetch('/api/leaderboard');
         if (!res.ok) throw new Error(res.status);
@@ -215,6 +219,8 @@ window.addEventListener('auth-changed', refreshProfile);
 
 window.addEventListener('DOMContentLoaded', async () => {
     await setLanguage('ro');
+    document.getElementById('btn-end-to-menu').textContent = t('story.back_to_menu');
+    document.getElementById('end-title').textContent = t('story.completed');
     playMenuMusic();
     initAuthUI();
     initTouchControls();
@@ -254,5 +260,12 @@ window.addEventListener('back-to-menu', () => {
     if (Main._rafId) {
         cancelAnimationFrame(Main._rafId);
         Main._rafId = null;
+    }
+});
+
+window.addEventListener('lang-changed', () => {
+    if (endScreen.classList.contains('visible')) {
+        document.getElementById('end-title').textContent = t('story.completed');
+        document.getElementById('btn-end-to-menu').textContent = t('story.back_to_menu');
     }
 });
