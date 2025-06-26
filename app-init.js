@@ -189,7 +189,7 @@ function updateUserUI(profile) {
             localStorage.removeItem('jwt');
             window.dispatchEvent(new Event('auth-changed'));
             userMenu.classList.remove('open');
-            window.location.reload();
+            window.location.reload(); // refresh la delogare pentru a elimina butonul Admin
         };
         userMenu.classList.add('logged-in');
         if (!userMenu.contains(userAction)) {
@@ -257,10 +257,27 @@ window.addEventListener('auth-changed', () => {
 });
 
 window.addEventListener('DOMContentLoaded', async () => {
+    await setLanguage('ro');
+    document.getElementById('btn-end-to-menu').textContent = t('story.back_to_menu');
+    document.getElementById('end-title').textContent = t('story.completed');
     playMenuMusic();
     initAuthUI();
     initTouchControls();
     refreshProfile();
+
+    function checkOrientation() {
+        const isMobile = window.matchMedia("(max-width: 900px)").matches;
+        const isPortrait = window.matchMedia("(orientation: portrait)").matches;
+        showTouchControlsBar(false);
+        if (isMobile && isPortrait) {
+            document.body.classList.add('rotate-active');
+        } else {
+            document.body.classList.remove('rotate-active');
+        }
+    }
+    window.addEventListener('orientationchange', checkOrientation);
+    window.addEventListener('resize', checkOrientation);
+    checkOrientation();
 });
 
 uiDropdownTrigger.onclick = e => {

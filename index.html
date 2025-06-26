@@ -7,16 +7,6 @@
     <title>Web</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-
-    <link rel="preload" as="image" href="assets/menu/menu.webp">
-    <link rel="preload" as="image" href="assets/menu/romania-flag-icon.svg">
-    <link rel="preload" as="image" href="assets/menu/united-kingdom-flag-icon.svg">
-    <link rel="preload" as="image" href="assets/menu/user.svg">
-    <link rel="preload" as="image" href="assets/menu/coin.svg">
-    <link rel="preload" as="image" href="assets/menu/speaker_456130.png">
-    <link rel="preload" as="image" href="assets/ui/rotate-phone.svg">
-    <link rel="preload" as="audio" href="assets/music/main_theme.mp3" type="audio/mp3">
-    <link rel="preload" as="font" href="https://fonts.googleapis.com/css?family=Inter:700&display=swap">
 </head>
 <body>
 <button id="ui-dropdown-trigger" title="Show menu">☰</button>
@@ -54,6 +44,14 @@
     <img src="https://d1wlpmgdj7hm5h.cloudfront.net/menu/coin.svg" alt="Coin" />
     <span id="coin-count">0</span>
 </div>
+
+<div id="rotate-overlay">
+    <div>
+        <img src="https://d1wlpmgdj7hm5h.cloudfront.net/ui/rotate-phone.svg" alt="Rotate" style="width:5rem; margin-bottom:1.5rem; opacity:0.85;" />
+        <div>Rotate the phone / Întoarce telefonul</div>
+    </div>
+</div>
+
 
 <div id="main-menu">
     <button id="btn-story">Poveste</button>
