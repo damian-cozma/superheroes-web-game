@@ -264,20 +264,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     initAuthUI();
     initTouchControls();
     refreshProfile();
-
-    function checkOrientation() {
-        const isMobile = window.matchMedia("(max-width: 900px)").matches;
-        const isPortrait = window.matchMedia("(orientation: portrait)").matches;
-        showTouchControlsBar(false);
-        if (isMobile && isPortrait) {
-            document.body.classList.add('rotate-active');
-        } else {
-            document.body.classList.remove('rotate-active');
-        }
-    }
-    window.addEventListener('orientationchange', checkOrientation);
-    window.addEventListener('resize', checkOrientation);
-    checkOrientation();
 });
 
 uiDropdownTrigger.onclick = e => {
