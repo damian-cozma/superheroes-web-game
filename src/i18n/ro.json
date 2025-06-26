@@ -232,5 +232,16 @@
     "back_to_menu": "Înapoi la meniu"
   },
   "game_over": "Joc terminat",
-  "distance": "Distanță"
+  "distance": "Distanță",
+  "auth": {
+    "login_title": "Autentificare",
+    "signup_title": "Înregistrare",
+    "username": "Utilizator",
+    "password": "Parolă",
+    "email": "Email",
+    "login_btn": "Autentificare",
+    "signup_btn": "Creează cont",
+    "signup_link": "Nu ai cont? <a href=\"#\" id=\"show-signup\">Înregistrează-te</a>",
+    "login_link": "Ai deja cont? <a href=\"#\" id=\"show-login\">Autentifică-te</a>"
+  }
 }

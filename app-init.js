@@ -268,4 +268,17 @@ window.addEventListener('lang-changed', () => {
         document.getElementById('end-title').textContent = t('story.completed');
         document.getElementById('btn-end-to-menu').textContent = t('story.back_to_menu');
     }
+
+    const authModal = document.getElementById('auth-modal');
+    if (authModal && authModal.classList.contains('visible')) {
+        const authForm = document.getElementById('auth-form');
+        if (authForm) {
+            const h2 = authForm.querySelector('h2');
+            if (h2 && h2.textContent === t('auth.signup_title')) {
+                import('./src/utils/auth-ui.js').then(m => m.renderSignupForm());
+            } else {
+                import('./src/utils/auth-ui.js').then(m => m.renderLoginForm());
+            }
+        }
+    }
 });

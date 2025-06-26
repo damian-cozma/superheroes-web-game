@@ -1,14 +1,15 @@
 import { apiFetch } from './api.js';
+import { t } from '../i18n/i18n.js';
 
 export function renderLoginForm() {
     const authForm = document.getElementById('auth-form');
     if (!authForm) return;
     authForm.innerHTML = `
-      <h2>Log In</h2>
-      <label>Username<br><input name="username" type="text" required></label>
-      <label>Password<br><input name="password" type="password" required></label>
-      <button type="submit">Log In</button>
-      <p>Don't have an account? <a href="#" id="show-signup">Sign up</a></p>
+      <h2>${t('auth.login_title')}</h2>
+      <label>${t('auth.username')}<br><input name="username" type="text" required></label>
+      <label>${t('auth.password')}<br><input name="password" type="password" required></label>
+      <button type="submit">${t('auth.login_btn')}</button>
+      <p>${t('auth.signup_link')}</p>
     `;
     authForm.querySelector('#show-signup').onclick = e => {
         e.preventDefault();
@@ -20,12 +21,12 @@ function renderSignupForm() {
     const authForm = document.getElementById('auth-form');
     if (!authForm) return;
     authForm.innerHTML = `
-      <h2>Sign Up</h2>
-      <label>Username<br><input name="username" type="text" required></label>
-      <label>Email<br><input name="email" type="email" required></label>
-      <label>Password<br><input name="password" type="password" required></label>
-      <button type="submit">Create Account</button>
-      <p>Already have an account? <a href="#" id="show-login">Log in</a></p>
+      <h2>${t('auth.signup_title')}</h2>
+      <label>${t('auth.username')}<br><input name="username" type="text" required></label>
+      <label>${t('auth.email')}<br><input name="email" type="email" required></label>
+      <label>${t('auth.password')}<br><input name="password" type="password" required></label>
+      <button type="submit">${t('auth.signup_btn')}</button>
+      <p>${t('auth.login_link')}</p>
     `;
     authForm.querySelector('#show-login').onclick = e => {
         e.preventDefault();

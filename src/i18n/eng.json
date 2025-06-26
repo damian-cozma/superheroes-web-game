@@ -232,5 +232,16 @@
     "back_to_menu": "Back to Menu"
   },
   "game_over": "Game Over",
-  "distance": "Distance"
+  "distance": "Distance",
+  "auth": {
+    "login_title": "Log In",
+    "signup_title": "Sign Up",
+    "username": "Username",
+    "password": "Password",
+    "email": "Email",
+    "login_btn": "Log In",
+    "signup_btn": "Create Account",
+    "signup_link": "Don't have an account? <a href=\"#\" id=\"show-signup\">Sign up</a>",
+    "login_link": "Already have an account? <a href=\"#\" id=\"show-login\">Log in</a>"
+  }
 }
