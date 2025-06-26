@@ -5,7 +5,7 @@
 }
 
 body {
-
+    /* Fundalul a fost mutat pe elementul <html> pentru o mai bună compatibilitate cu Safari. */
 }
 
 #canvas {
@@ -29,7 +29,7 @@ body {
     transform: translate(-50%, -50%);
     width: 1200px;
     height: 640px;
-    background: url('https://d1wlpmgdj7hm5h.cloudfront.net/menu/menu.webp') center center/cover no-repeat;
+    background: url('https://d1wlpmgdj7hm5h.cloudfront.net/menu/menu.png') center center/cover no-repeat;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -111,7 +111,7 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    background: url('https://d1wlpmgdj7hm5h.cloudfront.net/ui/quizImage.webp') no-repeat center center;
+    background: url('https://d1wlpmgdj7hm5h.cloudfront.net/ui/quizImage.png') no-repeat center center;
     background-size: cover;
     color: #fff;
     padding: 0;
@@ -534,9 +534,6 @@ body {
     flex-direction: column;
     padding: 2rem;
 }
-body.rotate-active #rotate-overlay {
-    display: flex;
-}
 
 body.rotate-active #main-menu,
 body.rotate-active #canvas,
@@ -587,9 +584,17 @@ body {
 }
 html {
     overflow: hidden !important;
-    background: url("https://d1wlpmgdj7hm5h.cloudfront.net/background.webp");
+    background: url("https://d1wlpmgdj7hm5h.cloudfront.net/background.png");
     height: 100%;
     width: 100%;
+}
+
+@media (max-width: 1200px) and (orientation: portrait),
+       (max-device-width: 1200px) and (orientation: portrait), 
+       (pointer: coarse) and (orientation: portrait) {
+    #rotate-overlay {
+        display: flex;
+    }
 }
 
 #ui-dropdown-trigger {

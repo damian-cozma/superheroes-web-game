@@ -5,32 +5,32 @@ import { collisions as level3Collisions } from '../../collisions/level3.js';
 export const levels = {
     1: {
         bgImageSrc: [
-            'https://d1wlpmgdj7hm5h.cloudfront.net/level_1/bg1.webp',
-            'https://d1wlpmgdj7hm5h.cloudfront.net/level_1/bg2.webp',
-            'https://d1wlpmgdj7hm5h.cloudfront.net/level_1/bg3.webp',
-            'https://d1wlpmgdj7hm5h.cloudfront.net/level_1/bg4.webp',
-            'https://d1wlpmgdj7hm5h.cloudfront.net/level_1/bg5.webp'
+            'https://d1wlpmgdj7hm5h.cloudfront.net/level_1/bg1.png',
+            'https://d1wlpmgdj7hm5h.cloudfront.net/level_1/bg2.png',
+            'https://d1wlpmgdj7hm5h.cloudfront.net/level_1/bg3.png',
+            'https://d1wlpmgdj7hm5h.cloudfront.net/level_1/bg4.png',
+            'https://d1wlpmgdj7hm5h.cloudfront.net/level_1/bg5.png'
         ],
         parallaxSpeeds: [0.1, 0.2, 0.3, 0.4, 0.6],
-        groundImageSrc: 'https://d1wlpmgdj7hm5h.cloudfront.net/level_1/ground_buildings.webp',
+        groundImageSrc: 'https://d1wlpmgdj7hm5h.cloudfront.net/level_1/ground_buildings.png',
         collisionBlocks: level1Collisions,
         gravity: 1,
         hasQuiz: true,
         canvasHeight: 640,
         playerSprites: {
-            idleRight: 'https://d1wlpmgdj7hm5h.cloudfront.net/player/idleRight.webp',
-            idleLeft:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/idleLeft.webp',
-            runRight:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/runRight.webp',
-            runLeft:   'https://d1wlpmgdj7hm5h.cloudfront.net/player/runLeft.webp',
-            jumpLeft:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/jumpLeft.webp',
-            jumpRight: 'https://d1wlpmgdj7hm5h.cloudfront.net/player/jumpRight.webp'
+            idleRight: 'https://d1wlpmgdj7hm5h.cloudfront.net/player/idleRight.png',
+            idleLeft:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/idleLeft.png',
+            runRight:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/runRight.png',
+            runLeft:   'https://d1wlpmgdj7hm5h.cloudfront.net/player/runLeft.png',
+            jumpLeft:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/jumpLeft.png',
+            jumpRight: 'https://d1wlpmgdj7hm5h.cloudfront.net/player/jumpRight.png'
         },
         npcs: [
             {
                 id: 'ironman',
                 x: 500,
                 y: 333,
-                sprite:         'https://d1wlpmgdj7hm5h.cloudfront.net/npcs/ironman.webp',
+                sprite:         'https://d1wlpmgdj7hm5h.cloudfront.net/npcs/ironman.png',
                 frameCount:     3,
                 animationSpeed: 150
             },
@@ -38,7 +38,7 @@ export const levels = {
                 id: 'blackwidow',
                 x: 1200,
                 y: 10,
-                sprite:         'https://d1wlpmgdj7hm5h.cloudfront.net/npcs/blackwidow.webp',
+                sprite:         'https://d1wlpmgdj7hm5h.cloudfront.net/npcs/blackwidow.png',
                 frameCount:     3,
                 animationSpeed: 150
             },
@@ -46,7 +46,7 @@ export const levels = {
                 id: 'thor',
                 x: 2700,
                 y: 140,
-                sprite:         'https://d1wlpmgdj7hm5h.cloudfront.net/npcs/thor.webp',
+                sprite:         'https://d1wlpmgdj7hm5h.cloudfront.net/npcs/thor.png',
                 frameCount:     3,
                 animationSpeed: 180
             },
@@ -54,7 +54,7 @@ export const levels = {
                 id: 'captainamerica',
                 x: 3800,
                 y: 360,
-                sprite:         'https://d1wlpmgdj7hm5h.cloudfront.net/npcs/captainamerica.webp',
+                sprite:         'https://d1wlpmgdj7hm5h.cloudfront.net/npcs/captainamerica.png',
                 frameCount:     3,
                 animationSpeed: 140
             }
@@ -62,32 +62,32 @@ export const levels = {
     },
     2: {
         bgImageSrc: [
-            'https://d1wlpmgdj7hm5h.cloudfront.net/level_2/bg1.webp',
-            'https://d1wlpmgdj7hm5h.cloudfront.net/level_2/bg2.webp',
-            'https://d1wlpmgdj7hm5h.cloudfront.net/level_2/bg3.webp',
-            'https://d1wlpmgdj7hm5h.cloudfront.net/level_2/bg4.webp',
-            'https://d1wlpmgdj7hm5h.cloudfront.net/level_2/bg5.webp'
+            'https://d1wlpmgdj7hm5h.cloudfront.net/level_2/bg1.png',
+            'https://d1wlpmgdj7hm5h.cloudfront.net/level_2/bg2.png',
+            'https://d1wlpmgdj7hm5h.cloudfront.net/level_2/bg3.png',
+            'https://d1wlpmgdj7hm5h.cloudfront.net/level_2/bg4.png',
+            'https://d1wlpmgdj7hm5h.cloudfront.net/level_2/bg5.png'
         ],
         parallaxSpeeds: [0.1, 0.2, 0.3, 0.4, 0.6],
-        groundImageSrc: 'https://d1wlpmgdj7hm5h.cloudfront.net/level_2/ground.webp',
+        groundImageSrc: 'https://d1wlpmgdj7hm5h.cloudfront.net/level_2/ground.png',
         collisionBlocks: level2Collisions,
         gravity: 1,
         hasQuiz: true,
         canvasHeight: 640,
         playerSprites: {
-            idleRight: 'https://d1wlpmgdj7hm5h.cloudfront.net/player/idleRight.webp',
-            idleLeft:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/idleLeft.webp',
-            runRight:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/runRight.webp',
-            runLeft:   'https://d1wlpmgdj7hm5h.cloudfront.net/player/runLeft.webp',
-            jumpLeft:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/jumpLeft.webp',
-            jumpRight: 'https://d1wlpmgdj7hm5h.cloudfront.net/player/jumpRight.webp'
+            idleRight: 'https://d1wlpmgdj7hm5h.cloudfront.net/player/idleRight.png',
+            idleLeft:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/idleLeft.png',
+            runRight:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/runRight.png',
+            runLeft:   'https://d1wlpmgdj7hm5h.cloudfront.net/player/runLeft.png',
+            jumpLeft:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/jumpLeft.png',
+            jumpRight: 'https://d1wlpmgdj7hm5h.cloudfront.net/player/jumpRight.png'
         },
         npcs: [
             {
                 id: 'nickfury',
                 x: 800,
                 y: 170,
-                sprite:         'https://d1wlpmgdj7hm5h.cloudfront.net/npcs/nickfury.webp',
+                sprite:         'https://d1wlpmgdj7hm5h.cloudfront.net/npcs/nickfury.png',
                 frameCount:     3,
                 animationSpeed: 150
             },
@@ -95,7 +95,7 @@ export const levels = {
                 id: 'hulk',
                 x: 2150,
                 y: 235,
-                sprite:          'https://d1wlpmgdj7hm5h.cloudfront.net/npcs/hulk.webp',
+                sprite:          'https://d1wlpmgdj7hm5h.cloudfront.net/npcs/hulk.png',
                 frameCount:     3,
                 animationSpeed: 150
             },
@@ -103,7 +103,7 @@ export const levels = {
                 id: 'mariahill',
                 x: 4000,
                 y: 430,
-                sprite:          'https://d1wlpmgdj7hm5h.cloudfront.net/npcs/mariahill.webp',
+                sprite:          'https://d1wlpmgdj7hm5h.cloudfront.net/npcs/mariahill.png',
                 frameCount:     3,
                 animationSpeed: 180
             }
@@ -111,34 +111,34 @@ export const levels = {
     },
     3: {
         bgImageSrc: [
-            'https://d1wlpmgdj7hm5h.cloudfront.net/level_3/bg1.webp',
-            'https://d1wlpmgdj7hm5h.cloudfront.net/level_3/bg2.webp',
-            'https://d1wlpmgdj7hm5h.cloudfront.net/level_3/bg3.webp',
-            'https://d1wlpmgdj7hm5h.cloudfront.net/level_3/bg4.webp',
-            'https://d1wlpmgdj7hm5h.cloudfront.net/level_3/bg5.webp',
-            'https://d1wlpmgdj7hm5h.cloudfront.net/level_3/bg6.webp'
+            'https://d1wlpmgdj7hm5h.cloudfront.net/level_3/bg1.png',
+            'https://d1wlpmgdj7hm5h.cloudfront.net/level_3/bg2.png',
+            'https://d1wlpmgdj7hm5h.cloudfront.net/level_3/bg3.png',
+            'https://d1wlpmgdj7hm5h.cloudfront.net/level_3/bg4.png',
+            'https://d1wlpmgdj7hm5h.cloudfront.net/level_3/bg5.png',
+            'https://d1wlpmgdj7hm5h.cloudfront.net/level_3/bg6.png'
         ],
         parallaxSpeeds: [0.1, 0.2, 0.3, 0.4, 0.6, 0.7],
-        groundImageSrc: 'https://d1wlpmgdj7hm5h.cloudfront.net/level_3/ground.webp',
+        groundImageSrc: 'https://d1wlpmgdj7hm5h.cloudfront.net/level_3/ground.png',
         collisionBlocks: [],
         levelCollisions: level3Collisions,
         gravity: 1,
         hasQuiz: true,
         canvasHeight: 640,
         playerSprites: {
-            idleRight: 'https://d1wlpmgdj7hm5h.cloudfront.net/player/idleRight.webp',
-            idleLeft:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/idleLeft.webp',
-            runRight:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/runRight.webp',
-            runLeft:   'https://d1wlpmgdj7hm5h.cloudfront.net/player/runLeft.webp',
-            jumpLeft:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/jumpLeft.webp',
-            jumpRight: 'https://d1wlpmgdj7hm5h.cloudfront.net/player/jumpRight.webp'
+            idleRight: 'https://d1wlpmgdj7hm5h.cloudfront.net/player/idleRight.png',
+            idleLeft:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/idleLeft.png',
+            runRight:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/runRight.png',
+            runLeft:   'https://d1wlpmgdj7hm5h.cloudfront.net/player/runLeft.png',
+            jumpLeft:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/jumpLeft.png',
+            jumpRight: 'https://d1wlpmgdj7hm5h.cloudfront.net/player/jumpRight.png'
         },
         npcs: [
             {
                 id: 'loki',
                 x: 650,
                 y: 400,
-                sprite:         'https://d1wlpmgdj7hm5h.cloudfront.net/npcs/loki.webp',
+                sprite:         'https://d1wlpmgdj7hm5h.cloudfront.net/npcs/loki.png',
                 frameCount:     3,
                 animationSpeed: 150
             },
@@ -146,7 +146,7 @@ export const levels = {
                 id: 'hawkeye',
                 x: 4300,
                 y: 330,
-                sprite:          'https://d1wlpmgdj7hm5h.cloudfront.net/npcs/hawkeye.webp',
+                sprite:          'https://d1wlpmgdj7hm5h.cloudfront.net/npcs/hawkeye.png',
                 frameCount:     3,
                 animationSpeed: 150
             }

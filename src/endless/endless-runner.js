@@ -66,11 +66,11 @@ export const EndlessRunner = {
         };
 
         const groundImg = new Image();
-        groundImg.src = 'https://d1wlpmgdj7hm5h.cloudfront.net/endless_run/ground.webp';
+        groundImg.src = 'https://d1wlpmgdj7hm5h.cloudfront.net/endless_run/ground.png';
         groundImg.onload = () => runAfterGroundLoaded();
 
         const cdnBaseUrl = 'https://d1wlpmgdj7hm5h.cloudfront.net';
-        const bgPaths = [1,2,3,4,5].map(i => `${cdnBaseUrl}/endless_run/bg${i}.webp`);
+        const bgPaths = [1,2,3,4,5].map(i => `${cdnBaseUrl}/endless_run/bg${i}.png`);
         const bgImages = bgPaths.map(path => {
             const img = new Image();
             img.src = path;
@@ -79,12 +79,12 @@ export const EndlessRunner = {
         const parallaxSpeeds = [0.1, 0.2, 0.3, 0.4, 0.6];
 
         const playerSprites = {
-            idleRight: 'https://d1wlpmgdj7hm5h.cloudfront.net/player/idleRight.webp',
-            idleLeft:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/idleLeft.webp',
-            runRight:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/runRight.webp',
-            runLeft:   'https://d1wlpmgdj7hm5h.cloudfront.net/player/runLeft.webp',
-            jumpLeft:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/jumpLeft.webp',
-            jumpRight: 'https://d1wlpmgdj7hm5h.cloudfront.net/player/jumpRight.webp'
+            idleRight: 'https://d1wlpmgdj7hm5h.cloudfront.net/player/idleRight.png',
+            idleLeft:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/idleLeft.png',
+            runRight:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/runRight.png',
+            runLeft:   'https://d1wlpmgdj7hm5h.cloudfront.net/player/runLeft.png',
+            jumpLeft:  'https://d1wlpmgdj7hm5h.cloudfront.net/player/jumpLeft.png',
+            jumpRight: 'https://d1wlpmgdj7hm5h.cloudfront.net/player/jumpRight.png'
         };
         const loadedSprites = {};
         let loadedCount = 0;

@@ -5,8 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Web</title>
-    <link rel="preload" as="image" href="https://d1wlpmgdj7hm5h.cloudfront.net/menu/menu.webp" />
-    <link rel="preload" as="image" href="https://d1wlpmgdj7hm5h.cloudfront.net/ui/rotate-phone.svg" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
 </head>
@@ -23,7 +21,7 @@
         </button>
     </div>
     <div id="sound-toggle" title="Sound On/Off">
-        <img id="sound-img" src="https://d1wlpmgdj7hm5h.cloudfront.net/menu/speaker_456130.webp"
+        <img id="sound-img" src="https://d1wlpmgdj7hm5h.cloudfront.net/menu/speaker_456130.png"
              alt="Sound" style="width:2.5rem; height:2.5rem; position:relative;" />
         <svg id="mute-svg" width="40" height="40"
              style="position:absolute; top:0; left:0; pointer-events:none; display:none;">
@@ -56,17 +54,17 @@
 
 
 <div id="main-menu">
-    <button id="btn-story">Poveste</button>
-    <button id="btn-endless">Mod infinit</button>
-    <button id="btn-leaderboard">Clasament</button>
+    <button id="btn-story"></button>
+    <button id="btn-endless"></button>
+    <button id="btn-leaderboard"></button>
 </div>
 
 <div id="leaderboard-screen" style="display:none;">
     <div class="panel">
-        <h2 id="leaderboard-title">Clasament</h2>
+        <h2 id="leaderboard-title"></h2>
         <ul id="leaderboard-list"></ul>
         <div class="panel-actions">
-            <button id="btn-back-to-menu">Înapoi la meniu</button>
+            <button id="btn-back-to-menu"></button>
             <a id="btn-rss" href="/api/leaderboard/rss" target="_blank" class="btn">RSS</a>
         </div>
     </div>
@@ -102,8 +100,8 @@
 
 <div id="end-screen" class="end-screen">
     <div class="end-screen__content">
-        <h2 id="end-title">Nivel Terminat</h2>
-        <button id="btn-end-to-menu">Înapoi la meniu</button>
+        <h2 id="end-title"></h2>
+        <button id="btn-end-to-menu">Back to Menu</button>
     </div>
 </div>
 

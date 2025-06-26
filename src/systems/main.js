@@ -86,7 +86,7 @@ export class Main {
         let edgePopupImage = null;
 
         const dialogueImg = new Image();
-        dialogueImg.src = 'https://d1wlpmgdj7hm5h.cloudfront.net/ui/dialogueImage.webp';
+        dialogueImg.src = 'https://d1wlpmgdj7hm5h.cloudfront.net/ui/dialogueImage.png';
         dialogueImg.onload = () => { edgePopupImage = dialogueImg; };
 
         function drawImagePopup(ctx, image, text, canvas) {

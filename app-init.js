@@ -91,8 +91,8 @@ btnENG.onclick = () => setLanguage('eng');
 btnStory.onclick = () => {
     const nextLevel = Math.min(lastFinishedLevel + 1, MAX_LEVEL);
     if (lastFinishedLevel >= MAX_LEVEL) {
-        document.getElementById('end-title').textContent = t('story.completed') || 'Poveste completată!';
-        document.getElementById('btn-end-to-menu').textContent = t('story.back_to_menu') || 'Înapoi la meniu';
+        document.getElementById('end-title').textContent = t('story.completed');
+        document.getElementById('btn-end-to-menu').textContent = t('story.back_to_menu');
         endScreen.classList.add('visible');
         return;
     }
@@ -101,7 +101,7 @@ btnStory.onclick = () => {
     showTouchControlsBar(isTouchDevice());
     const ctx = canvas.getContext('2d');
     ctx && ctx.clearRect(0, 0, canvas.width, canvas.height);
-    Main.start(nextLevel, Main._lang || 'ro');
+    Main.start(nextLevel, Main._lang);
 };
 btnEndless.onclick = () => {
     menu.style.display = 'none';
@@ -123,8 +123,7 @@ btnLeaderboard.onclick = async () => {
     canvas.style.display = 'none';
     lbScreen.style.display = '';
     lbList.innerHTML = '<li>Loading…</li>';
-
-    document.getElementById('leaderboard-title').textContent = t('menu.leaderboard_title') || 'Clasament';
+    document.getElementById('leaderboard-title').textContent = t('menu.leaderboard_title');
     try {
         const res = await apiFetch('/api/leaderboard');
         if (!res.ok) throw new Error(res.status);
@@ -219,6 +218,9 @@ async function refreshProfile() {
 window.addEventListener('auth-changed', refreshProfile);
 
 window.addEventListener('DOMContentLoaded', async () => {
+    await setLanguage('ro');
+    document.getElementById('btn-end-to-menu').textContent = t('story.back_to_menu');
+    document.getElementById('end-title').textContent = t('story.completed');
     playMenuMusic();
     initAuthUI();
     initTouchControls();
