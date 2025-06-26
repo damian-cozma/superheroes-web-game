@@ -164,13 +164,12 @@ function updateUserUI(profile) {
             localStorage.removeItem('jwt');
             window.dispatchEvent(new Event('auth-changed'));
             userMenu.classList.remove('open');
+            window.location.reload(); // refresh la delogare pentru a elimina butonul Admin
         };
         userMenu.classList.add('logged-in');
-        // Asigură-te că userAction este în DOM
         if (!userMenu.contains(userAction)) {
             userMenu.appendChild(userAction);
         }
-        // Corectează handlerul pentru userBtn ca să deschidă meniul cu logout
         userBtn.onclick = e => {
             e.stopPropagation();
             userMenu.classList.toggle('open');

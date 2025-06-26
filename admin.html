@@ -6,27 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Panel</title>
     <link rel="stylesheet" href="styles.css" />
+    <style>
+.admin-panel-v2 {
+  max-width: 420px; margin: 2rem auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 12px #0002; padding: 2rem 1.2rem; font-family: sans-serif;
+}
+.admin-panel-v2 h2 { text-align: center; margin-bottom: 1.2rem; font-size: 1.3rem; }
+.admin-panel-v2 form { margin-bottom: 1rem; }
+.admin-panel-v2 label { font-weight: 600; }
+.admin-panel-v2 input { width: 100%; margin-bottom: 0.7rem; border-radius: 4px; border: 1px solid #b6faff; padding: 0.5rem; }
+.admin-panel-v2 button { background: #4b6a5a; color: #fff; border: none; border-radius: 4px; padding: 0.5rem 1.1rem; cursor: pointer; }
+.admin-panel-v2 button:hover { background: #7be382; color: #1a2a44; }
+.admin-panel-v2 #btn-back { display: block; margin: 1.1rem auto 0 auto; }
+    </style>
 </head>
 <body>
-<div class="panel" style="max-width:400px; margin:3rem auto;">
+<div class="panel admin-panel-v2">
     <h2>Admin Panel</h2>
 
     <div id="notification" class="notification"></div>
 
     <form id="form-promote">
         <label>
-            Username to promote:<br />
+            Admin Manager:<br />
             <input name="username" required />
         </label>
-        <button type="submit">Promote to Admin</button>
+        <button type="submit">Promovează la Admin</button>
     </form>
 
     <form id="form-delete">
         <label>
-            Username to delete:<br />
+            User Manager:<br />
             <input name="username" required />
         </label>
-        <button type="submit">Delete User</button>
+        <button type="submit">Șterge User</button>
     </form>
 
     <button id="btn-back">‹ Înapoi</button>

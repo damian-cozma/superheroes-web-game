@@ -5,7 +5,6 @@
 }
 
 body {
-    /* Fundalul a fost mutat pe elementul <html> pentru o mai bună compatibilitate cu Safari. */
 }
 
 #canvas {
@@ -29,7 +28,7 @@ body {
     transform: translate(-50%, -50%);
     width: 1200px;
     height: 640px;
-    background: url('https://d1wlpmgdj7hm5h.cloudfront.net/menu/menu.png') center center/cover no-repeat;
+    background: url('https://d1wlpmgdj7hm5h.cloudfront.net/menu/menu.webp') center center/cover no-repeat;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -111,7 +110,7 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    background: url('https://d1wlpmgdj7hm5h.cloudfront.net/ui/quizImage.png') no-repeat center center;
+    background: url('https://d1wlpmgdj7hm5h.cloudfront.net/ui/quizImage.webp') no-repeat center center;
     background-size: cover;
     color: #fff;
     padding: 0;
@@ -245,6 +244,8 @@ body {
 #auth-form input[type="text"],
 #auth-form input[type="password"],
 #auth-form input[type="email"] {
+    width: 100%;
+    box-sizing: border-box;
     font-family: 'Inter', 'Arial', sans-serif;
     font-size: 1.13rem;
     margin-top: 4px;
@@ -584,7 +585,7 @@ body {
 }
 html {
     overflow: hidden !important;
-    background: url("https://d1wlpmgdj7hm5h.cloudfront.net/background.png");
+    background: url("https://d1wlpmgdj7hm5h.cloudfront.net/background.webp");
     height: 100%;
     width: 100%;
 }
@@ -666,4 +667,8 @@ html {
 }
 #ui-dropdown .user-menu {
     margin-bottom: 0 !important;
+}
+
+#auth-form, #auth-form label, #auth-form input, #auth-form button, #auth-form a, #auth-form p {
+  font-family: 'Inter', 'Arial', sans-serif;
 }
