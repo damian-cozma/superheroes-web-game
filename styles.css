@@ -517,39 +517,6 @@ body {
     border: 1px solid #a12a2a;
 }
 
-#rotate-overlay {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: #1a2320ee;
-    color: #fff;
-    font-family: 'Inter', 'Arial', sans-serif;
-    font-size: 2.1rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    flex-direction: column;
-    padding: 2rem;
-}
-body.rotate-active #rotate-overlay {
-    display: flex;
-}
-
-body.rotate-active #main-menu,
-body.rotate-active #canvas,
-body.rotate-active #leaderboard-screen,
-body.rotate-active #end-screen,
-body.rotate-active #admin-screen,
-body.rotate-active #coin-counter,
-body.rotate-active #lang-select,
-body.rotate-active #sound-toggle,
-body.rotate-active #auth-modal {
-    display: none !important;
-}
-
 @media (max-width: 1400px), (max-height: 900px) {
     html, body {
         width: 100vw;
