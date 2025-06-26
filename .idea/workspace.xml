@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be0122f1-d34a-462e-9485-d2e31cc1ce11" name="Changes" comment="added more NPCs and dialogue" />
+    <list default="true" id="be0122f1-d34a-462e-9485-d2e31cc1ce11" name="Changes" comment="added more NPCs and dialogue">
+      <change beforePath="$PROJECT_DIR$/app-init.js" beforeDir="false" afterPath="$PROJECT_DIR$/app-init.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

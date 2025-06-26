@@ -189,7 +189,7 @@ function updateUserUI(profile) {
             localStorage.removeItem('jwt');
             window.dispatchEvent(new Event('auth-changed'));
             userMenu.classList.remove('open');
-            window.location.reload(); // refresh la delogare pentru a elimina butonul Admin
+            window.location.reload();
         };
         userMenu.classList.add('logged-in');
         if (!userMenu.contains(userAction)) {
@@ -257,9 +257,6 @@ window.addEventListener('auth-changed', () => {
 });
 
 window.addEventListener('DOMContentLoaded', async () => {
-    await setLanguage('ro');
-    document.getElementById('btn-end-to-menu').textContent = t('story.back_to_menu');
-    document.getElementById('end-title').textContent = t('story.completed');
     playMenuMusic();
     initAuthUI();
     initTouchControls();
