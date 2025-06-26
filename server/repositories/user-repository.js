@@ -35,15 +35,14 @@ async function findById(id) {
 }
 
 async function updateProgress(id, progress) {
-    const { levels_finished, best_score } = progress;
+    const { levels_finished } = progress;
     const sql = `
-    UPDATE users
-       SET levels_finished = $1,
-           best_score      = $2
-     WHERE id = $3
-     RETURNING id,username,email,levels_finished,best_score,is_admin;
-  `;
-    const { rows } = await pool.query(sql, [levels_finished, best_score, id]);
+        UPDATE users
+        SET levels_finished = $1
+        WHERE id = $2
+            RETURNING id,username,email,levels_finished,best_score,is_admin;
+    `;
+    const { rows } = await pool.query(sql, [levels_finished, id]);
     return rows[0];
 }
 

@@ -122,17 +122,42 @@ btnLeaderboard.onclick = async () => {
     menu.style.display = 'none';
     canvas.style.display = 'none';
     lbScreen.style.display = '';
-    lbList.innerHTML = '<li>Loading…</li>';
+
+
+    lbList.replaceChildren(
+        (() => {
+            const li = document.createElement('li');
+            li.textContent = 'Loading…';
+            return li;
+        })()
+    );
+
     document.getElementById('leaderboard-title').textContent = t('menu.leaderboard_title');
+
     try {
         const res = await apiFetch('/api/leaderboard');
         if (!res.ok) throw new Error(res.status);
         const data = res.data;
-        lbList.innerHTML = data.map((u, i) => `<li>${i+1}. ${u.username} — ${u.best_score} m</li>`).join('');
+
+        lbList.replaceChildren(
+            ...data.map((u, i) => {
+                const li = document.createElement('li');
+                li.textContent = `${i + 1}. ${u.username} — ${u.best_score} m`;
+                return li;
+            })
+        );
     } catch (e) {
-        lbList.innerHTML = '<li>Nu am putut încărca clasamentul.</li>';
+
+        lbList.replaceChildren(
+            (() => {
+                const li = document.createElement('li');
+                li.textContent = 'Nu am putut încărca clasamentul.';
+                return li;
+            })()
+        );
     }
 };
+
 
 backBtn.onclick = () => {
     lbScreen.style.display = 'none';
