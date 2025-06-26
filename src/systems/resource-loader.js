@@ -8,7 +8,7 @@ export class ResourceLoader {
     constructor() {
 
         this.dialogueImage = new Image();
-        this.dialogueImage.src = 'https://d1wlpmgdj7hm5h.cloudfront.net/ui/dialogueImage.png';
+        this.dialogueImage.src = 'https://d1wlpmgdj7hm5h.cloudfront.net/ui/dialogueImage.webp';
     }
 
     async loadLevel(levelId) {

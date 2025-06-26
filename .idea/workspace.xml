@@ -5,6 +5,66 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be0122f1-d34a-462e-9485-d2e31cc1ce11" name="Changes" comment="added more NPCs and dialogue">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/endless_run/bg1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/endless_run/bg2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/endless_run/bg3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/endless_run/bg4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/endless_run/bg5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/endless_run/ground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/level_1/bg1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/level_1/bg2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/level_1/bg3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/level_1/bg4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/level_1/bg5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/level_1/ground_buildings.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/level_2/bg1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/level_2/bg2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/level_2/bg3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/level_2/bg4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/level_2/bg5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/level_2/ground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/level_3/bg1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/level_3/bg2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/level_3/bg3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/level_3/bg4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/level_3/bg5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/level_3/bg6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/level_3/ground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/menu/menu.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/menu/menu.webp" beforeDir="false" afterPath="$PROJECT_DIR$/assets/menu/menu.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/menu/speaker_456130.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/menu/user.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/npcs/blackwidow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/npcs/captainamerica.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/npcs/chitauri.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/npcs/hawkeye.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/npcs/hero1Idle.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/npcs/hulk.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/npcs/ironman.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/npcs/loki.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/npcs/mariahill.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/npcs/nickfury.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/npcs/thor.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/player/attackLeft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/player/attackRight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/player/idleLeft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/player/idleRight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/player/jumpLeft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/player/jumpRight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/player/runLeft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/player/runRight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/ui/chatBubble.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/ui/dialogueImage.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/ui/quizFailImage.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/ui/quizImage.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/levels-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/levels-config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/endless/endless-runner.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/endless/endless-runner.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/systems/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/systems/resource-loader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/resource-loader.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

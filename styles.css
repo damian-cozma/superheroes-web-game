@@ -5,7 +5,7 @@
 }
 
 body {
-    /* Fundalul a fost mutat pe elementul <html> pentru o mai bună compatibilitate cu Safari. */
+
 }
 
 #canvas {
@@ -111,7 +111,7 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    background: url('https://d1wlpmgdj7hm5h.cloudfront.net/ui/quizImage.png') no-repeat center center;
+    background: url('https://d1wlpmgdj7hm5h.cloudfront.net/ui/quizImage.webp') no-repeat center center;
     background-size: cover;
     color: #fff;
     padding: 0;
