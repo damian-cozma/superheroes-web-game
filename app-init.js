@@ -159,15 +159,28 @@ function updateUserUI(profile) {
     if (profile && profile.username) {
         userNameSpan.textContent = profile.username;
         userAction.textContent = 'Log Out';
+        userAction.style.display = '';
         userAction.onclick = () => {
             localStorage.removeItem('jwt');
             window.dispatchEvent(new Event('auth-changed'));
             userMenu.classList.remove('open');
         };
+        userMenu.classList.add('logged-in');
+        // Asigură-te că userAction este în DOM
+        if (!userMenu.contains(userAction)) {
+            userMenu.appendChild(userAction);
+        }
+        // Corectează handlerul pentru userBtn ca să deschidă meniul cu logout
+        userBtn.onclick = e => {
+            e.stopPropagation();
+            userMenu.classList.toggle('open');
+        };
     } else {
         userNameSpan.textContent = 'User';
-        userAction.textContent = 'Log In';
-        userAction.onclick = () => {
+        userAction.style.display = 'none';
+        userMenu.classList.remove('logged-in');
+        userBtn.onclick = e => {
+            e.stopPropagation();
             document.getElementById('auth-form').innerHTML = '';
             renderLoginForm();
             authModal.classList.add('visible');
@@ -215,7 +228,9 @@ async function refreshProfile() {
     }
 }
 
-window.addEventListener('auth-changed', refreshProfile);
+window.addEventListener('auth-changed', () => {
+    refreshProfile();
+});
 
 window.addEventListener('DOMContentLoaded', async () => {
     await setLanguage('ro');

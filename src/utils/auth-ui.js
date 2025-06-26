@@ -4,6 +4,7 @@ import { t } from '../i18n/i18n.js';
 export function renderLoginForm() {
     const authForm = document.getElementById('auth-form');
     if (!authForm) return;
+    authForm.setAttribute('data-auth-mode', 'login');
     authForm.innerHTML = `
       <h2>${t('auth.login_title')}</h2>
       <label>${t('auth.username')}<br><input name="username" type="text" required></label>
@@ -20,6 +21,7 @@ export function renderLoginForm() {
 function renderSignupForm() {
     const authForm = document.getElementById('auth-form');
     if (!authForm) return;
+    authForm.setAttribute('data-auth-mode', 'signup');
     authForm.innerHTML = `
       <h2>${t('auth.signup_title')}</h2>
       <label>${t('auth.username')}<br><input name="username" type="text" required></label>
@@ -47,8 +49,8 @@ export function initAuthUI() {
     authForm.onsubmit = async event => {
         event.preventDefault();
         const data   = Object.fromEntries(new FormData(authForm).entries());
-        const isLog  = authForm.querySelector('h2').textContent === 'Log In';
-        const url    = isLog ? '/api/user/login' : '/api/user/register';
+        const mode = authForm.getAttribute('data-auth-mode');
+        const url = mode === 'login' ? '/api/user/login' : '/api/user/register';
 
         try {
             const res    = await apiFetch(url, {
