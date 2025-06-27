@@ -36,19 +36,22 @@ body {
     border-radius: 8px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.4);
     z-index: 10;
+    overflow: auto;
 }
 
 #main-menu button {
     font-family: 'Inter', 'Arial', sans-serif;
-    font-size: 1.7rem;
+    font-size: 2.8vw;
     font-weight: 600;
     color: #b6faff;
     background: #232e2b;
     border: 3px solid #4b6a5a;
     border-radius: 14px;
     margin: 16px 0;
-    padding: 16px 0;
-    width: 320px;
+    padding: 1.2vw 0;
+    width: 40%;
+    min-width: unset;
+    max-width: unset;
     box-shadow: 0 2px 0 #1a2320;
     letter-spacing: 1px;
     text-shadow: 0 1px 0 #000a;
@@ -671,4 +674,47 @@ html {
 
 #auth-form, #auth-form label, #auth-form input, #auth-form button, #auth-form a, #auth-form p {
   font-family: 'Inter', 'Arial', sans-serif;
+}
+
+@media (max-width: 600px) {
+  #main-menu {
+    width: 98vw;
+    height: 60vh;
+    min-width: 0;
+    min-height: 0;
+    overflow: auto;
+  }
+  #main-menu button {
+    width: 80%;
+    font-size: 4vw;
+    padding: 2vw 0;
+    margin: 8px 0;
+    min-width: unset;
+    max-width: unset;
+    box-sizing: border-box;
+  }
+}
+
+#size-warning-overlay {
+    display: none;
+    position: fixed;
+    z-index: 99999;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #1a2320ee;
+    color: #fff;
+    font-family: 'Inter', 'Arial', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 2rem;
+    display: none;
+}
+#size-warning-overlay > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

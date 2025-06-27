@@ -112,6 +112,36 @@
     </div>
 </div>
 
+<div id="size-warning-overlay">
+  <div>
+    <img src="https://d1wlpmgdj7hm5h.cloudfront.net/ui/rotate-phone.svg" alt="Warning" style="width:4rem; margin-bottom:1.2rem; opacity:0.85;" />
+    <div style="font-size:1.3rem; font-weight:600;">Mărește fereastra pentru o experiență optimă!<br>Resize the window for best experience!</div>
+  </div>
+</div>
+
 <script type="module" src="./app-init.js"></script>
+<script>
+(function() {
+  function checkOverlays() {
+    var sizeOverlay = document.getElementById('size-warning-overlay');
+    var rotateOverlay = document.getElementById('rotate-overlay');
+    var showSize = (window.innerWidth < 600 || window.innerHeight < 340);
+    var isPortrait = window.matchMedia('(max-width: 1200px) and (orientation: portrait), (max-device-width: 1200px) and (orientation: portrait), (pointer: coarse) and (orientation: portrait)').matches;
+    if (showSize) {
+      sizeOverlay.style.display = 'flex';
+      rotateOverlay.style.display = 'none';
+    } else if (isPortrait) {
+      sizeOverlay.style.display = 'none';
+      rotateOverlay.style.display = 'flex';
+    } else {
+      sizeOverlay.style.display = 'none';
+      rotateOverlay.style.display = 'none';
+    }
+  }
+  window.addEventListener('resize', checkOverlays);
+  window.addEventListener('orientationchange', checkOverlays);
+  window.addEventListener('DOMContentLoaded', checkOverlays);
+})();
+</script>
 </body>
 </html>

@@ -196,6 +196,75 @@ export const EndlessRunner = {
                 ctx.restore();
             }
 
+            let backBtnRect = { x: canvas.width/2 - 60, y: 24, w: 120, h: 44 };
+            let backBtnHovered = false;
+            function drawBackButton(ctx) {
+                ctx.save();
+                ctx.globalAlpha = 0.92;
+                ctx.fillStyle = backBtnHovered ? '#232e2b' : '#232e2b';
+                ctx.strokeStyle = '#4c6a5a';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.roundRect(backBtnRect.x, backBtnRect.y, backBtnRect.w, backBtnRect.h, 12);
+                ctx.fill();
+                ctx.stroke();
+                ctx.font = 'bold 14px Arial';
+                ctx.fillStyle = '#b6faff';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(t('story.back_to_menu') || 'Înapoi', backBtnRect.x + backBtnRect.w/2, backBtnRect.y + backBtnRect.h/2);
+                ctx.restore();
+            }
+            function isInsideBackBtn(x, y) {
+                return x >= backBtnRect.x && x <= backBtnRect.x + backBtnRect.w &&
+                       y >= backBtnRect.y && y <= backBtnRect.y + backBtnRect.h;
+            }
+            function handleBackToMenu() {
+                EndlessRunner._running = false;
+                cancelAnimationFrame(EndlessRunner._rafId);
+                document.getElementById('main-menu').style.display = '';
+                canvas.style.display = 'none';
+                window.removeEventListener('keydown', escHandler);
+                window.removeEventListener('mousedown', handleEndlessReturn);
+                window.removeEventListener('touchstart', handleEndlessReturn);
+                config.gravity = originalGravity;
+                config.jumpVelocity = originalJumpVelocity;
+            }
+            function onCanvasClick(e) {
+                const rect = canvas.getBoundingClientRect();
+                const scaleX = canvas.width / rect.width;
+                const scaleY = canvas.height / rect.height;
+                let x, y;
+                if (e.touches && e.touches.length) {
+                    x = (e.touches[0].clientX - rect.left) * scaleX;
+                    y = (e.touches[0].clientY - rect.top) * scaleY;
+                } else {
+                    x = (e.clientX - rect.left) * scaleX;
+                    y = (e.clientY - rect.top) * scaleY;
+                }
+                if (isInsideBackBtn(x, y)) {
+                    handleBackToMenu();
+                }
+            }
+            function onCanvasMove(e) {
+                const rect = canvas.getBoundingClientRect();
+                const scaleX = canvas.width / rect.width;
+                const scaleY = canvas.height / rect.height;
+                let x, y;
+                if (e.touches && e.touches.length) {
+                    x = (e.touches[0].clientX - rect.left) * scaleX;
+                    y = (e.touches[0].clientY - rect.top) * scaleY;
+                } else {
+                    x = (e.clientX - rect.left) * scaleX;
+                    y = (e.clientY - rect.top) * scaleY;
+                }
+                backBtnHovered = isInsideBackBtn(x, y);
+            }
+            canvas.addEventListener('mousedown', onCanvasClick);
+            canvas.addEventListener('touchstart', onCanvasClick);
+            canvas.addEventListener('mousemove', onCanvasMove);
+            canvas.addEventListener('touchmove', onCanvasMove);
+
             function loop(ts) {
                 if (!EndlessRunner._running) return;
                 const delta = ts - lastTime;
@@ -247,6 +316,7 @@ export const EndlessRunner = {
                 drawBlocks(ctx, collisionBlocks);
                 renderer.drawEntities([player], ts, 0);
                 drawDistance(ctx, distance);
+                drawBackButton(ctx);
 
                 EndlessRunner._rafId = requestAnimationFrame(loop);
             }

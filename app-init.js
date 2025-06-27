@@ -189,7 +189,7 @@ function updateUserUI(profile) {
             localStorage.removeItem('jwt');
             window.dispatchEvent(new Event('auth-changed'));
             userMenu.classList.remove('open');
-            window.location.reload(); // refresh la delogare pentru a elimina butonul Admin
+            window.location.reload();
         };
         userMenu.classList.add('logged-in');
         if (!userMenu.contains(userAction)) {
