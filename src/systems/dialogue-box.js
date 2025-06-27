@@ -35,7 +35,24 @@ export class DialogueBox {
         this.lineIndex    = 0;
         this.visible      = true;
 
-        const line = t(`npc.${this.nodeKey.replace(/_.*/, '')}.${this.nodeKey.replace(/.*?(_|$)/, '').replace(/_.*/, '') === '' ? 'l' + (this.lineIndex + 1) : this.nodeKey.split('_').slice(1).join('') + '_l' + (this.lineIndex + 1)}`);
+        const line = t(
+            `npc.${
+                this.nodeKey.replace(/_.*/, '')
+            }.${
+                this.nodeKey
+                    .replace(/.*?(_|$)/, '')
+                    .replace(/_.*/, '') === ''
+                    ?
+                    'l' + (this.lineIndex + 1)
+                    :
+                    this.nodeKey
+                        .split('_')
+                        .slice(1)
+                        .join('') +
+                    '_l' + (this.lineIndex + 1)
+            }`
+        );
+
         this.fullText    = line;
         this.currentText = '';
         this.charTimer   = 0;
@@ -68,14 +85,30 @@ export class DialogueBox {
         const lines = dialogues[this.nodeKey].lines;
         if (this.lineIndex < lines.length - 1) {
             this.lineIndex++;
-            const line = t(`npc.${this.nodeKey.replace(/_.*/, '')}.${this.nodeKey.replace(/.*?(_|$)/, '').replace(/_.*/, '') === '' ? 'l' + (this.lineIndex + 1) : this.nodeKey.split('_').slice(1).join('') + '_l' + (this.lineIndex + 1)}`);
+            const line = t(
+                `npc.${
+                    this.nodeKey.replace(/_.*/, '')
+                }.${
+                    this.nodeKey
+                        .replace(/.*?(_|$)/, '')
+                        .replace(/_.*/, '') === ''
+                        ?
+                        'l' + (this.lineIndex + 1)
+                        :
+                        this.nodeKey
+                            .split('_')
+                            .slice(1)
+                            .join('') +
+                        '_l' + (this.lineIndex + 1)
+                }`
+            );
             this.fullText    = line;
             this.currentText = '';
             this.charTimer   = 0;
 
         } else {
             this.visible = false;
-            console.log("🛎️ DialogueBox.advance(): invoking onFinish()");
+            console.log("DialogueBox.advance(): invoking onFinish()");
             this.onFinish();
         }
     }

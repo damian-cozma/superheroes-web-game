@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="be0122f1-d34a-462e-9485-d2e31cc1ce11" name="Changes" comment="added more NPCs and dialogue">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/systems/dialogue-box.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/dialogue-box.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,6 +116,7 @@
       <workItem from="1750854524509" duration="906000" />
       <workItem from="1750869204074" duration="2837000" />
       <workItem from="1750880320984" duration="8822000" />
+      <workItem from="1751006477216" duration="7148000" />
     </task>
     <task id="LOCAL-00001" summary="small modification">
       <option name="closed" value="true" />
