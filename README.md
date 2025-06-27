@@ -69,3 +69,11 @@ Disponibil doar pentru utilizatorii cu **privilegii de admin**:
 
 ## Diagrame C4
 
+## Page Speed Test (Bonus)
+
+### Mobil
+<img width="1278" alt="image-2" src="https://github.com/user-attachments/assets/9c5c757b-6339-4e15-9734-f6ef656c9dc9" />
+
+### Desktop
+<img width="1235" alt="image-3" src="https://github.com/user-attachments/assets/1b578ec7-79ce-4b5b-8502-2a8ea97e6e5e" />
+
