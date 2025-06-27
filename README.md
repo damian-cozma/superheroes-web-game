@@ -69,16 +69,16 @@ Disponibil doar pentru utilizatorii cu **privilegii de admin**:
 
 ## Diagrame C4
 ### Nivelul 1
-![C4_LVL1_WEB drawio](https://github.com/user-attachments/assets/75eed852-d65f-49ac-a3ab-5b86edb2844d)
+![C4_LVL1_WEB drawio](https://github.com/user-attachments/assets/763a7609-c7a7-4e00-bd4c-eb8744b5aa03)
 
 ### Nivelul 2
-![C4_LVL2_WEB drawio](https://github.com/user-attachments/assets/b6c9fc25-2881-4b81-bc21-33dfeae1e45b)
+![C4_LVL2_WEB drawio](https://github.com/user-attachments/assets/c3002d93-0828-467f-ac17-455f8bfffbc2)
 
 ### Nivelul 3 (Back-End)
-![C4_LVL3_BACKEND drawio](https://github.com/user-attachments/assets/1748871e-a261-4b54-976a-2cfa5a4a1a59)
+![C4_LVL3_BACKEND drawio](https://github.com/user-attachments/assets/ff9caa83-2497-45cf-ab96-955268b97347)
 
 ### Nivelul 4 (Front-End)
-![C4_LVL3_FRONTEND drawio](https://github.com/user-attachments/assets/2a85271c-dfda-4222-aa77-b332c60032c2)
+![C4_LVL3_FRONTEND drawio](https://github.com/user-attachments/assets/1c3ca781-11ac-4edf-b648-6b0d2d54d0fd)
 
 
 ## Page Speed Test (Bonus)
