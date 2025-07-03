@@ -74,10 +74,10 @@ Disponibil doar pentru utilizatorii cu **privilegii de admin**:
 ### Nivelul 2
 ![C4_LVL2_WEB drawio](https://github.com/user-attachments/assets/c3002d93-0828-467f-ac17-455f8bfffbc2)
 
-### Nivelul 3 (Back-End)
+### Nivelul 3.1 (Back-End)
 ![C4_LVL3_BACKEND drawio](https://github.com/user-attachments/assets/ff9caa83-2497-45cf-ab96-955268b97347)
 
-### Nivelul 4 (Front-End)
+### Nivelul 3.2 (Front-End)
 ![C4_LVL3_FRONTEND drawio](https://github.com/user-attachments/assets/1c3ca781-11ac-4edf-b648-6b0d2d54d0fd)
 
 
