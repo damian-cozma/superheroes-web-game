@@ -2,82 +2,82 @@
 
 https://github.com/user-attachments/assets/1b594ed9-3528-4c9e-badb-abb8c31628eb
 
-## Functionalități principale
+## Main Features
 
 ### 1. Story Mode
-Modul principal de explorare și învățare:
-- Navigare prin lumi structurate pe **nivele**.
-- Interacțiuni cu **NPC-uri** (supereroi) apăsând `E`.
-- **Colectare de monede** pe parcursul explorării.
-- Acces la un **test/quiz** la finalul fiecărui nivel.
-  - Pentru a avansa este necesar:
-    - să se obțină un punctaj minim la quiz;
-    - să se colecteze cel puțin **5 monede**.
+The main exploration and learning mode:
+- Navigation through worlds structured by levels.
+- Interactions with NPCs (superheroes) by pressing E.
+- Coin collection during exploration.
+- Access to a test/quiz at the end of each level.
+- To advance, the player must:
+  - achieve a minimum score in the quiz;
+  - collect at least 5 coins.
 
 ### 2. Endless Mode
-Mod de joc continuu și competitiv:
-- Jocul se rulează automat (auto-scroll), utilizatorul controlează doar săriturile (`jump`).
-- Dacă jucătorul cade în **void**, pierde.
-- Se salvează automat **scorul final** în leaderboard.
+Continuous and competitive gameplay mode:
+- The game runs automatically (auto-scroll), the player only controls jumping (jump).
+- If the player falls into the void, they lose.
+- The final score is automatically saved in the leaderboard.
 
 ### 3. Leaderboard
-Clasament public cu cei mai buni jucători:
-- Afișare scoruri în ordine **descrescătoare**.
-- Vizualizare date:
-  - **în panou interactiv (UI)**;
-  - **ca flux RSS** pentru integrare externă.
+Public ranking of top players:
+- Scores displayed in descending order.
+- Data visualization:
+  - in an interactive UI panel;
+  - as an RSS feed for external integration.
 
 ### 4. Admin Mode
-Disponibil doar pentru utilizatorii cu **privilegii de admin**:
-- **Promovare** altor useri la rolul de admin.
-- **Ștergere** useri din sistem.
+Available only for users with admin privileges:
+- Promoting other users to admin role.
+- Deleting users from the system.
 
 ---
 
-## Arhitectură generală
+## General Architecture
 
 ### Frontend
-- Consumă API-uri REST de la server.
-- Responsiv și compatibil desktop/mobile.
+- Consumes REST APIs from the server.
+- Responsive and compatible with desktop/mobile.
 
 ### Backend
-- Server REST API scris în Node.js.
-- Utilizează **model-repository-controller** pentru gestionarea logicii de business și accesul la baza de date.
-- Suportă:
-  - Autentificare/autorizare cu **JWT (JSON Web Token)**.
-  - Gestionarea sesiunilor de joc.
-  - Stocarea scorurilor și progresului userilor.
+- REST API server written in Node.js.
+- Uses model-repository-controller pattern for business logic and database access.
+Supports:
+- Authentication/authorization using JWT (JSON Web Token);
+- Game session management;
+- Storage of user scores and progress.
 
 ---
 
 ## Hosting & Infrastructură
 
 ### Găzduire
-- Hostat pe **Amazon EC2** (Elastic Compute Cloud).
-- **Elastic IP** pentru adresă IP statică.
+- Hosted on Amazon EC2 (Elastic Compute Cloud).
+- Elastic IP for a static IP address.
 
-### Stocare fișiere
-- **Amazon S3** pentru fișiere statice (ex: imagini, fișiere frontend build).
-- **CDN** (Content Delivery Network) activ pentru livrare rapidă a conținutului static.
+### File Storage
+- Amazon S3 for static files (e.g., images, frontend build files).
+- CDN (Content Delivery Network) enabled for fast content delivery.
 
-### Domeniu & Securitate
-- Domeniu gestionat prin **DuckDNS**.
-- Certificat SSL gratuit emis cu **Let’s Encrypt**.
-- Toate conexiunile HTTPS securizate.
+### Domain & Security
+- Domain managed via DuckDNS.
+- Free SSL certificate issued with Let’s Encrypt.
+- All connections are secured via HTTPS.
 
 ---
 
-## Diagrame C4
-### Nivelul 1
+## C4 Diagrams
+### Level 1
 ![C4_LVL1_WEB drawio](https://github.com/user-attachments/assets/763a7609-c7a7-4e00-bd4c-eb8744b5aa03)
 
-### Nivelul 2
+### Level 2
 ![C4_LVL2_WEB drawio](https://github.com/user-attachments/assets/c3002d93-0828-467f-ac17-455f8bfffbc2)
 
-### Nivelul 3.1 (Back-End)
+### Level 3.1 (Back-End)
 ![C4_LVL3_BACKEND drawio](https://github.com/user-attachments/assets/ff9caa83-2497-45cf-ab96-955268b97347)
 
-### Nivelul 3.2 (Front-End)
+### Level 3.2 (Front-End)
 ![C4_LVL3_FRONTEND drawio](https://github.com/user-attachments/assets/1c3ca781-11ac-4edf-b648-6b0d2d54d0fd)
 
 
